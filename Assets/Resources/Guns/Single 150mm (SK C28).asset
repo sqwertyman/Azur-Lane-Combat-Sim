@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
+  m_Name: Single 150mm (SK C28)
+  m_EditorClassIdentifier: 
+  name: Single 150mm (SK C/28)
+  id: 2
+  startDelay: 0.5
+  fireRate: 1.38
+  volleyTime: 0
+  noOfShots: 1
+  projPerShot: 1
+  damage: 21
+  spread: 15
+  projectile: {fileID: 2397885890873262725, guid: c5ddd8a92029a7345ac780d18c4fbd77,
+    type: 3}
