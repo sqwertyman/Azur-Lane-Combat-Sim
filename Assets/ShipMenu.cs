@@ -9,40 +9,43 @@ public class ShipMenu : MonoBehaviour
 
     private string ship, mainGun, auxGun;
     
-    public void SetOptions()
+    //set ship dropdown choices
+    public void Init()
     {
         List<string> tempList = new List<string>();
-        foreach (string item in Database.ShipNamesList.Keys)
+        foreach (ShipData item in Database.ShipNamesList.Values)
         {
-            tempList.Add(item);
+            tempList.Add(item.Name);
         }
         shipDrop.AddOptions(tempList);
+    }
 
+    //call to reset equipment dropdown choices depending on ship chosen
+    private void ResetOptions()
+    {
+        mainGunDrop.options.RemoveRange(1, mainGunDrop.options.Count - 1);
+        auxGunDrop.options.RemoveRange(1, auxGunDrop.options.Count - 1);
+
+        List<string> tempList = new List<string>();
         tempList = new List<string>();
-        foreach (string item in Database.GunNamesList.Keys)
+        foreach (GunData item in Database.GunNamesList.Values)
         {
-            tempList.Add(item);
+            if (Database.ShipNamesList[ship].Slot1 == item.Type)
+            {
+                tempList.Add(item.Name);
+            }
         }
         mainGunDrop.AddOptions(tempList);
 
         tempList = new List<string>();
-        foreach (string item in Database.GunNamesList.Keys)
+        foreach (GunData item in Database.GunNamesList.Values)
         {
-            tempList.Add(item);
+            if (Database.ShipNamesList[ship].Slot2 == item.Type)
+            {
+                tempList.Add(item.Name);
+            }
         }
         auxGunDrop.AddOptions(tempList);
-    }
-    //needs improving
-
-
-    private void TempMeth(Dictionary<int, DatabaseItem> databaseList, Dropdown dropdown)
-    {
-        List<string> tempList = new List<string>();
-        foreach (DatabaseItem item in databaseList.Values)
-        {
-            tempList.Add(item.Name);
-        }
-        dropdown.AddOptions(tempList);
     }
 
     public void GetSelections()
@@ -50,6 +53,23 @@ public class ShipMenu : MonoBehaviour
         ship = shipDrop.options[shipDrop.value].text;
         mainGun = mainGunDrop.options[mainGunDrop.value].text;
         auxGun = auxGunDrop.options[auxGunDrop.value].text;
+    }
+
+    //called when ship selection is changed, showing or hiding gun options depending on whether "none" is selected
+    public void SelectionChanged()
+    {
+        if (shipDrop.value != 0)
+        {
+            ship = shipDrop.options[shipDrop.value].text;
+            ResetOptions();
+            mainGunDrop.gameObject.SetActive(true);
+            auxGunDrop.gameObject.SetActive(true);
+        }
+        else
+        {
+            mainGunDrop.gameObject.SetActive(false);
+            auxGunDrop.gameObject.SetActive(false);
+        }
     }
 
     public string GetShip()

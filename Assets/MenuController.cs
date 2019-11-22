@@ -16,7 +16,7 @@ public class MenuController : MonoBehaviour
         Database.Start();
         foreach (ShipMenu ship in ships)
         {
-            ship.SetOptions();
+            ship.Init();
         }
     }
 
@@ -38,8 +38,28 @@ public class MenuController : MonoBehaviour
         if (shipMenu.GetShip() != "None")
         {
             shipLoadout.Ship = Database.ShipNamesList[shipMenu.GetShip()];
-            shipLoadout.MainGun = Database.GunNamesList[shipMenu.GetMainGun()];
-            shipLoadout.AuxGun = Database.GunNamesList[shipMenu.GetAuxGun()];
+            if (shipMenu.GetMainGun() != "None")
+            {
+                shipLoadout.MainGun = Database.GunNamesList[shipMenu.GetMainGun()];
+            }
+            else
+            {
+                shipLoadout.MainGun = null;
+            }
+            if (shipMenu.GetAuxGun() != "None")
+            {
+                shipLoadout.AuxGun = Database.GunNamesList[shipMenu.GetAuxGun()];
+            }
+            else
+            {
+                shipLoadout.AuxGun = null;
+            }
+        }
+        else
+        {
+            shipLoadout.Ship = null;
+            shipLoadout.MainGun = null;
+            shipLoadout.AuxGun = null;
         }
     }
 }

@@ -11,6 +11,8 @@ public class GunData : DatabaseItem
     private int noOfShots, projPerShot, damage, spread;
     [SerializeField]
     private Projectile projectile;
+    [SerializeField]
+    private GunType type;
 
     public float StartDelay { get => startDelay; set => startDelay = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
@@ -20,4 +22,5 @@ public class GunData : DatabaseItem
     public int NoOfShots { get => noOfShots; set => noOfShots = value; }
     public int ProjPerShot { get => projPerShot; set => projPerShot = value; }
     public Projectile Projectile { get => projectile; set => projectile = value; }
+    public GunType Type { get => type; set => type = value; }
 }

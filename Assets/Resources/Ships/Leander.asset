@@ -18,3 +18,5 @@ MonoBehaviour:
   speed: 32
   reload: 176
   firepower: 196
+  slot1: 1
+  slot2: 1

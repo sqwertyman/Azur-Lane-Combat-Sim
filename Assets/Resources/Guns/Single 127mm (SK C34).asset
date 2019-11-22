@@ -23,3 +23,4 @@ MonoBehaviour:
   spread: 10
   projectile: {fileID: 2397885890873262725, guid: c56f19eb6fb26904babef9c463aac6b3,
     type: 3}
+  type: 1

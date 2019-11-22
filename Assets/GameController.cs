@@ -4,6 +4,8 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
+public enum GunType { main, aux };
+
 public class GameController : MonoBehaviour
 {
     public GameObject enemy;
@@ -61,18 +63,27 @@ public class GameController : MonoBehaviour
         if (shipLoadout.Ship != null)
         {
             ShipData ship = shipLoadout.Ship;
-            GunData mainGun = shipLoadout.MainGun;
-            GunData auxGun = shipLoadout.AuxGun;
 
             friendlyInst = Instantiate(shipObject, new Vector3(-4, 0, 0), new Quaternion(0, 0, 0, 0));
             friendlyInst.GetComponent<ShipController>().Init(ship);
 
-            var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-            gunInst.transform.SetParent(friendlyInst.transform);
-            gunInst.GetComponent<GunController>().Init(mainGun);
-            gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-            gunInst.transform.SetParent(friendlyInst.transform);
-            gunInst.GetComponent<GunController>().Init(auxGun);
+            if (shipLoadout.MainGun != null)
+            {
+                GunData mainGun = shipLoadout.MainGun;
+
+                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(friendlyInst.transform);
+                gunInst.GetComponent<GunController>().Init(mainGun);
+            }
+
+            if (shipLoadout.AuxGun != null)
+            {
+                GunData auxGun = shipLoadout.AuxGun;
+                
+                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(friendlyInst.transform);
+                gunInst.GetComponent<GunController>().Init(auxGun);
+            }
 
             return 1;
         }
