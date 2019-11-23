@@ -10,13 +10,13 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37d1e9dc44c58d4896f9654f343e1d0, type: 3}
-  m_Name: Leander
+  m_Name: Laffey
   m_EditorClassIdentifier: 
-  name: Leander
-  id: 104
-  health: 3486
-  speed: 32
-  reload: 176
-  firepower: 196
-  slot1: 0
+  name: Laffey
+  id: 19
+  health: 2145
+  speed: 45
+  reload: 220
+  firepower: 161
+  slot1: 1
   slot2: 2

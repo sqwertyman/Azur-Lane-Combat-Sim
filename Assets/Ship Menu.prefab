@@ -208,7 +208,7 @@ GameObject:
   - component: {fileID: 3351839931115364505}
   - component: {fileID: 3351839931115364506}
   m_Layer: 5
-  m_Name: Aux Gun
+  m_Name: Slot 2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2022,7 +2022,7 @@ GameObject:
   - component: {fileID: 3351839932803757813}
   - component: {fileID: 3351839932803757814}
   m_Layer: 5
-  m_Name: Main Gun
+  m_Name: Slot 1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2411,8 +2411,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   shipDrop: {fileID: 865368747082133971}
-  mainGunDrop: {fileID: 3351839932803757814}
-  auxGunDrop: {fileID: 3351839931115364506}
+  slot1Drop: {fileID: 3351839932803757814}
+  slot2Drop: {fileID: 3351839931115364506}
 --- !u!1 &5062058003829138624
 GameObject:
   m_ObjectHideFlags: 0

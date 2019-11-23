@@ -5,9 +5,9 @@ using UnityEngine.UI;
 
 public class ShipMenu : MonoBehaviour
 {
-    public Dropdown shipDrop, mainGunDrop, auxGunDrop;
+    public Dropdown shipDrop, slot1Drop, slot2Drop;
 
-    private string ship, mainGun, auxGun;
+    private string ship, slot1, slot2;
     
     //set ship dropdown choices
     public void Init()
@@ -23,11 +23,10 @@ public class ShipMenu : MonoBehaviour
     //call to reset equipment dropdown choices depending on ship chosen
     private void ResetOptions()
     {
-        mainGunDrop.options.RemoveRange(1, mainGunDrop.options.Count - 1);
-        auxGunDrop.options.RemoveRange(1, auxGunDrop.options.Count - 1);
+        slot1Drop.options.RemoveRange(1, slot1Drop.options.Count - 1);
+        slot2Drop.options.RemoveRange(1, slot2Drop.options.Count - 1);
 
         List<string> tempList = new List<string>();
-        tempList = new List<string>();
         foreach (GunData item in Database.GunNamesList.Values)
         {
             if (Database.ShipNamesList[ship].Slot1 == item.Type)
@@ -35,7 +34,7 @@ public class ShipMenu : MonoBehaviour
                 tempList.Add(item.Name);
             }
         }
-        mainGunDrop.AddOptions(tempList);
+        slot1Drop.AddOptions(tempList);
 
         tempList = new List<string>();
         foreach (GunData item in Database.GunNamesList.Values)
@@ -45,14 +44,7 @@ public class ShipMenu : MonoBehaviour
                 tempList.Add(item.Name);
             }
         }
-        auxGunDrop.AddOptions(tempList);
-    }
-
-    public void GetSelections()
-    {
-        ship = shipDrop.options[shipDrop.value].text;
-        mainGun = mainGunDrop.options[mainGunDrop.value].text;
-        auxGun = auxGunDrop.options[auxGunDrop.value].text;
+        slot2Drop.AddOptions(tempList);
     }
 
     //called when ship selection is changed, showing or hiding gun options depending on whether "none" is selected
@@ -62,14 +54,20 @@ public class ShipMenu : MonoBehaviour
         {
             ship = shipDrop.options[shipDrop.value].text;
             ResetOptions();
-            mainGunDrop.gameObject.SetActive(true);
-            auxGunDrop.gameObject.SetActive(true);
+            slot1Drop.gameObject.SetActive(true);
+            slot2Drop.gameObject.SetActive(true);
         }
         else
         {
-            mainGunDrop.gameObject.SetActive(false);
-            auxGunDrop.gameObject.SetActive(false);
+            slot1Drop.gameObject.SetActive(false);
+            slot2Drop.gameObject.SetActive(false);
         }
+    }
+    public void GetSelections()
+    {
+        ship = shipDrop.options[shipDrop.value].text;
+        slot1 = slot1Drop.options[slot1Drop.value].text;
+        slot2 = slot2Drop.options[slot2Drop.value].text;
     }
 
     public string GetShip()
@@ -77,13 +75,13 @@ public class ShipMenu : MonoBehaviour
         return ship;
     }
 
-    public string GetMainGun()
+    public string GetSlot1()
     {
-        return mainGun;
+        return slot1;
     }
 
-    public string GetAuxGun()
+    public string GetSlot2()
     {
-        return auxGun;
+        return slot2;
     }
 }

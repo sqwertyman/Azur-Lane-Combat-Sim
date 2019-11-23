@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
-public class GunData : DatabaseItem
+public class GunData : EquipmentData
 {
     [SerializeField]
     private float startDelay, fireRate, volleyTime;

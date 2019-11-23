@@ -9,9 +9,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7071556487156599326}
-  - component: {fileID: 2325497173098058354}
+  - component: {fileID: -3559271242979066044}
   m_Layer: 0
-  m_Name: GunObject
+  m_Name: TorpedoObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -31,7 +31,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &2325497173098058354
+--- !u!114 &-3559271242979066044
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -40,6 +40,6 @@ MonoBehaviour:
   m_GameObject: {fileID: 7071556487156599320}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7b1dbd95c5f647946970d7575972ce1c, type: 3}
+  m_Script: {fileID: 11500000, guid: 35428a3455819694ba34eff3a890e60b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

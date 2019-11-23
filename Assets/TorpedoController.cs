@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class GunController : MonoBehaviour
+public class TorpedoController : MonoBehaviour
 {
-    private float startDelay, fireRate, volleyTime;
+    private float startDelay, fireRate;
     private Projectile projectile;
-    private int noOfShots, projPerShot, damage, spread;
+    private int projPerShot, damage, spread;
 
-    private GameObject target;
     private ShipController thisShip;
     private float reloadTime;
     private int finalDamage;
@@ -19,9 +18,7 @@ public class GunController : MonoBehaviour
         gameObject.name = gunData.name;
         startDelay = gunData.StartDelay;
         fireRate = gunData.FireRate;
-        volleyTime = gunData.VolleyTime;
         projectile = gunData.Projectile;
-        noOfShots = gunData.NoOfShots;
         projPerShot = gunData.ProjPerShot;
         damage = gunData.Damage;
         spread = gunData.Spread;
@@ -42,18 +39,12 @@ public class GunController : MonoBehaviour
 
         Projectile lastProj;
 
-        for (; ;)
+        for (; ; )
         {
-            target = thisShip.GetEnemy();
-
-            for (int x = 0; x < noOfShots; x++)
+            for (int x = 0; x < projPerShot; x++)
             {
-                for (int y = 0; y < projPerShot; y++)
-                {
-                    lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);
-                    lastProj.Setup(target.transform.position, projSpreads[y], finalDamage);
-                }
-                yield return new WaitForSeconds(volleyTime);
+                lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);
+                lastProj.Setup(transform.position + Vector3.right, projSpreads[x], finalDamage);
             }
             yield return new WaitForSeconds(reloadTime);
         }
@@ -71,7 +62,7 @@ public class GunController : MonoBehaviour
         }
 
         int spreadCounter = 1;
-        
+
         for (int y = 0; y < projPerShot; y++)
         {
             if (y % 2 == 0)
@@ -85,7 +76,7 @@ public class GunController : MonoBehaviour
             }
         }
         projSpreads[projPerShot - 1] = 0f;
-        
+
         //shift all angles by half spread if even number of projectiles
         if (projPerShot % 2 == 0)
         {

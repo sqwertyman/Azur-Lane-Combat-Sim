@@ -4,12 +4,12 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-public enum GunType { main, aux };
+public enum GunType { CL, DD, Torpedo };
 
 public class GameController : MonoBehaviour
 {
     public GameObject enemy;
-    public GameObject gunObject, shipObject;
+    public GameObject shipObject, gunObject, torpedoObject;
     public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
 
     private GameObject friendlyInst;
@@ -67,23 +67,8 @@ public class GameController : MonoBehaviour
             friendlyInst = Instantiate(shipObject, new Vector3(-4, 0, 0), new Quaternion(0, 0, 0, 0));
             friendlyInst.GetComponent<ShipController>().Init(ship);
 
-            if (shipLoadout.MainGun != null)
-            {
-                GunData mainGun = shipLoadout.MainGun;
-
-                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-                gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<GunController>().Init(mainGun);
-            }
-
-            if (shipLoadout.AuxGun != null)
-            {
-                GunData auxGun = shipLoadout.AuxGun;
-                
-                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-                gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<GunController>().Init(auxGun);
-            }
+            LoadGun(shipLoadout.Slot1);
+            LoadGun(shipLoadout.Slot2);
 
             return 1;
         }
@@ -91,6 +76,25 @@ public class GameController : MonoBehaviour
         {
             print("no ship");
             return 0;
+        }
+    }
+
+    private void LoadGun(GunData gunLoad)
+    {
+        if (gunLoad != null)
+        {
+            if (gunLoad.Type == GunType.Torpedo)
+            {
+                var gunInst = Instantiate(torpedoObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(friendlyInst.transform);
+                gunInst.GetComponent<TorpedoController>().Init(gunLoad);
+            }
+            else
+            {
+                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(friendlyInst.transform);
+                gunInst.GetComponent<GunController>().Init(gunLoad);
+            }
         }
     }
 }

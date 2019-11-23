@@ -459,7 +459,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0aa6b5de4f4c3546a7c2915c63d93dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ships:
+  shipMenus:
   - {fileID: 2146227541}
   - {fileID: 1780827430}
   - {fileID: 515420928}

@@ -641,6 +641,12 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: c43175556a5a2eb43b2dead3e7813cfb,
         type: 2}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: torpedoObject
+      value: 
+      objectReference: {fileID: 7071556487156599320, guid: e5035b5585967f14ca5f830fcafb847a,
+        type: 3}
     - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
       propertyPath: m_LocalPosition.x
