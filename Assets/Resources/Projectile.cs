@@ -20,10 +20,6 @@ public class Projectile : MonoBehaviour
         Vector3 heading = target - transform.position;
         float distance = heading.magnitude;
         Vector3 direction = heading / distance;
-        print("target " + target);
-        print("heading " + heading);
-        print("distance " + distance);
-        print("direction " + direction);
         transform.right = direction;
         transform.Rotate(0, 0, spread);
         rb.velocity = transform.right * speed;

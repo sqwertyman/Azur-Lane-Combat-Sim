@@ -4,7 +4,7 @@ using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
 
-public enum GunType { CL, DD, Torpedo };
+public enum EquipmentType { CL, DD, Torpedo };
 
 public class GameController : MonoBehaviour
 {
@@ -79,21 +79,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void LoadGun(GunData gunLoad)
+    private void LoadGun(EquipmentData gunLoad)
     {
         if (gunLoad != null)
         {
-            if (gunLoad.Type == GunType.Torpedo)
+            if (gunLoad.Type == EquipmentType.Torpedo)
             {
                 var gunInst = Instantiate(torpedoObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
                 gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<TorpedoController>().Init(gunLoad);
+                gunInst.GetComponent<WeaponController>().Init(gunLoad);
             }
             else
             {
                 var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
                 gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<GunController>().Init(gunLoad);
+                gunInst.GetComponent<WeaponController>().Init(gunLoad as GunData);
             }
         }
     }

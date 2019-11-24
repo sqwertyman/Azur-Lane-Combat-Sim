@@ -9,15 +9,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
+  m_Script: {fileID: 11500000, guid: bafebe109ee79744ba5e3b7adec9842b, type: 3}
   m_Name: 533mm Quadruple Torpedo Mount
   m_EditorClassIdentifier: 
   name: 533mm Quadruple Torpedo Mount
-  id: 1
+  id: 0
   startDelay: 1
   fireRate: 23.14
-  volleyTime: 0
-  noOfShots: 1
   projPerShot: 4
   damage: 156
   spread: 50

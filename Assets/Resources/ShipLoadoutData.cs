@@ -9,9 +9,9 @@ public class ShipLoadoutData : ScriptableObject
     [SerializeField]
     private ShipData ship;
     [SerializeField]
-    private GunData slot1, slot2;
+    private EquipmentData slot1, slot2;
 
     public ShipData Ship { get => ship; set => ship = value; }
-    public GunData Slot1 { get => slot1; set => slot1 = value; }
-    public GunData Slot2 { get => slot2; set => slot2 = value; }
+    public EquipmentData Slot1 { get => slot1; set => slot1 = value; }
+    public EquipmentData Slot2 { get => slot2; set => slot2 = value; }
 }
