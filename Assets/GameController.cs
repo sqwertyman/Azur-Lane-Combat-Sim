@@ -12,11 +12,10 @@ public class GameController : MonoBehaviour
     public GameObject shipObject, gunObject, torpedoObject;
     public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
 
-    private GameObject friendlyInst;
-    private GameObject enemyTest, lastInst;
+    private GameObject friendlyInst, enemyTest, lastInst, leadShip;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         StartGame();
     }
@@ -30,15 +29,10 @@ public class GameController : MonoBehaviour
         }
     }
 
-    public GameObject getEnemy()
-    {
-        return enemyTest;
-    }
-
     public void StartGame()
     {
-        Instantiate(enemy, new Vector3(12, 4, 0), new Quaternion(0, 0, 0, 0));
-        Instantiate(enemy, new Vector3(12, -4, 0), new Quaternion(0, 0, 0, 0));
+        Instantiate(enemy, new Vector3(10, 4, 0), new Quaternion(0, 0, 0, 0));
+        Instantiate(enemy, new Vector3(10, -4, 0), new Quaternion(0, 0, 0, 0));
 
         foreach (ShipLoadoutData shipLoadout in shipLoadouts)
         {
@@ -53,6 +47,7 @@ public class GameController : MonoBehaviour
                 {
                     friendlyInst.AddComponent<LeadMovement>();
                     lastInst = friendlyInst;
+                    leadShip = friendlyInst;
                 }
             }
         }
@@ -96,5 +91,14 @@ public class GameController : MonoBehaviour
                 gunInst.GetComponent<WeaponController>().Init(gunLoad as GunData);
             }
         }
+    }
+    public GameObject GetEnemy()
+    {
+        return enemyTest;
+    }
+
+    public GameObject GetLeadShip()
+    {
+        return leadShip;
     }
 }

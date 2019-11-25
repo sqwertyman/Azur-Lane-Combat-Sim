@@ -17,9 +17,9 @@ public class UIHealth : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (gameController.GetComponent<GameController>().getEnemy())
+        if (gameController.GetComponent<GameController>().GetEnemy())
         {
-            text.text = "ENEMY HEALTH: " + gameController.GetComponent<GameController>().getEnemy().GetComponent<ShipController>().GetHealth();
+            text.text = "ENEMY HEALTH: " + gameController.GetComponent<GameController>().GetEnemy().GetComponent<ShipController>().GetHealth();
         }
     }
 }
