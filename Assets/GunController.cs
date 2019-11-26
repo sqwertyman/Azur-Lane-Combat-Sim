@@ -48,4 +48,9 @@ public class GunController : WeaponController
             yield return new WaitForSeconds(reloadTime);
         }
     }
+
+    protected override void CalculateDamage()
+    {
+        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100)) + Random.Range(-1, 3);
+    }
 }

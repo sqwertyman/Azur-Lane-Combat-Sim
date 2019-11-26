@@ -4,15 +4,15 @@ using UnityEngine;
 
 public class TorpedoController : WeaponController
 {
-    public override void Init(TorpedoData gunData)
+    public override void Init(TorpedoData torpData)
     {
-        gameObject.name = gunData.name;
-        startDelay = gunData.StartDelay;
-        fireRate = gunData.FireRate;
-        projectile = gunData.Projectile;
-        projPerShot = gunData.ProjPerShot;
-        damage = gunData.Damage;
-        spread = gunData.Spread;
+        gameObject.name = torpData.name;
+        startDelay = torpData.StartDelay;
+        fireRate = torpData.FireRate;
+        projectile = torpData.Projectile;
+        projPerShot = torpData.ProjPerShot;
+        damage = torpData.Damage;
+        spread = torpData.Spread;
 
         thisShip = GetComponentInParent<ShipController>();
 
@@ -39,5 +39,10 @@ public class TorpedoController : WeaponController
             }
             yield return new WaitForSeconds(reloadTime);
         }
+    }
+
+    protected override void CalculateDamage()
+    {
+        finalDamage = (damage * ((100 + thisShip.GetTorpedo()) / 100));
     }
 }

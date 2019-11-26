@@ -7,7 +7,7 @@ using UnityEngine;
 public class ShipData : DatabaseItem
 {
     [SerializeField]
-    private int health, speed, reload, firepower;
+    private int health, speed, reload, firepower, torpedo;
     [SerializeField]
     private EquipmentType slot1, slot2;
 
@@ -17,4 +17,5 @@ public class ShipData : DatabaseItem
     public int Firepower { get => firepower; set => firepower = value; }
     public EquipmentType Slot1 { get => slot1; set => slot1 = value; }
     public EquipmentType Slot2 { get => slot2; set => slot2 = value; }
+    public int Torpedo { get => torpedo; set => torpedo = value; }
 }

@@ -78,8 +78,8 @@ public class WeaponController : MonoBehaviour
         reloadTime = fireRate * (Mathf.Sqrt(200 / (thisShip.GetFireRate() + 100)));
     }
 
-    protected void CalculateDamage()
+    protected virtual void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100)) + Random.Range(-1, 3);
+        
     }
 }

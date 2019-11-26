@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Triple 155mm (3rd Year Type)
   id: 3
+  type: 0
+  firepower: 45
+  torpedo: 0
   startDelay: 0.5
   fireRate: 4.12
   volleyTime: 0.15

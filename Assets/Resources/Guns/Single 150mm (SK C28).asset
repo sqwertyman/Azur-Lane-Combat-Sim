@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Single 150mm (SK C/28)
   id: 2
+  type: 0
+  firepower: 25
+  torpedo: 0
   startDelay: 0.5
   fireRate: 1.38
   volleyTime: 0

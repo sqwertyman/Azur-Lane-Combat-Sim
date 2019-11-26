@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 533mm Quadruple Torpedo Mount
   id: 0
+  type: 2
+  firepower: 0
+  torpedo: 25
   startDelay: 1
   fireRate: 23.14
   projPerShot: 4
@@ -21,4 +24,3 @@ MonoBehaviour:
   spread: 50
   projectile: {fileID: 2397885890873262725, guid: 3cc7ffa260d3de2448ff7d1fdc320abb,
     type: 3}
-  type: 2

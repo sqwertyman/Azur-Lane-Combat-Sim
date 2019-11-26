@@ -4,27 +4,23 @@ using UnityEngine;
 
 public class ShipController : MonoBehaviour
 {
-    private int maxHealth;
-    private float speed;
-    private float reload;
-    private int firepower;
+    private int maxHealth, firepower, health, torpedo;
+    private float speed, reload;
 
-    private int health;
-    private Rigidbody2D rb;
-    private Vector2 velocity;
-    private bool up, down, left, right;
     private GameObject enemy;
     private float moveSpeed;
 
     // Start is called before the first frame update
-    public void Init(ShipData shipData)
+    public void Init(ShipLoadoutData loadoutData)
     {
-        gameObject.name = shipData.name;
-        maxHealth = shipData.Health;
-        speed = shipData.Speed;
-        reload = shipData.Reload;
-        firepower = shipData.Firepower;
+        ShipData ship = loadoutData.Ship;
 
+        gameObject.name = ship.name;
+        maxHealth = ship.Health;
+        speed = ship.Speed;
+        reload = ship.Reload;
+        firepower = ship.Firepower + loadoutData.Slot1.Firepower + loadoutData.Slot2.Firepower;
+        torpedo = ship.Torpedo + loadoutData.Slot1.Torpedo + loadoutData.Slot2.Torpedo;
         health = maxHealth;
     }
 
@@ -85,5 +81,10 @@ public class ShipController : MonoBehaviour
     public float GetSpeed()
     {
         return speed;
+    }
+
+    public int GetTorpedo()
+    {
+        return torpedo;
     }
 }

@@ -18,5 +18,6 @@ MonoBehaviour:
   speed: 32
   reload: 176
   firepower: 196
+  torpedo: 305
   slot1: 0
   slot2: 2

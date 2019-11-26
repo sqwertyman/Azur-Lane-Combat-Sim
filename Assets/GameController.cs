@@ -57,13 +57,11 @@ public class GameController : MonoBehaviour
     {
         if (shipLoadout.Ship != null)
         {
-            ShipData ship = shipLoadout.Ship;
-
             friendlyInst = Instantiate(shipObject, new Vector3(-4, 0, 0), new Quaternion(0, 0, 0, 0));
-            friendlyInst.GetComponent<ShipController>().Init(ship);
+            friendlyInst.GetComponent<ShipController>().Init(shipLoadout);
 
-            LoadGun(shipLoadout.Slot1);
-            LoadGun(shipLoadout.Slot2);
+            LoadWeapon(shipLoadout.Slot1);
+            LoadWeapon(shipLoadout.Slot2);
 
             return 1;
         }
@@ -74,21 +72,21 @@ public class GameController : MonoBehaviour
         }
     }
 
-    private void LoadGun(EquipmentData gunLoad)
+    private void LoadWeapon(EquipmentData toLoad)
     {
-        if (gunLoad != null)
+        if (toLoad != null)
         {
-            if (gunLoad.Type == EquipmentType.Torpedo)
+            if (toLoad.Type == EquipmentType.Torpedo)
             {
                 var gunInst = Instantiate(torpedoObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
                 gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<WeaponController>().Init(gunLoad);
+                gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
             }
             else
             {
                 var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
                 gunInst.transform.SetParent(friendlyInst.transform);
-                gunInst.GetComponent<WeaponController>().Init(gunLoad as GunData);
+                gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
         }
     }
