@@ -10,7 +10,7 @@ public class ShipController : MonoBehaviour
     private GameObject enemy;
     private float moveSpeed;
 
-    // Start is called before the first frame update
+    //sets ship's stats from loadoutData (includes its gun's stats too)
     public void Init(ShipLoadoutData loadoutData)
     {
         ShipData ship = loadoutData.Ship;
@@ -19,17 +19,27 @@ public class ShipController : MonoBehaviour
         maxHealth = ship.Health;
         speed = ship.Speed;
         reload = ship.Reload;
-        firepower = ship.Firepower + loadoutData.Slot1.Firepower + loadoutData.Slot2.Firepower;
-        torpedo = ship.Torpedo + loadoutData.Slot1.Torpedo + loadoutData.Slot2.Torpedo;
+        firepower = ship.Firepower;
+        torpedo = ship.Torpedo;
+        if (loadoutData.Slot1)
+        {
+            firepower += loadoutData.Slot1.Firepower;
+            torpedo += loadoutData.Slot1.Torpedo;
+        }
+        if (loadoutData.Slot2)
+        {
+            firepower += loadoutData.Slot2.Firepower;
+            torpedo += loadoutData.Slot2.Torpedo;
+        }
         health = maxHealth;
     }
 
-    // Update is called once per frame
     void Update()
     {
         FindNearestEnemy();
     }
 
+    //takes damage if the ship is an enemy. needs relocating
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (this.CompareTag("Enemy") && collision.CompareTag("FriendlyProjectile"))
@@ -39,6 +49,7 @@ public class ShipController : MonoBehaviour
         }
     }
 
+    //finds the nearest enemy to the ship. used for targetting
     void FindNearestEnemy()
     {
         var enemies = GameObject.FindGameObjectsWithTag("Enemy");

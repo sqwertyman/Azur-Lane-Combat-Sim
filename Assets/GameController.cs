@@ -6,97 +6,112 @@ using UnityEngine.UI;
 
 public enum EquipmentType { CL, DD, Torpedo };
 
+//handles the start of a game/battle. loads in ships and their weapons
+
 public class GameController : MonoBehaviour
 {
-    public GameObject enemy;
-    public GameObject shipObject, gunObject, torpedoObject;
+    public GameObject friendlySpawn, enemyObject, shipObject, gunObject, torpedoObject;
+    public GameObject[] enemySpawns = new GameObject[2];
     public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
+    public ShipLoadoutData enemyData;
 
-    private GameObject friendlyInst, enemyTest, lastInst, leadShip;
+    private GameObject currentTarget;
+    private List<GameObject> friendlyFleet = new List<GameObject>(3);
+    private GameObject[] enemyFleet = new GameObject[2];
 
-    // Start is called before the first frame update
     void Awake()
     {
         StartGame();
     }
 
-    // Update is called once per frame
     void Update()
     {
-        if (friendlyInst)
+        if (friendlyFleet.Count != 0)
         {
-            enemyTest = friendlyInst.GetComponent<ShipController>().GetEnemy();
+            currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
         }
     }
 
+    //instantiates ships
     public void StartGame()
     {
-        Instantiate(enemy, new Vector3(10, 4, 0), new Quaternion(0, 0, 0, 0));
-        Instantiate(enemy, new Vector3(10, -4, 0), new Quaternion(0, 0, 0, 0));
-
-        foreach (ShipLoadoutData shipLoadout in shipLoadouts)
+        //load enemies
+        for (int x = 0 ; x < enemyFleet.Length ; x++)
         {
-            if (LoadShip(shipLoadout) == 1)
+            enemyFleet[x] = Instantiate(enemyObject, enemySpawns[x].transform.position, new Quaternion(0, 0, 0, 0));
+            enemyFleet[x].GetComponent<ShipController>().Init(enemyData);
+        }
+
+        //load friendlies
+        for (int x = 0; x < shipLoadouts.Length; x++)
+        {
+            LoadShip(shipLoadouts[x]);
+        }
+
+        //add appropriate movement scripts
+        bool first = true;
+        foreach (GameObject ship in friendlyFleet)
+        {
+            if (first)
             {
-                if (lastInst)
-                {
-                    friendlyInst.AddComponent<FollowMovement>().Init(lastInst);
-                    lastInst = friendlyInst;
-                }
-                else
-                {
-                    friendlyInst.AddComponent<LeadMovement>();
-                    lastInst = friendlyInst;
-                    leadShip = friendlyInst;
-                }
+                ship.AddComponent<LeadMovement>();
+                first = false;
+            }
+            else
+            {
+                ship.AddComponent<FollowMovement>().Init(friendlyFleet[0]);
             }
         }
     }
 
+    //loads in the particular ship denoted by shipLoadout, storing it at the index shipIndex in friendlyFleet
     int LoadShip(ShipLoadoutData shipLoadout)
     {
         if (shipLoadout.Ship != null)
         {
-            friendlyInst = Instantiate(shipObject, new Vector3(-4, 0, 0), new Quaternion(0, 0, 0, 0));
-            friendlyInst.GetComponent<ShipController>().Init(shipLoadout);
+            var tempShip = Instantiate(shipObject, friendlySpawn.transform.position, new Quaternion(0, 0, 0, 0));
+            tempShip.GetComponent<ShipController>().Init(shipLoadout);
 
-            LoadWeapon(shipLoadout.Slot1);
-            LoadWeapon(shipLoadout.Slot2);
+            LoadWeapon(shipLoadout.Slot1, tempShip);
+            LoadWeapon(shipLoadout.Slot2, tempShip);
+
+            friendlyFleet.Add(tempShip);
 
             return 1;
         }
         else
         {
-            print("no ship");
             return 0;
         }
     }
 
-    private void LoadWeapon(EquipmentData toLoad)
+    //loads in the weapon denoted by toLoad, assigning it to the ship given
+    private void LoadWeapon(EquipmentData toLoad, GameObject ship)
     {
         if (toLoad != null)
         {
             if (toLoad.Type == EquipmentType.Torpedo)
             {
-                var gunInst = Instantiate(torpedoObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-                gunInst.transform.SetParent(friendlyInst.transform);
+                var gunInst = Instantiate(torpedoObject, ship.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
             }
             else
             {
-                var gunInst = Instantiate(gunObject, friendlyInst.transform.position, new Quaternion(0, 0, 0, 0));
-                gunInst.transform.SetParent(friendlyInst.transform);
+                var gunInst = Instantiate(gunObject, ship.transform.position, new Quaternion(0, 0, 0, 0));
+                gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
         }
     }
+
     public GameObject GetEnemy()
     {
-        return enemyTest;
+        return currentTarget;
     }
 
     public GameObject GetLeadShip()
     {
-        return leadShip;
+        return friendlyFleet[0];
     }
 }
