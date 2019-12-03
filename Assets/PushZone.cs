@@ -6,28 +6,33 @@ public class PushZone : MonoBehaviour
 {
     public float force;
 
-    // Start is called before the first frame update
-    void Start()
+    private int counter;
+    
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
-
-    void FixedUpdate()
-    {
-        
+        if (collision.tag == "Friendly")
+        {
+            counter = 0;
+        }
     }
 
     private void OnTriggerStay2D(Collider2D collision)
     {
-        if (collision.tag == "Player")
+        if (collision.tag == "Friendly")
         {
-            collision.attachedRigidbody.AddForce(new Vector2(-force, 0));
+            counter += 1;
+            if (collision.TryGetComponent(out LeadMovement movement))
+            {
+                movement.ApplyPush(counter * force);
+            }
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D collision)
+    {
+        if (collision.tag == "Friendly")
+        {
+            counter = 0;
         }
     }
 }

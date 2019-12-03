@@ -49,18 +49,18 @@ public class GameController : MonoBehaviour
         }
 
         //add appropriate movement scripts
-        bool first = true;
+        int position = 0;
         foreach (GameObject ship in friendlyFleet)
         {
-            if (first)
+            if (position == 0)
             {
                 ship.AddComponent<LeadMovement>();
-                first = false;
             }
             else
             {
-                ship.AddComponent<FollowMovement>().Init(friendlyFleet[0]);
+                ship.AddComponent<FollowMovement>().Init(friendlyFleet[position - 1]);
             }
+            position += 1;
         }
     }
 

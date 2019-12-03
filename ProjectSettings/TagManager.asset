@@ -6,6 +6,7 @@ TagManager:
   tags:
   - FriendlyProjectile
   - Enemy
+  - Friendly
   layers:
   - Default
   - TransparentFX

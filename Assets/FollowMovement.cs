@@ -9,14 +9,13 @@ public class FollowMovement : MonoBehaviour
     private Rigidbody2D rb;
     private float moveSpeed;
 
-    // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
         moveSpeed = GetComponent<ShipController>().GetSpeed() / 10;
     }
 
-    // Update is called once per frame
+    //moves this ship towards the lead ship (target) gradually
     void FixedUpdate()
     {
         Vector3 dir = (target.transform.position - transform.position).normalized;
