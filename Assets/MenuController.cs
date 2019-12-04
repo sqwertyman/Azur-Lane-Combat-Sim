@@ -18,8 +18,11 @@ public class MenuController : MonoBehaviour
         {
             ship.Init();
         }
-    }
 
+        ShowNecessaryMenus();
+    }
+    
+    //called by start button. finalises loadouts and then loads game scene
     public void StartGame()
     {
         int x = 0;
@@ -33,6 +36,7 @@ public class MenuController : MonoBehaviour
         SceneManager.LoadScene("TestingScene", LoadSceneMode.Single);
     }
 
+    //stores the selected ships and guns from shipMenu into the shipLoadout
     private void SaveLoadout(ShipLoadoutData shipLoadout, ShipMenu shipMenu)
     {
         if (shipMenu.GetShip() != "None")
@@ -60,6 +64,21 @@ public class MenuController : MonoBehaviour
             shipLoadout.Ship = null;
             shipLoadout.Slot1 = null;
             shipLoadout.Slot2 = null;
+        }
+    }
+
+    //show/hide individual ship menus based on if the previous ship is selected
+    public void ShowNecessaryMenus()
+    {
+        shipMenus[1].gameObject.SetActive(false);
+        shipMenus[2].gameObject.SetActive(false);
+        if (shipMenus[0].GetShip() != "None")
+        {
+            shipMenus[1].gameObject.SetActive(true);
+            if (shipMenus[1].GetShip() != "None")
+            {
+                shipMenus[2].gameObject.SetActive(true);
+            }
         }
     }
 }

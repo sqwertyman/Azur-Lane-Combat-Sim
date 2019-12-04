@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class ShipMenu : MonoBehaviour
 {
     public Dropdown shipDrop, slot1Drop, slot2Drop;
+    public MenuController menuController;
 
     private string ship, slot1, slot2;
     
@@ -18,6 +19,8 @@ public class ShipMenu : MonoBehaviour
             tempList.Add(item.Name);
         }
         shipDrop.AddOptions(tempList);
+
+        ship = shipDrop.options[shipDrop.value].text;
     }
 
     //call to reset equipment dropdown choices depending on ship chosen
@@ -50,9 +53,10 @@ public class ShipMenu : MonoBehaviour
     //called when ship selection is changed, showing or hiding gun options depending on whether "none" is selected
     public void SelectionChanged()
     {
+        ship = shipDrop.options[shipDrop.value].text;
+        
         if (shipDrop.value != 0)
         {
-            ship = shipDrop.options[shipDrop.value].text;
             ResetOptions();
             slot1Drop.gameObject.SetActive(true);
             slot2Drop.gameObject.SetActive(true);
@@ -62,7 +66,10 @@ public class ShipMenu : MonoBehaviour
             slot1Drop.gameObject.SetActive(false);
             slot2Drop.gameObject.SetActive(false);
         }
+
+        menuController.ShowNecessaryMenus();
     }
+
     public void GetSelections()
     {
         ship = shipDrop.options[shipDrop.value].text;

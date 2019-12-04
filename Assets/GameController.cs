@@ -14,14 +14,18 @@ public class GameController : MonoBehaviour
     public GameObject[] enemySpawns = new GameObject[2];
     public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData enemyData;
+    public Canvas pauseCanvas, gameCanvas;
 
     private GameObject currentTarget;
     private List<GameObject> friendlyFleet = new List<GameObject>(3);
     private GameObject[] enemyFleet = new GameObject[2];
+    private bool paused;
 
     void Awake()
     {
+        Time.timeScale = 1;
         StartGame();
+        paused = false;
     }
 
     void Update()
@@ -29,6 +33,12 @@ public class GameController : MonoBehaviour
         if (friendlyFleet.Count != 0)
         {
             currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
+        }
+
+        //pause/unpause game with escape
+        if (Input.GetKeyDown("escape"))
+        {
+            SwitchPauseState();
         }
     }
 
@@ -102,6 +112,21 @@ public class GameController : MonoBehaviour
                 gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
+        }
+    }
+
+    public void SwitchPauseState()
+    {
+        paused = !paused;
+        pauseCanvas.gameObject.SetActive(paused);
+        gameCanvas.gameObject.SetActive(!paused);
+        if (paused)
+        {
+            Time.timeScale = 0;
+        }
+        else
+        {
+            Time.timeScale = 1;
         }
     }
 
