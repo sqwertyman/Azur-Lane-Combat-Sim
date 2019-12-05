@@ -414,6 +414,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Pause Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 2036792379594265784, guid: 3ffabbb4514e94140a64b9601bd4f1be,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 2036792379594265787, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -519,11 +524,6 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2036792379594265784, guid: 3ffabbb4514e94140a64b9601bd4f1be,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 2036792379594265786, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
       propertyPath: gameController
@@ -543,6 +543,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Game UI
       objectReference: {fileID: 0}
+    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 2712715223774682562, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -648,16 +653,31 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 2712715225154783931, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1474020336}
+    - target: {fileID: 2712715225154783930, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Color.r
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2712715225154783930, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Color.g
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2712715225154783930, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Color.b
+      value: 0.1981132
+      objectReference: {fileID: 0}
+    - target: {fileID: 2712715225154783930, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Color.a
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8e450caf6dd74024286b8a74bf606d04, type: 3}
 --- !u!1001 &4942762274337102611

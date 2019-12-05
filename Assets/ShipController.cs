@@ -1,9 +1,12 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class ShipController : MonoBehaviour
 {
+    public GameObject dmgNumberPrefab; 
+
     private int maxHealth, firepower, health, torpedo;
     private float speed, reload;
 
@@ -44,7 +47,11 @@ public class ShipController : MonoBehaviour
     {
         if (this.CompareTag("Enemy") && collision.CompareTag("FriendlyProjectile"))
         {
-            health -= collision.GetComponent<Projectile>().getDamage();
+            int damage = collision.GetComponent<Projectile>().getDamage();
+            health -= damage;
+
+            SpawnDamageNumber(damage, collision.transform.position);
+
             Destroy(collision.gameObject);
         }
     }
@@ -67,6 +74,14 @@ public class ShipController : MonoBehaviour
             }
         }
         enemy = nearestEnemy;
+    }
+
+    //spawns a damage number/indicator at pos with value damage. needs relocating
+    void SpawnDamageNumber(int damage, Vector2 pos)
+    {
+        //mathf.clamp here to keep on screen if needed
+        GameObject dmgNumber = Instantiate(dmgNumberPrefab, pos, Quaternion.identity);
+        dmgNumber.GetComponent<DamageNumber>().Init(damage);
     }
 
     public int GetHealth()

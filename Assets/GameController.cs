@@ -48,7 +48,7 @@ public class GameController : MonoBehaviour
         //load enemies
         for (int x = 0 ; x < enemyFleet.Length ; x++)
         {
-            enemyFleet[x] = Instantiate(enemyObject, enemySpawns[x].transform.position, new Quaternion(0, 0, 0, 0));
+            enemyFleet[x] = Instantiate(enemyObject, enemySpawns[x].transform.position, Quaternion.identity);
             enemyFleet[x].GetComponent<ShipController>().Init(enemyData);
         }
 
@@ -79,7 +79,7 @@ public class GameController : MonoBehaviour
     {
         if (shipLoadout.Ship != null)
         {
-            var tempShip = Instantiate(shipObject, friendlySpawn.transform.position, new Quaternion(0, 0, 0, 0));
+            var tempShip = Instantiate(shipObject, friendlySpawn.transform.position, Quaternion.identity);
             tempShip.GetComponent<ShipController>().Init(shipLoadout);
 
             LoadWeapon(shipLoadout.Slot1, tempShip);
@@ -102,13 +102,13 @@ public class GameController : MonoBehaviour
         {
             if (toLoad.Type == EquipmentType.Torpedo)
             {
-                var gunInst = Instantiate(torpedoObject, ship.transform.position, new Quaternion(0, 0, 0, 0));
+                var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity);
                 gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
             }
             else
             {
-                var gunInst = Instantiate(gunObject, ship.transform.position, new Quaternion(0, 0, 0, 0));
+                var gunInst = Instantiate(gunObject, ship.transform.position, Quaternion.identity);
                 gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
