@@ -13,10 +13,13 @@ public class LeadMovement : MonoBehaviour
     void Start()
     {
         centerPos = new Vector2(-2, 0); //need to not hard code
-
-        moveSpeed = GetComponent<ShipController>().GetSpeed() / 10;
         rb = GetComponent<Rigidbody2D>();
         velocity = Vector2.zero;
+    }
+
+    public void Init(float fleetSpeed)
+    {
+        moveSpeed = fleetSpeed;
         InvokeRepeating("Move", 0.5f, 2f);
     }
 

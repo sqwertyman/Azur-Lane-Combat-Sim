@@ -20,6 +20,7 @@ public class GameController : MonoBehaviour
     private List<GameObject> friendlyFleet = new List<GameObject>(3);
     private GameObject[] enemyFleet = new GameObject[2];
     private bool paused;
+    private float fleetSpeed;
 
     void Awake()
     {
@@ -30,6 +31,7 @@ public class GameController : MonoBehaviour
 
     void Update()
     {
+        //updates current target only if friendly ships exist, to stop errors
         if (friendlyFleet.Count != 0)
         {
             currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
@@ -58,17 +60,24 @@ public class GameController : MonoBehaviour
             LoadShip(shipLoadouts[x]);
         }
 
+        //calculate average speed of fleet
+        for (int x = 0; x < friendlyFleet.Count; x++)
+        {
+            fleetSpeed += friendlyFleet[x].GetComponent<ShipController>().GetSpeed();
+        }
+        fleetSpeed /= (friendlyFleet.Count * 10);   //speed divided by 10 currently to keep roughly accurate
+
         //add appropriate movement scripts
         int position = 0;
         foreach (GameObject ship in friendlyFleet)
         {
             if (position == 0)
             {
-                ship.AddComponent<LeadMovement>();
+                ship.AddComponent<LeadMovement>().Init(fleetSpeed);
             }
             else
             {
-                ship.AddComponent<FollowMovement>().Init(friendlyFleet[position - 1]);
+                ship.AddComponent<FollowMovement>().Init(friendlyFleet[position - 1], fleetSpeed);
             }
             position += 1;
         }
@@ -138,5 +147,10 @@ public class GameController : MonoBehaviour
     public GameObject GetLeadShip()
     {
         return friendlyFleet[0];
+    }
+
+    public float GetFleetSpeed()
+    {
+        return fleetSpeed;
     }
 }

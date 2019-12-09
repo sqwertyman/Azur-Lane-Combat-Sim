@@ -34,6 +34,8 @@ public class GunController : WeaponController
 
         for (; ;)
         {
+            thisShip.FindNearestEnemy();
+
             target = thisShip.GetEnemy();
 
             for (int x = 0; x < noOfShots; x++)

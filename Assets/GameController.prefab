@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4942762273560811746}
   m_Layer: 0
   m_Name: GameController
-  m_TagString: Untagged
+  m_TagString: GameController
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -43,6 +43,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815dd0001f807024194e68c5fd83b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendly: {fileID: 8766707748262291900, guid: f9fbd344b40dc1e4ab2f4edebbc061f5,
-    type: 3}
-  enemy: {fileID: 6642478477606611311, guid: bfd17aad58d2fe143ac89f57d8616734, type: 3}
+  friendlySpawn: {fileID: 0}
+  enemyObject: {fileID: 0}
+  shipObject: {fileID: 0}
+  gunObject: {fileID: 0}
+  torpedoObject: {fileID: 0}
+  enemySpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  shipLoadouts:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  enemyData: {fileID: 0}
+  pauseCanvas: {fileID: 0}
+  gameCanvas: {fileID: 0}

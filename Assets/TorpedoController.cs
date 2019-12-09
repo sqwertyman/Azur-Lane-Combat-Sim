@@ -32,6 +32,8 @@ public class TorpedoController : WeaponController
 
         for (; ; )
         {
+            thisShip.FindNearestEnemy();
+
             for (int x = 0; x < projPerShot; x++)
             {
                 lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);

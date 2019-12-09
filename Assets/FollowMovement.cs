@@ -12,7 +12,6 @@ public class FollowMovement : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody2D>();
-        moveSpeed = GetComponent<ShipController>().GetSpeed() / 10;
     }
 
     //moves this ship towards the lead ship (target) gradually
@@ -23,8 +22,9 @@ public class FollowMovement : MonoBehaviour
         rb.MovePosition(Vector2.Lerp(transform.position, target.transform.position, deltaPosition.magnitude));
     }
 
-    public void Init(GameObject newTarget)
+    public void Init(GameObject newTarget, float fleetSpeed)
     {
+        moveSpeed = fleetSpeed;
         target = newTarget;
     }
 }
