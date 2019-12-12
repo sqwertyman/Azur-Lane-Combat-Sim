@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.IO;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public enum EquipmentType { CL, DD, Torpedo };
 
@@ -14,19 +15,44 @@ public class GameController : MonoBehaviour
     public GameObject[] enemySpawns = new GameObject[2];
     public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData enemyData;
-    public Canvas pauseCanvas, gameCanvas;
+    public Canvas pauseCanvas, gameCanvas, gameOverCanvas;
 
     private GameObject currentTarget;
     private List<GameObject> friendlyFleet = new List<GameObject>(3);
-    private GameObject[] enemyFleet = new GameObject[2];
-    private bool paused;
+    private List<GameObject> enemyFleet = new List<GameObject>(2);
+    private bool paused, gameOver;
     private float fleetSpeed;
 
     void Awake()
     {
         Time.timeScale = 1;
-        StartGame();
         paused = false;
+        gameOver = false;
+        StartGame();
+        EventManager.StartListening("enemy died", HandleEnemyDied);
+    }
+
+    //called if an enemy dies. the dying enemy *should* trigger the event. removes enemy from fleet list, and checks for game over
+    void HandleEnemyDied(GameObject dead)
+    {
+        enemyFleet.Remove(dead);
+        CheckGameOver();
+    }
+
+    //checks whether the game has ended, and ends it if so. will have more use later
+    void CheckGameOver()
+    {
+        if (enemyFleet.Count == 0)
+        {
+            gameOver = true;
+        }
+
+        if (gameOver)
+        {
+            gameOverCanvas.gameObject.SetActive(true);
+            gameCanvas.gameObject.SetActive(false);
+            Time.timeScale = 0;
+        }
     }
 
     void Update()
@@ -48,10 +74,12 @@ public class GameController : MonoBehaviour
     public void StartGame()
     {
         //load enemies
-        for (int x = 0 ; x < enemyFleet.Length ; x++)
+        for (int x = 0 ; x < enemyFleet.Capacity ; x++)
         {
-            enemyFleet[x] = Instantiate(enemyObject, enemySpawns[x].transform.position, Quaternion.identity);
-            enemyFleet[x].GetComponent<ShipController>().Init(enemyData);
+            var tempEnemy = Instantiate(enemyObject, enemySpawns[x].transform.position, Quaternion.identity);
+            tempEnemy.GetComponent<ShipController>().Init(enemyData);
+
+            enemyFleet.Add(tempEnemy);
         }
 
         //load friendlies

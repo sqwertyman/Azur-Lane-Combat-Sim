@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
@@ -9,7 +10,6 @@ public class ShipController : MonoBehaviour
 
     private int maxHealth, firepower, health, torpedo;
     private float speed, reload;
-
     private GameObject enemy;
 
     //sets ship's stats from loadoutData (includes its gun's stats too)
@@ -36,6 +36,39 @@ public class ShipController : MonoBehaviour
         health = maxHealth;
     }
 
+    private void Update()
+    {
+        //triggers appropriate event and destroys the gameobject, if health reaches 0 (dead)
+        if (health <= 0)
+        {
+            EventManager.TriggerEvent("enemy died", gameObject);
+            Destroy(gameObject);
+        }
+    }
+
+    //finds the nearest enemy to the ship. used for targetting
+    public void FindNearestEnemy()
+    {
+        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
+        GameObject nearestEnemy = null;
+        if (enemies.Length != 0)
+        {
+            float nearestDistance = Mathf.Infinity;
+            Vector3 position = transform.position;
+            foreach (var thisEnemy in enemies)
+            {
+                Vector2 difference = thisEnemy.transform.position - position;
+                float thisDistance = difference.sqrMagnitude;
+                if (thisDistance < nearestDistance)
+                {
+                    nearestEnemy = thisEnemy;
+                    nearestDistance = thisDistance;
+                }
+            }
+        }
+        enemy = nearestEnemy;
+    }
+
     //takes damage if the ship is an enemy. needs relocating
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -48,26 +81,6 @@ public class ShipController : MonoBehaviour
 
             Destroy(collision.gameObject);
         }
-    }
-
-    //finds the nearest enemy to the ship. used for targetting
-    public void FindNearestEnemy()
-    {
-        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject nearestEnemy = null;
-        float nearestDistance = Mathf.Infinity;
-        Vector3 position = transform.position;
-        foreach (var thisEnemy in enemies)
-        {
-            Vector2 difference = thisEnemy.transform.position - position;
-            float thisDistance = difference.sqrMagnitude;
-            if (thisDistance < nearestDistance)
-            {
-                nearestEnemy = thisEnemy;
-                nearestDistance = thisDistance;
-            }
-        }
-        enemy = nearestEnemy;
     }
 
     //spawns a damage number/indicator at pos with value damage. needs relocating

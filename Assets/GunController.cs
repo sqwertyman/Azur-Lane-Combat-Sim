@@ -35,7 +35,6 @@ public class GunController : WeaponController
         for (; ;)
         {
             thisShip.FindNearestEnemy();
-
             target = thisShip.GetEnemy();
 
             for (int x = 0; x < noOfShots; x++)
@@ -43,7 +42,16 @@ public class GunController : WeaponController
                 for (int y = 0; y < projPerShot; y++)
                 {
                     lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);
-                    lastProj.Setup(target.transform.position, projSpreads[y], finalDamage);
+
+                    //fires at target, or straight ahead if no target exists
+                    if (target)
+                    {
+                        lastProj.Setup(target.transform.position, projSpreads[y], finalDamage);
+                    }
+                    else
+                    {
+                        lastProj.Setup(transform.position + Vector3.right, projSpreads[y], finalDamage);
+                    }
                 }
                 yield return new WaitForSeconds(volleyTime);
             }
