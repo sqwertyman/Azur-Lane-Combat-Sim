@@ -6,8 +6,6 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
-    public GameObject dmgNumberPrefab; 
-
     private int maxHealth, firepower, health, torpedo;
     private float speed, reload;
     private GameObject enemy;
@@ -69,26 +67,10 @@ public class ShipController : MonoBehaviour
         enemy = nearestEnemy;
     }
 
-    //takes damage if the ship is an enemy. needs relocating
-    private void OnTriggerEnter2D(Collider2D collision)
+    //called to make the ship take damage
+    public void TakeDamage(int damage)
     {
-        if (this.CompareTag("Enemy") && collision.CompareTag("FriendlyProjectile"))
-        {
-            int damage = collision.GetComponent<Projectile>().getDamage();
-            health -= damage;
-
-            SpawnDamageNumber(damage, collision.transform.position);
-
-            Destroy(collision.gameObject);
-        }
-    }
-
-    //spawns a damage number/indicator at pos with value damage. needs relocating
-    void SpawnDamageNumber(int damage, Vector2 pos)
-    {
-        //mathf.clamp here to keep on screen if needed
-        GameObject dmgNumber = Instantiate(dmgNumberPrefab, pos, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(damage);
+        health -= damage;
     }
 
     public int GetHealth()

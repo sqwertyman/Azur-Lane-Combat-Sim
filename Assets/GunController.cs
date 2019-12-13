@@ -2,27 +2,20 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//subclass that handles only gun specifics
 public class GunController : WeaponController
 {
     public override void Init(GunData gunData)
     {
-        gameObject.name = gunData.name;
         startDelay = gunData.StartDelay;
         fireRate = gunData.FireRate;
         volleyTime = gunData.VolleyTime;
-        projectile = gunData.Projectile;
         noOfShots = gunData.NoOfShots;
         projPerShot = gunData.ProjPerShot;
         damage = gunData.Damage;
         spread = gunData.Spread;
 
-        thisShip = GetComponentInParent<ShipController>();
-
-        CalculateReloadTime();
-        CalculateDamage();
-        CalculateAngles();
-
-        StartCoroutine(Fire());
+        base.Init(gunData);
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
@@ -30,7 +23,8 @@ public class GunController : WeaponController
     {
         yield return new WaitForSeconds(startDelay);
 
-        Projectile lastProj;
+        GameObject lastProj;
+        Vector3 targetPos;
 
         for (; ;)
         {
@@ -41,17 +35,18 @@ public class GunController : WeaponController
             {
                 for (int y = 0; y < projPerShot; y++)
                 {
-                    lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);
+                    lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
 
                     //fires at target, or straight ahead if no target exists
                     if (target)
                     {
-                        lastProj.Setup(target.transform.position, projSpreads[y], finalDamage);
+                        targetPos = target.transform.position;
                     }
                     else
                     {
-                        lastProj.Setup(transform.position + Vector3.right, projSpreads[y], finalDamage);
+                        targetPos = transform.position + Vector3.right;
                     }
+                    lastProj.GetComponent<Projectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, despawnTime);
                 }
                 yield return new WaitForSeconds(volleyTime);
             }

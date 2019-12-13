@@ -2,31 +2,50 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//class that handles a ship's weapon, e.g. DD gun or torpedo.
 public class WeaponController : MonoBehaviour
 {
-    protected float startDelay, fireRate, volleyTime;
-    protected Projectile projectile;
-    protected int noOfShots, projPerShot, damage, spread;
+    [SerializeField]
+    protected GameObject projectilePrefab;
+
+    protected float startDelay, fireRate, volleyTime, reloadTime;
+    protected Sprite sprite;
+    protected int noOfShots, projPerShot, damage, spread, finalDamage, projectileSpeed, despawnTime;
 
     protected GameObject target;
     protected ShipController thisShip;
-    protected float reloadTime;
-    protected int finalDamage;
     protected float[] projSpreads;
 
     public virtual void Init(EquipmentData gunData)
     {
-        
+        GeneralInit(gunData);
     }
 
     public virtual void Init(GunData gunData)
     {
-        
+        GeneralInit(gunData);
     }
 
     public virtual void Init(TorpedoData gunData)
     {
-        
+        GeneralInit(gunData);
+    }
+
+    //init method for any weapon type. each specific init calls this. whole system feels messy at the moment
+    private void GeneralInit(EquipmentData data)
+    {
+        gameObject.name = data.name;
+        sprite = data.Sprite;
+        projectileSpeed = data.ProjectileSpeed;
+        despawnTime = data.DespawnTime;
+
+        thisShip = GetComponentInParent<ShipController>();
+
+        CalculateReloadTime();
+        CalculateDamage();
+        CalculateAngles();
+
+        StartCoroutine(Fire());
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
@@ -73,6 +92,7 @@ public class WeaponController : MonoBehaviour
         }
     }
 
+    //calculates the weapon's damage
     protected void CalculateReloadTime()
     {
         reloadTime = fireRate * (Mathf.Sqrt(200 / (thisShip.GetFireRate() + 100)));

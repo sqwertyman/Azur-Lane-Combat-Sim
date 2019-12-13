@@ -2,25 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//subclass that handles only torpedo specifics
 public class TorpedoController : WeaponController
 {
     public override void Init(TorpedoData torpData)
     {
-        gameObject.name = torpData.name;
         startDelay = torpData.StartDelay;
         fireRate = torpData.FireRate;
-        projectile = torpData.Projectile;
         projPerShot = torpData.ProjPerShot;
         damage = torpData.Damage;
         spread = torpData.Spread;
 
-        thisShip = GetComponentInParent<ShipController>();
-
-        CalculateReloadTime();
-        CalculateDamage();
-        CalculateAngles();
-
-        StartCoroutine(Fire());
+        base.Init(torpData);
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
@@ -28,7 +21,7 @@ public class TorpedoController : WeaponController
     {
         yield return new WaitForSeconds(startDelay);
 
-        Projectile lastProj;
+        GameObject lastProj;
 
         for (; ; )
         {
@@ -36,8 +29,8 @@ public class TorpedoController : WeaponController
 
             for (int x = 0; x < projPerShot; x++)
             {
-                lastProj = Instantiate<Projectile>(projectile, transform.position, transform.rotation);
-                lastProj.Setup(transform.position + Vector3.right, projSpreads[x], finalDamage);
+                lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+                lastProj.GetComponent<Projectile>().Setup(transform.position + Vector3.right, projSpreads[x], finalDamage, projectileSpeed, sprite, despawnTime);
             }
             yield return new WaitForSeconds(reloadTime);
         }

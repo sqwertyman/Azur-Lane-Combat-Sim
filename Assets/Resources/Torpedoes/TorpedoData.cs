@@ -9,13 +9,10 @@ public class TorpedoData : EquipmentData
     private float startDelay, fireRate;
     [SerializeField]
     private int projPerShot, damage, spread;
-    [SerializeField]
-    private Projectile projectile;
 
     public float StartDelay { get => startDelay; set => startDelay = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
     public int Damage { get => damage; set => damage = value; }
     public int Spread { get => spread; set => spread = value; }
     public int ProjPerShot { get => projPerShot; set => projPerShot = value; }
-    public Projectile Projectile { get => projectile; set => projectile = value; }
 }

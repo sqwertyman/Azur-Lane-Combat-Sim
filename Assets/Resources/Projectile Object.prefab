@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 1461375324476532585}
   - component: {fileID: 1147401321091517116}
   m_Layer: 0
-  m_Name: ProjectileTorp
+  m_Name: Projectile Object
   m_TagString: FriendlyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -72,15 +72,15 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: 0ef1d9735665d7849afdc68d3ce045b2, type: 3}
-  m_Color: {r: 1, g: 0, b: 0, a: 1}
+  m_Sprite: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
   m_Size: {x: 5.13, y: 5.13}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!114 &2397885890873262725
@@ -95,8 +95,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a38fa326c16a0f24381a27f7b5466efa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
-  despawnTime: 4
+  dmgNumberPrefab: {fileID: 78213216389322679, guid: 5612ee7924b89234e96def56fc7b4b3d,
+    type: 3}
+  speed: 20
+  despawnTime: 2
 --- !u!50 &1461375324476532585
 Rigidbody2D:
   serializedVersion: 4
