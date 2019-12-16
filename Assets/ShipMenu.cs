@@ -70,6 +70,44 @@ public class ShipMenu : MonoBehaviour
         menuController.ShowNecessaryMenus();
     }
 
+    //sets values of each dropdown to previously saved selection, if applicable
+    public void SetSelections(ShipLoadoutData loadoutData)
+    {
+        if (loadoutData.Ship)
+        {
+            SetDropdownSelection(shipDrop, loadoutData.Ship.Name);
+        }
+        if (loadoutData.Slot1)
+        {
+            SetDropdownSelection(slot1Drop, loadoutData.Slot1.Name);
+        }
+        if (loadoutData.Slot2)
+        {
+            SetDropdownSelection(slot2Drop, loadoutData.Slot2.Name);
+        }
+    }
+
+    //searches the dropdown's options for option and sets the selection to it
+    private void SetDropdownSelection(Dropdown dropdown, string option)
+    {
+        for (int i = 0; i < dropdown.options.Count; i++)
+        {
+            if (dropdown.options[i].text.Equals(option))
+            {
+                dropdown.value = i;
+                break;
+            }
+        }
+    }
+
+    //resets all dropdowns to none
+    public void ResetAll()
+    {
+        shipDrop.value = 0;
+        slot1Drop.value = 0;
+        slot2Drop.value = 0;
+    }
+
     public void GetSelections()
     {
         ship = shipDrop.options[shipDrop.value].text;

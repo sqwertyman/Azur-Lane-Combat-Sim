@@ -310,6 +310,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d0aa6b5de4f4c3546a7c2915c63d93dd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1597291556 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4690550816999592481, guid: 155eb9997519410499790addf6cffbb2,
+    type: 3}
+  m_PrefabInstance: {fileID: 4690550817057041577}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &1780827430 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 4690550816623241615, guid: 155eb9997519410499790addf6cffbb2,
@@ -346,6 +358,21 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
+    - target: {fileID: 4690550816948543401, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 4690550816623241615, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 4690550816400390652, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
     - target: {fileID: 4690550817466053471, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -476,11 +503,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: -592
       objectReference: {fileID: 0}
-    - target: {fileID: 4690550816400390652, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 1947055940808300065, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_IsActive
@@ -496,11 +518,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 0.000071146
       objectReference: {fileID: 0}
-    - target: {fileID: 4690550816623241615, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 4710392741663618054, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_IsActive
@@ -531,11 +548,6 @@ PrefabInstance:
       propertyPath: m_AnchoredPosition.x
       value: 626
       objectReference: {fileID: 0}
-    - target: {fileID: 4690550816948543401, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 127898050584016860, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_AnchoredPosition.y
@@ -570,6 +582,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: MenuController
       objectReference: {fileID: 0}
+    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
+        type: 3}
+      propertyPath: shipMenus.Array.data[0]
+      value: 
+      objectReference: {fileID: 2146227541}
+    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
+        type: 3}
+      propertyPath: shipMenus.Array.data[1]
+      value: 
+      objectReference: {fileID: 1780827430}
+    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
+        type: 3}
+      propertyPath: shipMenus.Array.data[2]
+      value: 
+      objectReference: {fileID: 515420928}
+    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
+        type: 3}
+      propertyPath: startButton
+      value: 
+      objectReference: {fileID: 1597291556}
     - target: {fileID: 8133262389718811205, guid: 944a3a3a5150a9e459479fc9133458cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -625,20 +657,5 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
-        type: 3}
-      propertyPath: shipMenus.Array.data[0]
-      value: 
-      objectReference: {fileID: 2146227541}
-    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
-        type: 3}
-      propertyPath: shipMenus.Array.data[1]
-      value: 
-      objectReference: {fileID: 1780827430}
-    - target: {fileID: 8133262389718811202, guid: 944a3a3a5150a9e459479fc9133458cf,
-        type: 3}
-      propertyPath: shipMenus.Array.data[2]
-      value: 
-      objectReference: {fileID: 515420928}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 944a3a3a5150a9e459479fc9133458cf, type: 3}

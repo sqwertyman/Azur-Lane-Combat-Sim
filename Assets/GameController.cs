@@ -32,6 +32,21 @@ public class GameController : MonoBehaviour
         EventManager.StartListening("enemy died", HandleEnemyDied);
     }
 
+    void Update()
+    {
+        //updates current target only if friendly ships exist, to stop errors
+        if (friendlyFleet.Count != 0)
+        {
+            currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
+        }
+
+        //pause/unpause game with escape
+        if (Input.GetKeyDown("escape"))
+        {
+            SwitchPauseState();
+        }
+    }
+
     //called if an enemy dies. the dying enemy *should* trigger the event. removes enemy from fleet list, and checks for game over
     void HandleEnemyDied(GameObject dead)
     {
@@ -52,21 +67,6 @@ public class GameController : MonoBehaviour
             gameOverCanvas.gameObject.SetActive(true);
             gameCanvas.gameObject.SetActive(false);
             Time.timeScale = 0;
-        }
-    }
-
-    void Update()
-    {
-        //updates current target only if friendly ships exist, to stop errors
-        if (friendlyFleet.Count != 0)
-        {
-            currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
-        }
-
-        //pause/unpause game with escape
-        if (Input.GetKeyDown("escape"))
-        {
-            SwitchPauseState();
         }
     }
 

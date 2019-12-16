@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: ship1
   m_EditorClassIdentifier: 
   ship: {fileID: 0}
-  mainGun: {fileID: 0}
-  auxGun: {fileID: 0}
+  slot1: {fileID: 0}
+  slot2: {fileID: 0}
