@@ -55,7 +55,7 @@ public class WeaponController : MonoBehaviour
     }
 
     //populates projSpreads array with angles for each projectile to be fired at
-    protected void CalculateAngles()
+    protected virtual void CalculateAngles()
     {
         projSpreads = new float[projPerShot];
         //calc spread between projectiles, or set to 0 if only 1 projectile

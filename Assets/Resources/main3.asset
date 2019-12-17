@@ -10,8 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 55032663d28025142900eae94afd25dc, type: 3}
-  m_Name: ship3
+  m_Name: main3
   m_EditorClassIdentifier: 
   ship: {fileID: 0}
-  mainGun: {fileID: 0}
-  auxGun: {fileID: 0}
+  slot1: {fileID: 0}
+  slot2: {fileID: 0}

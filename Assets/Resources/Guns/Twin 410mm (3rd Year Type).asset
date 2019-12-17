@@ -1,0 +1,29 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
+  m_Name: Twin 410mm (3rd Year Type)
+  m_EditorClassIdentifier: 
+  name: Twin 410mm (3rd Year Type)
+  id: 6
+  type: 2
+  firepower: 25
+  torpedo: 0
+  projectileSpeed: 10
+  despawnTime: 5
+  sprite: {fileID: 21300000, guid: 0ba6eacafb5789b4b93c7a75aaeca5e2, type: 3}
+  startDelay: 1
+  fireRate: 20.02
+  volleyTime: 0
+  noOfShots: 1
+  projPerShot: 2
+  damage: 154
+  spread: 20

@@ -10,11 +10,11 @@ GameObject:
   m_Component:
   - component: {fileID: 5305288597906409776}
   - component: {fileID: 1953703513351544646}
-  - component: {fileID: 2397885890873262725}
   - component: {fileID: 1461375324476532585}
   - component: {fileID: 1147401321091517116}
+  - component: {fileID: 347050519405773235}
   m_Layer: 0
-  m_Name: Projectile Object
+  m_Name: Arcing Projectile Object
   m_TagString: FriendlyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -83,22 +83,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2397885890873262725
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461742912502857454}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a38fa326c16a0f24381a27f7b5466efa, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  dmgNumberPrefab: {fileID: 78213216389322679, guid: 5612ee7924b89234e96def56fc7b4b3d,
-    type: 3}
-  speed: 20
-  despawnTime: 2
 --- !u!50 &1461375324476532585
 Rigidbody2D:
   serializedVersion: 4
@@ -146,3 +130,18 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 4.64, y: 4.72}
   m_EdgeRadius: 0
+--- !u!114 &347050519405773235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461742912502857454}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f6f64fe6515824247b2903dd2959bd52, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dmgNumberPrefab: {fileID: 78213216389322679, guid: 5612ee7924b89234e96def56fc7b4b3d,
+    type: 3}
+  arcHeight: 5

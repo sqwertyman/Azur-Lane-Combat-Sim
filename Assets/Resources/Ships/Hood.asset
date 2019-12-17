@@ -9,9 +9,15 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 55032663d28025142900eae94afd25dc, type: 3}
-  m_Name: ship1
+  m_Script: {fileID: 11500000, guid: b37d1e9dc44c58d4896f9654f343e1d0, type: 3}
+  m_Name: Hood
   m_EditorClassIdentifier: 
-  ship: {fileID: 0}
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
+  name: Hood
+  id: 129
+  health: 8445
+  speed: 31
+  reload: 159
+  firepower: 343
+  torpedo: 0
+  slot1: 0
+  slot2: 1

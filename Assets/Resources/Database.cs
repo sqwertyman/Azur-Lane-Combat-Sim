@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum EquipmentType { CL, DD, BB, Torpedo };
+
 public static class Database
 {
     [SerializeField]

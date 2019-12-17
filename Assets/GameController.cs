@@ -5,20 +5,21 @@ using System.IO;
 using UnityEngine.UI;
 using UnityEngine.Events;
 
-public enum EquipmentType { CL, DD, Torpedo };
-
 //handles the start of a game/battle. loads in ships and their weapons
 
 public class GameController : MonoBehaviour
 {
-    public GameObject friendlySpawn, enemyObject, shipObject, gunObject, torpedoObject;
+    public GameObject vanguardSpawn, enemyObject, shipObject, gunObject, mainGunObject, torpedoObject;
     public GameObject[] enemySpawns = new GameObject[2];
-    public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
+    public GameObject[] mainSpawns = new GameObject[3];
+    public ShipLoadoutData[] vanguardLoadouts = new ShipLoadoutData[3];
+    public ShipLoadoutData[] mainLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData enemyData;
     public Canvas pauseCanvas, gameCanvas, gameOverCanvas;
 
     private GameObject currentTarget;
-    private List<GameObject> friendlyFleet = new List<GameObject>(3);
+    private List<GameObject> vanguardFleet = new List<GameObject>(3);
+    private List<GameObject> mainFleet = new List<GameObject>(3);
     private List<GameObject> enemyFleet = new List<GameObject>(2);
     private bool paused, gameOver;
     private float fleetSpeed;
@@ -35,9 +36,9 @@ public class GameController : MonoBehaviour
     void Update()
     {
         //updates current target only if friendly ships exist, to stop errors
-        if (friendlyFleet.Count != 0)
+        if (vanguardFleet.Count != 0)
         {
-            currentTarget = friendlyFleet[0].GetComponent<ShipController>().GetEnemy();
+            currentTarget = vanguardFleet[0].GetComponent<ShipController>().GetEnemy();
         }
 
         //pause/unpause game with escape
@@ -82,22 +83,27 @@ public class GameController : MonoBehaviour
             enemyFleet.Add(tempEnemy);
         }
 
-        //load friendlies
-        for (int x = 0; x < shipLoadouts.Length; x++)
+        //load vanguard ships
+        for (int x = 0; x < vanguardLoadouts.Length; x++)
         {
-            LoadShip(shipLoadouts[x]);
+            LoadShip(vanguardLoadouts[x], vanguardSpawn.transform.position, vanguardFleet);
+        }
+        //load main ships
+        for (int x = 0; x < mainLoadouts.Length; x++)
+        {
+            LoadShip(mainLoadouts[x], mainSpawns[x].transform.position, mainFleet);
         }
 
         //calculate average speed of fleet
-        for (int x = 0; x < friendlyFleet.Count; x++)
+        for (int x = 0; x < vanguardFleet.Count; x++)
         {
-            fleetSpeed += friendlyFleet[x].GetComponent<ShipController>().GetSpeed();
+            fleetSpeed += vanguardFleet[x].GetComponent<ShipController>().GetSpeed();
         }
-        fleetSpeed /= (friendlyFleet.Count * 10);   //speed divided by 10 currently to keep roughly accurate
+        fleetSpeed /= (vanguardFleet.Count * 10);   //speed divided by 10 currently to keep roughly accurate
 
         //add appropriate movement scripts
         int position = 0;
-        foreach (GameObject ship in friendlyFleet)
+        foreach (GameObject ship in vanguardFleet)
         {
             if (position == 0)
             {
@@ -105,24 +111,24 @@ public class GameController : MonoBehaviour
             }
             else
             {
-                ship.AddComponent<FollowMovement>().Init(friendlyFleet[position - 1], fleetSpeed);
+                ship.AddComponent<FollowMovement>().Init(vanguardFleet[position - 1], fleetSpeed);
             }
             position += 1;
         }
     }
 
     //loads in the particular ship denoted by shipLoadout, storing it at the index shipIndex in friendlyFleet
-    int LoadShip(ShipLoadoutData shipLoadout)
+    int LoadShip(ShipLoadoutData shipLoadout, Vector3 spawnPos, List<GameObject> fleetList)
     {
         if (shipLoadout.Ship != null)
         {
-            var tempShip = Instantiate(shipObject, friendlySpawn.transform.position, Quaternion.identity);
+            var tempShip = Instantiate(shipObject, spawnPos, Quaternion.identity);
             tempShip.GetComponent<ShipController>().Init(shipLoadout);
 
             LoadWeapon(shipLoadout.Slot1, tempShip);
             LoadWeapon(shipLoadout.Slot2, tempShip);
 
-            friendlyFleet.Add(tempShip);
+            fleetList.Add(tempShip);
 
             return 1;
         }
@@ -142,6 +148,12 @@ public class GameController : MonoBehaviour
                 var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity);
                 gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
+            }
+            else if (toLoad.Type == EquipmentType.BB)
+            {
+                var gunInst = Instantiate(mainGunObject, ship.transform.position, Quaternion.identity);
+                gunInst.transform.SetParent(ship.transform);
+                gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
             else
             {
@@ -174,7 +186,7 @@ public class GameController : MonoBehaviour
 
     public GameObject GetLeadShip()
     {
-        return friendlyFleet[0];
+        return vanguardFleet[0];
     }
 
     public float GetFleetSpeed()

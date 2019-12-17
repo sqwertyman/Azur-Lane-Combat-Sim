@@ -2,27 +2,17 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Projectile : MonoBehaviour
+public class BaseProjectile : MonoBehaviour
 {
     public GameObject dmgNumberPrefab;
 
-    private int damage;
-    private Rigidbody2D rb;
-    
-    public void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int despawnTime)
+    protected int damage;
+    protected Rigidbody2D rb;
+
+    public virtual void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int despawnTime)
     {
-        rb = GetComponent<Rigidbody2D>();
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        
 
-        this.damage = damage;
-        Vector3 heading = targetPos - transform.position;
-        float distance = heading.magnitude;
-        Vector3 direction = heading / distance;
-        transform.right = direction;
-        transform.Rotate(0, 0, targetSpread);
-        rb.velocity = transform.right * speed;
-
-        Destroy(gameObject, despawnTime);
     }
 
     //when collides with something

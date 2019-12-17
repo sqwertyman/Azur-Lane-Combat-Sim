@@ -46,7 +46,7 @@ public class GunController : WeaponController
                     {
                         targetPos = transform.position + Vector3.right;
                     }
-                    lastProj.GetComponent<Projectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, despawnTime);
+                    lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, despawnTime);
                 }
                 yield return new WaitForSeconds(volleyTime);
             }
