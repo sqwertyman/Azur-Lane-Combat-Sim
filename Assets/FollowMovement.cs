@@ -19,7 +19,7 @@ public class FollowMovement : MonoBehaviour
     {
         Vector3 dir = (target.transform.position - transform.position).normalized;
         Vector3 deltaPosition = moveSpeed * dir * Time.fixedDeltaTime;
-        rb.MovePosition(Vector2.Lerp(transform.position, target.transform.position, deltaPosition.magnitude));
+        rb.MovePosition(Vector2.Lerp(transform.position, target.transform.position, deltaPosition.magnitude/10)); //multiplied for now to adjust
     }
 
     public void Init(GameObject newTarget, float fleetSpeed)

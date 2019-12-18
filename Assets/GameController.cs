@@ -99,7 +99,7 @@ public class GameController : MonoBehaviour
         {
             fleetSpeed += vanguardFleet[x].GetComponent<ShipController>().GetSpeed();
         }
-        fleetSpeed /= (vanguardFleet.Count * 10);   //speed divided by 10 currently to keep roughly accurate
+        fleetSpeed /= vanguardFleet.Count;
 
         //add appropriate movement scripts
         int position = 0;

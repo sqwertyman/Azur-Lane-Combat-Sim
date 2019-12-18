@@ -14,4 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ship: {fileID: 11400000, guid: 359c0c5e76ce23548a1e9732293974b7, type: 2}
   slot1: {fileID: 11400000, guid: 19e677041d3f73d42b4a4a8e25c8276d, type: 2}
-  slot2: {fileID: 0}
+  slot2: {fileID: 11400000, guid: f89e368a48c229f45a4f5e6475c63b67, type: 2}

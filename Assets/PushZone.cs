@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+//pushes friendly tagged ships away
 public class PushZone : MonoBehaviour
 {
     public float force;

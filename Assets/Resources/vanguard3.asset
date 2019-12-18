@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 55032663d28025142900eae94afd25dc, type: 3}
   m_Name: vanguard3
   m_EditorClassIdentifier: 
-  ship: {fileID: 0}
-  slot1: {fileID: 0}
-  slot2: {fileID: 0}
+  ship: {fileID: 11400000, guid: 72819a511a2e09341b2feab289a06cb7, type: 2}
+  slot1: {fileID: 11400000, guid: f89e368a48c229f45a4f5e6475c63b67, type: 2}
+  slot2: {fileID: 11400000, guid: a648bc5bc9b59fd4e9796833980caec8, type: 2}

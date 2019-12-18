@@ -13,12 +13,12 @@ MonoBehaviour:
   m_Name: 533mm Quadruple Torpedo Mount
   m_EditorClassIdentifier: 
   name: 533mm Quadruple Torpedo Mount
-  id: 0
-  type: 2
+  id: 1
+  type: 3
   firepower: 0
   torpedo: 25
-  projectileSpeed: 5
-  despawnTime: 5
+  projectileSpeed: 30
+  range: 90
   sprite: {fileID: 21300000, guid: b2353d2543ffecb46ac5f9ff4c022bd5, type: 3}
   startDelay: 1
   fireRate: 23.14

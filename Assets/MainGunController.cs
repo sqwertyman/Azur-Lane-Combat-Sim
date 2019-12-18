@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class MainGunController : WeaponController
 {
-    private float minSpread, maxSpread;
-
     public override void Init(GunData gunData)
     {
         startDelay = gunData.StartDelay;
@@ -16,8 +14,6 @@ public class MainGunController : WeaponController
         spread = gunData.Spread;
 
         projSpreads = new float[projPerShot];
-        minSpread = -(spread / 2);
-        maxSpread = spread / 2;
 
         base.Init(gunData);
     }
@@ -37,22 +33,22 @@ public class MainGunController : WeaponController
 
             CalculateAngles();
 
+            //fires at target, or straight ahead if no target exists
+            if (target)
+            {
+                targetPos = target.transform.position;
+            }
+            else
+            {
+                targetPos = transform.position + Vector3.right;
+            }
+
             for (int y = 0; y < projPerShot; y++)
             {
                 lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-
-                //fires at target, or straight ahead if no target exists
-                if (target)
-                {
-                    targetPos = target.transform.position;
-                }
-                else
-                {
-                    targetPos = transform.position + Vector3.right;
-                }
-
-                lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, despawnTime);
+                lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, range);
             }
+
             yield return new WaitForSeconds(reloadTime);
         }
     }
@@ -68,7 +64,7 @@ public class MainGunController : WeaponController
     {
         for (int x = 0; x < projPerShot; x++)
         {
-            projSpreads[x] = Random.Range(minSpread, maxSpread);
+            projSpreads[x] = Random.Range(-spread, spread);
         }
     }
 }

@@ -17,13 +17,14 @@ MonoBehaviour:
   type: 1
   firepower: 15
   torpedo: 0
-  projectileSpeed: 20
-  despawnTime: 2
+  projectileSpeed: 180
+  range: 45
   sprite: {fileID: 21300000, guid: 0ef1d9735665d7849afdc68d3ce045b2, type: 3}
   startDelay: 0.5
   fireRate: 0.96
   volleyTime: 0.1
+  spread: 10
   noOfShots: 2
   projPerShot: 2
   damage: 12
-  spread: 10
+  angle: 360

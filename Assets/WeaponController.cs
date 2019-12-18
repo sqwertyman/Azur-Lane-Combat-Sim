@@ -8,9 +8,9 @@ public class WeaponController : MonoBehaviour
     [SerializeField]
     protected GameObject projectilePrefab;
 
-    protected float startDelay, fireRate, volleyTime, reloadTime;
+    protected float startDelay, fireRate, volleyTime, reloadTime, spread;
     protected Sprite sprite;
-    protected int noOfShots, projPerShot, damage, spread, finalDamage, projectileSpeed, despawnTime;
+    protected int noOfShots, projPerShot, damage, finalDamage, projectileSpeed, range, angle;
 
     protected GameObject target;
     protected ShipController thisShip;
@@ -37,7 +37,7 @@ public class WeaponController : MonoBehaviour
         gameObject.name = data.name;
         sprite = data.Sprite;
         projectileSpeed = data.ProjectileSpeed;
-        despawnTime = data.DespawnTime;
+        range = data.Range * 2; //mulitplied to exaggerate for now
 
         thisShip = GetComponentInParent<ShipController>();
 
@@ -90,6 +90,16 @@ public class WeaponController : MonoBehaviour
                 projSpreads[x] -= halfSpread;
             }
         }
+    }
+
+    //returns the distance to the nearest enemy
+    protected float DistanceToNearest()
+    {
+        thisShip.FindNearestEnemy();
+        target = thisShip.GetEnemy();
+
+        Vector3 heading = target.transform.position - transform.position;
+        return heading.magnitude;
     }
 
     //calculates the weapon's damage
