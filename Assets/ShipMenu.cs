@@ -9,15 +9,20 @@ public class ShipMenu : MonoBehaviour
     public MenuController menuController;
 
     private string ship, slot1, slot2;
-    
+
     //set ship dropdown choices
-    public void Init()
+    public void Init(FleetType type)
     {
         List<string> tempList = new List<string>();
-        foreach (ShipData item in Database.ShipNamesList.Values)
+
+        foreach (ShipData ship in Database.ShipList.Values)
         {
-            tempList.Add(item.Name);
+            if (ship.FleetType == type)
+            {
+                tempList.Add(ship.Name);
+            }
         }
+
         shipDrop.AddOptions(tempList);
 
         ship = shipDrop.options[shipDrop.value].text;
@@ -30,21 +35,27 @@ public class ShipMenu : MonoBehaviour
         slot2Drop.options.RemoveRange(1, slot2Drop.options.Count - 1);
 
         List<string> tempList = new List<string>();
-        foreach (EquipmentData item in Database.GunNamesList.Values)
+        foreach (EquipmentData gun in Database.GunList.Values)
         {
-            if (Database.ShipNamesList[ship].Slot1 == item.Type)
+            foreach (EquipmentType type in Database.ShipList[ship].Slot1)
             {
-                tempList.Add(item.Name);
+                if (type == gun.Type)
+                {
+                    tempList.Add(gun.Name);
+                }
             }
         }
         slot1Drop.AddOptions(tempList);
 
         tempList = new List<string>();
-        foreach (EquipmentData item in Database.GunNamesList.Values)
+        foreach (EquipmentData gun in Database.GunList.Values)
         {
-            if (Database.ShipNamesList[ship].Slot2 == item.Type)
+            foreach (EquipmentType type in Database.ShipList[ship].Slot2)
             {
-                tempList.Add(item.Name);
+                if (type == gun.Type)
+                {
+                    tempList.Add(gun.Name);
+                }
             }
         }
         slot2Drop.AddOptions(tempList);
@@ -108,6 +119,7 @@ public class ShipMenu : MonoBehaviour
         slot2Drop.value = 0;
     }
 
+    //force the selections to be updated
     public void GetSelections()
     {
         ship = shipDrop.options[shipDrop.value].text;

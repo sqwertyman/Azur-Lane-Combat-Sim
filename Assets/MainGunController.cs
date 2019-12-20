@@ -22,6 +22,7 @@ public class MainGunController : WeaponController
     protected override IEnumerator Fire()
     {
         yield return new WaitForSeconds(startDelay);
+        yield return new WaitForSeconds(reloadTime);
 
         GameObject lastProj;
         Vector3 targetPos;

@@ -7,16 +7,20 @@ using UnityEngine.UI;
 
 public class MenuController : MonoBehaviour
 {
-    public ShipMenu[] shipMenus = new ShipMenu[3];
-    public ShipLoadoutData[] shipLoadouts = new ShipLoadoutData[3];
+    public ShipMenu[] vanguardShipMenus = new ShipMenu[3];
+    public ShipMenu[] mainShipMenus = new ShipMenu[3];
+    public ShipLoadoutData[] vanguardShipLoadouts = new ShipLoadoutData[3];
+    public ShipLoadoutData[] mainShipLoadouts = new ShipLoadoutData[3];
     public Button startButton;
 
-    private string savePath;
+    private string savePath, mainFileName, vanguardFileName;
 
     //initialise database and json directory (if needed), and load and correctly set ship menus
     public void Start()
     {
         savePath = Application.persistentDataPath + "/Saves";
+        mainFileName = "/mainshipsave";
+        vanguardFileName = "/vanguardshipsave"; 
 
         Database.Start();
 
@@ -24,18 +28,15 @@ public class MenuController : MonoBehaviour
         {
             Directory.CreateDirectory(savePath);
         }
-
-        for (int x = 0; x < shipMenus.Length; x++)
+        
+        //initialises the menus, and loads the ships' saved loadouts
+        for (int x = 0; x < vanguardShipMenus.Length; x++)
         {
-            shipMenus[x].Init();
+            vanguardShipMenus[x].Init(FleetType.Vanguard);
+            mainShipMenus[x].Init(FleetType.Main);
 
-            if (File.Exists(savePath + "/shipsave" + (x + 1)))
-            {
-                string tempJson = File.ReadAllText(savePath + "/shipsave" + (x + 1));
-                JsonUtility.FromJsonOverwrite(tempJson, shipLoadouts[x]);
-            }
-
-            shipMenus[x].SetSelections(shipLoadouts[x]);
+            LoadLoadouts(vanguardShipLoadouts[x], vanguardShipMenus[x], vanguardFileName + (x + 1));
+            LoadLoadouts(mainShipLoadouts[x], mainShipMenus[x], mainFileName + (x + 1));
         }
 
         ShowNecessaryMenus();
@@ -49,18 +50,15 @@ public class MenuController : MonoBehaviour
         }
     }
 
-    //called by start button. if there's at least one ship, finalises loadouts and saves to json, then loads game scene
+    //called by start button. if there's at least one main and vanguard ship, finalises loadouts, saves to json, then loads game scene
     public void StartGame()
     {
-        shipMenus[0].GetSelections();
-        if (shipMenus[0].GetShip() != "None")
+        if (vanguardShipMenus[0].GetShip() != "None" && mainShipMenus[0].GetShip() != "None")
         {
-            for (int x = 0; x < shipMenus.Length; x++)
+            for (int x = 0; x < vanguardShipMenus.Length; x++)
             {
-                shipMenus[x].GetSelections();
-                SaveLoadout(shipLoadouts[x], shipMenus[x]);
-
-                File.WriteAllText(savePath + "/shipsave" + (x + 1), shipLoadouts[x].GetJson());
+                SaveLoadout(vanguardShipLoadouts[x], vanguardShipMenus[x], vanguardFileName + (x + 1));
+                SaveLoadout(mainShipLoadouts[x], mainShipMenus[x], mainFileName + (x + 1));
             }
 
             SceneManager.LoadScene("TestingScene", LoadSceneMode.Single);
@@ -72,15 +70,23 @@ public class MenuController : MonoBehaviour
         }
     }
 
+    private void SaveLoadout(ShipLoadoutData shipLoadout, ShipMenu shipMenu, string fileName)
+    {
+        shipMenu.GetSelections();
+        SaveToLoadoutData(shipLoadout, shipMenu);
+
+        File.WriteAllText(savePath + fileName, shipLoadout.GetJson());
+    }
+
     //stores the selected ships and guns from shipMenu into the shipLoadout
-    private void SaveLoadout(ShipLoadoutData shipLoadout, ShipMenu shipMenu)
+    private void SaveToLoadoutData(ShipLoadoutData shipLoadout, ShipMenu shipMenu)
     {
         if (shipMenu.GetShip() != "None")
         {
-            shipLoadout.Ship = Database.ShipNamesList[shipMenu.GetShip()];
+            shipLoadout.Ship = Database.ShipList[shipMenu.GetShip()];
             if (shipMenu.GetSlot1() != "None")
             {
-                shipLoadout.Slot1 = Database.GunNamesList[shipMenu.GetSlot1()];
+                shipLoadout.Slot1 = Database.GunList[shipMenu.GetSlot1()];
             }
             else
             {
@@ -88,7 +94,7 @@ public class MenuController : MonoBehaviour
             }
             if (shipMenu.GetSlot2() != "None")
             {
-                shipLoadout.Slot2 = Database.GunNamesList[shipMenu.GetSlot2()];
+                shipLoadout.Slot2 = Database.GunList[shipMenu.GetSlot2()];
             }
             else
             {
@@ -104,8 +110,7 @@ public class MenuController : MonoBehaviour
     }
 
     //show/hide individual ship menus based on if the previous ship is selected
-    //also hides start button if no ship is selected
-    public void ShowNecessaryMenus()
+    private bool ShowHideMenus(ShipMenu[] shipMenus)
     {
         if (shipMenus[0].GetShip() != "None")
         {
@@ -119,7 +124,7 @@ public class MenuController : MonoBehaviour
                 shipMenus[2].ResetAll();
                 shipMenus[2].gameObject.SetActive(false);
             }
-            startButton.gameObject.SetActive(true);
+            return true;
         }
         else
         {
@@ -127,7 +132,28 @@ public class MenuController : MonoBehaviour
             shipMenus[1].gameObject.SetActive(false);
             shipMenus[2].ResetAll();
             shipMenus[2].gameObject.SetActive(false);
-            startButton.gameObject.SetActive(false);
+            return false;
         }
+    }
+
+    //shows/hides all necessary menus. for other scripts to be able to do so. also shows/hides start button
+    public void ShowNecessaryMenus()
+    {
+        bool vanguardOkay = ShowHideMenus(vanguardShipMenus);
+        bool mainOkay = ShowHideMenus(mainShipMenus);
+
+        startButton.gameObject.SetActive(vanguardOkay && mainOkay);
+    }
+
+    //loads the ship's saved loadout
+    private void LoadLoadouts(ShipLoadoutData shipLoadout, ShipMenu shipMenu, string fileName)
+    {
+        if (File.Exists(savePath + fileName))
+        {
+            string tempJson = File.ReadAllText(savePath + fileName);
+            JsonUtility.FromJsonOverwrite(tempJson, shipLoadout);
+        }
+
+        shipMenu.SetSelections(shipLoadout);
     }
 }

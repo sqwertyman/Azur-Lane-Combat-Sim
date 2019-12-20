@@ -3,29 +3,30 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public enum EquipmentType { CL, DD, BB, Torpedo };
+public enum FleetType { Main, Vanguard };
 
 public static class Database
 {
-    [SerializeField]
-    private static Dictionary<int, ShipData> shipList;
+    //[SerializeField]
+    //private static Dictionary<int, ShipData> shipList;
     //[SerializeField]
     //private static Dictionary<int, GunData> gunList;
     [SerializeField]
-    private static Dictionary<string, ShipData> shipNamesList;
+    private static Dictionary<string, ShipData> shipList;
     [SerializeField]
-    private static Dictionary<string, EquipmentData> gunNamesList;
+    private static Dictionary<string, EquipmentData> gunList;
 
-    public static Dictionary<int, ShipData> ShipList { get => shipList; set => shipList = value; }
+    //public static Dictionary<int, ShipData> ShipList { get => shipList; set => shipList = value; }
     //public static Dictionary<int, GunData> GunList { get => gunList; set => gunList = value; }
-    public static Dictionary<string, ShipData> ShipNamesList { get => shipNamesList; set => shipNamesList = value; }
-    public static Dictionary<string, EquipmentData> GunNamesList { get => gunNamesList; set => gunNamesList = value; }
+    public static Dictionary<string, ShipData> ShipList { get => shipList; set => shipList = value; }
+    public static Dictionary<string, EquipmentData> GunList { get => gunList; set => gunList = value; }
 
     public static void Start()
     {
-        shipList = new Dictionary<int, ShipData>();
+        //shipList = new Dictionary<int, ShipData>();
         //gunList = new Dictionary<int, GunData>();
-        shipNamesList = new Dictionary<string, ShipData>();
-        gunNamesList = new Dictionary<string, EquipmentData>();
+        shipList = new Dictionary<string, ShipData>();
+        gunList = new Dictionary<string, EquipmentData>();
         LoadShips();
         LoadGuns();
     }
@@ -36,8 +37,8 @@ public static class Database
         ShipData[] resources = Resources.LoadAll<ShipData>(@"Ships");
         foreach (ShipData ship in resources)
         {
-            shipList.Add(ship.ID, ship);
-            shipNamesList.Add(ship.Name, ship);
+            //shipList.Add(ship.ID, ship);
+            shipList.Add(ship.Name, ship);
         }
     }
 
@@ -47,14 +48,14 @@ public static class Database
         foreach (GunData gun in resources)
         {
             //gunList.Add(gun.ID, gun);
-            gunNamesList.Add(gun.Name, gun);
+            gunList.Add(gun.Name, gun);
         }
 
         resources = Resources.LoadAll<EquipmentData>(@"Torpedoes");
         foreach (TorpedoData gun in resources)
         {
             //gunList.Add(gun.ID, gun);
-            gunNamesList.Add(gun.Name, gun);
+            gunList.Add(gun.Name, gun);
         }
     }
 }
