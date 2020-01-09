@@ -6,6 +6,9 @@ using UnityEngine.Events;
 
 public class ShipController : MonoBehaviour
 {
+    public Image healthBar;
+    public Color healthBarColour;
+
     private int maxHealth, firepower, health, torpedo;
     private float speed, reload;
     private GameObject enemy;
@@ -14,6 +17,8 @@ public class ShipController : MonoBehaviour
     public void Init(ShipLoadoutData loadoutData)
     {
         ShipData ship = loadoutData.Ship;
+
+        healthBar.color = healthBarColour;
 
         gameObject.name = ship.name;
         maxHealth = ship.Health;
@@ -67,10 +72,11 @@ public class ShipController : MonoBehaviour
         enemy = nearestEnemy;
     }
 
-    //called to make the ship take damage
+    //called to make the ship take damage, and updates healthbar
     public void TakeDamage(int damage)
     {
         health -= damage;
+        healthBar.fillAmount = (float)health / maxHealth;
     }
 
     public int GetHealth()
@@ -101,5 +107,10 @@ public class ShipController : MonoBehaviour
     public int GetTorpedo()
     {
         return torpedo;
+    }
+
+    public int GetMaxHealth()
+    {
+        return maxHealth;
     }
 }
