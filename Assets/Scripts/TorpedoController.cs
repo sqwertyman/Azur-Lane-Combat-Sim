@@ -7,12 +7,6 @@ public class TorpedoController : WeaponController
 {
     public override void Init(TorpedoData torpData)
     {
-        startDelay = torpData.StartDelay;
-        fireRate = torpData.FireRate;
-        projPerShot = torpData.ProjPerShot;
-        damage = torpData.Damage;
-        spread = torpData.Spread;
-
         base.Init(torpData);
     }
 
@@ -21,16 +15,13 @@ public class TorpedoController : WeaponController
     {
         yield return new WaitForSeconds(startDelay);
 
-        GameObject lastProj;
-
         for (; ; )
         {
             //thisShip.FindNearestEnemy();
 
             for (int x = 0; x < projPerShot; x++)
             {
-                lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                lastProj.GetComponent<BaseProjectile>().Setup(transform.position + Vector3.right, projSpreads[x], finalDamage, projectileSpeed, sprite, range, dmgNumberColour);
+                SpawnProjectile(transform.position + Vector3.right, x);
             }
             yield return new WaitForSeconds(reloadTime);
         }

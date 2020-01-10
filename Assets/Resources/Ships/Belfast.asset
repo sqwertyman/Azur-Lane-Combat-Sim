@@ -19,6 +19,7 @@ MonoBehaviour:
   reload: 182
   firepower: 179
   torpedo: 340
-  slot1: 00000000
-  slot2: 03000000
+  slot1: 01000000
+  slot2: 04000000
   fleetType: 1
+  armour: 0

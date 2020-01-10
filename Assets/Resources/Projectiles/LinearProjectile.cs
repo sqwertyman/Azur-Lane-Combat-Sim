@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LinearProjectile : BaseProjectile
 {
-    public override void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int range, Color dmgNumberColour)
+    public override void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
     {
-        base.GeneralSetup(sprite, damage, dmgNumberColour);
+        base.GeneralSetup(sprite, source);
 
         this.range = range;
 

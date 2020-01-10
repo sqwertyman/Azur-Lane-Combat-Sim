@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc7d69d5cc3704ca5bc03a721052b4, type: 3}
   m_Name: AP
   m_EditorClassIdentifier: 
+  ammo: 2
   sprite: {fileID: 21300000, guid: e9facc040533e1b45a4111e1503959fd, type: 3}
   projectileSpeed: 220
   dmgNumberColour: {r: 0.44705883, g: 0.32156864, b: 1, a: 1}

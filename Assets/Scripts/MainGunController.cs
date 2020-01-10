@@ -6,14 +6,7 @@ public class MainGunController : WeaponController
 {
     public override void Init(GunData gunData)
     {
-        startDelay = gunData.StartDelay;
-        fireRate = gunData.FireRate;
         volleyTime = gunData.VolleyTime;
-        projPerShot = gunData.ProjPerShot;
-        damage = gunData.Damage;
-        spread = gunData.Spread;
-
-        projSpreads = new float[projPerShot];
 
         base.Init(gunData);
     }
@@ -24,7 +17,6 @@ public class MainGunController : WeaponController
         yield return new WaitForSeconds(startDelay);
         yield return new WaitForSeconds(reloadTime);
 
-        GameObject lastProj;
         Vector3 targetPos;
 
         for (; ; )
@@ -46,8 +38,7 @@ public class MainGunController : WeaponController
 
             for (int y = 0; y < projPerShot; y++)
             {
-                lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, range, dmgNumberColour);
+                SpawnProjectile(targetPos, y);
             }
 
             yield return new WaitForSeconds(reloadTime);
@@ -57,12 +48,14 @@ public class MainGunController : WeaponController
     //calculates the final damage numbers used, based on firepower, damage, etc
     protected override void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100)) + Random.Range(-1, 3);
+        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100));
     }
 
     //gives each projectile a random spread based on the gun's spread angle
     protected override void CalculateAngles()
     {
+        projSpreads = new float[projPerShot];
+
         for (int x = 0; x < projPerShot; x++)
         {
             projSpreads[x] = Random.Range(-spread, spread);

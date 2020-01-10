@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Quadruple 356mm (BL 14" Mk VII)
   id: 7
-  type: 2
+  type: 3
   firepower: 45
   torpedo: 0
   range: 200
   ammo: {fileID: 11400000, guid: 7d0f606577cf7ab44b6f1fcc326b24d5, type: 2}
   startDelay: 1
   fireRate: 29.19
-  volleyTime: 0
-  spread: 25
-  noOfShots: 1
   projPerShot: 4
   damage: 108
+  spread: 22
+  volleyTime: 0
+  noOfShots: 1
   angle: 50

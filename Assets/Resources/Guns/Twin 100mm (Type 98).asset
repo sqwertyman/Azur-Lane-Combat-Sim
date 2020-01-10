@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Twin 100mm (Type 98)
   id: 4
-  type: 1
+  type: 0
   firepower: 15
   torpedo: 0
-  projectileSpeed: 180
-  range: 45
+  range: 50
+  ammo: {fileID: 11400000, guid: c95152d54b1cf0a45ad3f0e97b854a90, type: 2}
   startDelay: 0.5
   fireRate: 0.96
-  volleyTime: 0.1
-  spread: 10
-  noOfShots: 2
   projPerShot: 2
   damage: 12
+  spread: 0
+  volleyTime: 0.1
+  noOfShots: 2
   angle: 360
-  ammo: {fileID: 11400000, guid: c95152d54b1cf0a45ad3f0e97b854a90, type: 2}

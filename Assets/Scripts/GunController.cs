@@ -8,13 +8,8 @@ public class GunController : WeaponController
 
     public override void Init(GunData gunData)
     {
-        startDelay = gunData.StartDelay;
-        fireRate = gunData.FireRate;
         volleyTime = gunData.VolleyTime;
         noOfShots = gunData.NoOfShots;
-        projPerShot = gunData.ProjPerShot;
-        damage = gunData.Damage;
-        spread = gunData.Spread;
         angle = gunData.Angle;
 
         base.Init(gunData);
@@ -25,7 +20,6 @@ public class GunController : WeaponController
     {
         yield return new WaitForSeconds(startDelay);
 
-        GameObject lastProj;
         Vector3 targetPos;
 
         for (; ;)
@@ -49,8 +43,7 @@ public class GunController : WeaponController
             {
                 for (int y = 0; y < projPerShot; y++)
                 {
-                    lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                    lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, range, dmgNumberColour);
+                    SpawnProjectile(targetPos, y);
                 }
                 yield return new WaitForSeconds(volleyTime);
             }
@@ -60,6 +53,6 @@ public class GunController : WeaponController
 
     protected override void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100)) + Random.Range(-1, 3);
+        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100));
     }
 }

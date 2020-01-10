@@ -35,7 +35,7 @@ public class ShipMenu : MonoBehaviour
         slot2Drop.options.RemoveRange(1, slot2Drop.options.Count - 1);
 
         List<string> tempList = new List<string>();
-        foreach (EquipmentData gun in Database.GunList.Values)
+        foreach (WeaponData gun in Database.GunList.Values)
         {
             foreach (EquipmentType type in Database.ShipList[ship].Slot1)
             {
@@ -48,7 +48,7 @@ public class ShipMenu : MonoBehaviour
         slot1Drop.AddOptions(tempList);
 
         tempList = new List<string>();
-        foreach (EquipmentData gun in Database.GunList.Values)
+        foreach (WeaponData gun in Database.GunList.Values)
         {
             foreach (EquipmentType type in Database.ShipList[ship].Slot2)
             {

@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Single 150mm (SK C/28)
   id: 2
-  type: 0
+  type: 1
   firepower: 25
   torpedo: 0
-  projectileSpeed: 220
-  range: 50
+  range: 65
+  ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}
   startDelay: 0.5
   fireRate: 1.38
-  volleyTime: 0
-  spread: 15
-  noOfShots: 1
   projPerShot: 1
   damage: 21
+  spread: 5
+  volleyTime: 0
+  noOfShots: 1
   angle: 120
-  ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}

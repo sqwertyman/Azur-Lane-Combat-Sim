@@ -6,26 +6,25 @@ public class BaseProjectile : MonoBehaviour
 {
     public GameObject dmgNumberPrefab;
 
-    protected int damage, range;
+    protected int range;
     protected Rigidbody2D rb;
     protected Vector3 startPos;
     protected float distanceToTravel;
     protected Color dmgNumberColour;
-
-    public virtual void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int range, Color dmgNumberColour)
+    protected GameObject source;
+    
+    public virtual void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
     {
-        
+
     }
 
     //general setup for any projectile type
-    protected void GeneralSetup(Sprite sprite, int damage, Color dmgNumberColour)
+    protected void GeneralSetup(Sprite sprite,  GameObject source)
     {
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
-        this.dmgNumberColour = dmgNumberColour;
+        this.source = source;
         startPos = transform.position;
-
-        this.damage = damage;
     }
 
     //when collides with something
@@ -34,24 +33,19 @@ public class BaseProjectile : MonoBehaviour
         //if the colliding object is an enemy (needs generalising), tells it to take damage, spawns dmg number ,and destroys
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<ShipController>().TakeDamage(damage);
+            collision.GetComponent<ShipController>().TakeDamage(source);
 
-            SpawnDamageNumber();
+            SpawnDamageNumber(collision.GetComponent<ShipController>().GetArmour());
 
             Destroy(gameObject);
         }
     }
 
     //spawns a damage number/indicator at pos with value damage
-    protected void SpawnDamageNumber()
+    protected void SpawnDamageNumber(ArmourType armour)
     {
         //mathf.clamp here to keep on screen if needed later
         GameObject dmgNumber = Instantiate(dmgNumberPrefab, transform.position, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(damage, dmgNumberColour);
-    }
-
-    public int getDamage()
-    {
-        return damage;
+        dmgNumber.GetComponent<DamageNumber>().Init(source.GetComponent<WeaponController>().GetDamage(armour), source.GetComponent<WeaponController>().GetDmgNumberColour());
     }
 }

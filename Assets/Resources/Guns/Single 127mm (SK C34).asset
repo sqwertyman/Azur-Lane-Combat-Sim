@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Single 127mm (SK C/34)
   id: 1
-  type: 1
+  type: 0
   firepower: 12
   torpedo: 0
-  range: 45
+  range: 60
   ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}
   startDelay: 0.5
   fireRate: 1.09
-  volleyTime: 0
-  spread: 10
-  noOfShots: 1
   projPerShot: 1
   damage: 9
+  spread: 5
+  volleyTime: 0
+  noOfShots: 1
   angle: 360

@@ -15,8 +15,10 @@ public class WeaponController : MonoBehaviour
     protected ShipController thisShip;
     protected float[] projSpreads;
     protected Color dmgNumberColour;
+    protected EquipmentType gunClass;
+    protected AmmoType ammo;
 
-    public virtual void Init(EquipmentData gunData)
+    public virtual void Init(WeaponData gunData)
     {
         GeneralInit(gunData);
     }
@@ -32,13 +34,20 @@ public class WeaponController : MonoBehaviour
     }
 
     //init method for any weapon type. each specific init calls this. whole system feels messy at the moment
-    private void GeneralInit(EquipmentData data)
+    private void GeneralInit(WeaponData data)
     {
         gameObject.name = data.name;
         sprite = data.Sprite;
         projectileSpeed = data.ProjectileSpeed;
         dmgNumberColour = data.DmgNumberColour;
         range = data.Range * 2; //mulitplied to exaggerate for now
+        gunClass = data.Type;
+        ammo = data.Ammo.Ammo;
+        startDelay = data.StartDelay;
+        fireRate = data.FireRate;
+        projPerShot = data.ProjPerShot;
+        damage = data.Damage;
+        spread = data.Spread;
 
         thisShip = GetComponentInParent<ShipController>();
 
@@ -59,6 +68,7 @@ public class WeaponController : MonoBehaviour
     protected virtual void CalculateAngles()
     {
         projSpreads = new float[projPerShot];
+
         //calc spread between projectiles, or set to 0 if only 1 projectile
         float spreadPerProj = 0;
         if (projPerShot > 1)
@@ -112,5 +122,24 @@ public class WeaponController : MonoBehaviour
     protected virtual void CalculateDamage()
     {
         
+    }
+
+    //returns the damage (rounded to int) of the gun to the armour type passed in (with random variation too)
+    public int GetDamage(ArmourType armour)
+    {
+        float multiplier = Database.ArmourMultiplier(gunClass, armour, ammo);
+        return ((int)((finalDamage * multiplier)) + Random.Range(-1, 3));
+    }
+
+    public Color GetDmgNumberColour()
+    {
+        return dmgNumberColour;
+    }
+
+    //instantiates the projectile prefab, giving it necessary data
+    protected virtual void SpawnProjectile(Vector3 targetPosition, int projNumber)
+    {
+        GameObject lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
+        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition, projSpreads[projNumber], projectileSpeed, sprite, range, gameObject);
     }
 }

@@ -139,7 +139,7 @@ public class GameController : MonoBehaviour
     }
 
     //loads in the weapon denoted by toLoad, assigning it to the ship given
-    private void LoadWeapon(EquipmentData toLoad, GameObject ship)
+    private void LoadWeapon(WeaponData toLoad, GameObject ship)
     {
         if (toLoad != null)
         {

@@ -12,6 +12,7 @@ public class ShipController : MonoBehaviour
     private int maxHealth, firepower, health, torpedo;
     private float speed, reload;
     private GameObject enemy;
+    private ArmourType armour;
 
     //sets ship's stats from loadoutData (includes its gun's stats too)
     public void Init(ShipLoadoutData loadoutData)
@@ -26,6 +27,7 @@ public class ShipController : MonoBehaviour
         reload = ship.Reload;
         firepower = ship.Firepower;
         torpedo = ship.Torpedo;
+        armour = ship.Armour;
         if (loadoutData.Slot1)
         {
             firepower += loadoutData.Slot1.Firepower;
@@ -73,9 +75,9 @@ public class ShipController : MonoBehaviour
     }
 
     //called to make the ship take damage, and updates healthbar
-    public void TakeDamage(int damage)
+    public void TakeDamage(GameObject source)
     {
-        health -= damage;
+        health -= source.GetComponent<WeaponController>().GetDamage(armour);
         healthBar.fillAmount = (float)health / maxHealth;
     }
 
@@ -112,5 +114,10 @@ public class ShipController : MonoBehaviour
     public int GetMaxHealth()
     {
         return maxHealth;
+    }
+
+    public ArmourType GetArmour()
+    {
+        return armour;
     }
 }

@@ -14,17 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Triple 155mm (3rd Year Type)
   id: 3
-  type: 0
+  type: 1
   firepower: 45
   torpedo: 0
-  projectileSpeed: 150
-  range: 50
+  range: 65
+  ammo: {fileID: 11400000, guid: 6bbc24b542f84fd4ba3901cfb3dbf0f5, type: 2}
   startDelay: 0.5
   fireRate: 4.12
-  volleyTime: 0.15
-  spread: 24
-  noOfShots: 2
   projPerShot: 3
   damage: 18
+  spread: 18
+  volleyTime: 0.15
+  noOfShots: 2
   angle: 120
-  ammo: {fileID: 11400000, guid: 6bbc24b542f84fd4ba3901cfb3dbf0f5, type: 2}

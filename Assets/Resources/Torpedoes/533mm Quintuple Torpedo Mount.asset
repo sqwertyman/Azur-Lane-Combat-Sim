@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 533mm Quintuple Torpedo Mount
   id: 2
-  type: 3
+  type: 4
   firepower: 0
   torpedo: 45
   range: 90

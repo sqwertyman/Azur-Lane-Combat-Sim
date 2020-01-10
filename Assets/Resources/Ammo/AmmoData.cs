@@ -6,6 +6,8 @@ using UnityEngine;
 public class AmmoData : ScriptableObject
 {
     [SerializeField]
+    private AmmoType ammo;
+    [SerializeField]
     private Sprite sprite;
     [SerializeField]
     private int projectileSpeed;
@@ -15,4 +17,5 @@ public class AmmoData : ScriptableObject
     public Sprite Sprite { get => sprite; set => sprite = value; }
     public int ProjectileSpeed { get => projectileSpeed; set => projectileSpeed = value; }
     public Color DmgNumberColour { get => dmgNumberColour; set => dmgNumberColour = value; }
+    public AmmoType Ammo { get => ammo; set => ammo = value; }
 }

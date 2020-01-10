@@ -23,6 +23,8 @@ public class ShipData : DatabaseItem
     private EquipmentType[] slot2 = new EquipmentType[1];
     [SerializeField]
     private FleetType fleetType;
+    [SerializeField]
+    private ArmourType armour;
 
     public int Health { get => health; set => health = value; }
     public int Speed { get => speed; set => speed = value; }
@@ -32,4 +34,5 @@ public class ShipData : DatabaseItem
     public EquipmentType[] Slot2 { get => slot2; set => slot2 = value; }
     public int Torpedo { get => torpedo; set => torpedo = value; }
     public FleetType FleetType { get => fleetType; set => fleetType = value; }
+    public ArmourType Armour { get => armour; set => armour = value; }
 }

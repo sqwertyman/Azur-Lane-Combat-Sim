@@ -39,17 +39,6 @@ public class DamageNumber : MonoBehaviour
     }
 
     //used to set details on instantiation
-    public void Init(int damage)
-    {
-        text.text = damage.ToString();
-
-        //increase size if damage is large. could be more complex with gradual scaling
-        if (damage > 200)
-        {
-            text.fontSize += 10;
-        }
-    }
-
     public void Init(int damage, Color textColour)
     {
         text.text = damage.ToString();

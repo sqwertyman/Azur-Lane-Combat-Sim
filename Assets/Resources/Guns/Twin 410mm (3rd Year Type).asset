@@ -14,16 +14,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Twin 410mm (3rd Year Type)
   id: 6
-  type: 2
+  type: 3
   firepower: 25
   torpedo: 0
   range: 200
   ammo: {fileID: 11400000, guid: 7d0f606577cf7ab44b6f1fcc326b24d5, type: 2}
   startDelay: 1
   fireRate: 20.02
-  volleyTime: 0
-  spread: 20
-  noOfShots: 1
   projPerShot: 2
   damage: 154
+  spread: 16
+  volleyTime: 0
+  noOfShots: 1
   angle: 50

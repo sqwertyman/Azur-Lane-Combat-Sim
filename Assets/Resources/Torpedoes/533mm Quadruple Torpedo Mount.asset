@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: 533mm Quadruple Torpedo Mount
   id: 1
-  type: 3
+  type: 4
   firepower: 0
   torpedo: 25
   range: 90
@@ -23,4 +23,4 @@ MonoBehaviour:
   fireRate: 23.14
   projPerShot: 4
   damage: 156
-  spread: 50
+  spread: 48

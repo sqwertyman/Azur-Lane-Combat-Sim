@@ -9,13 +9,13 @@ public class ArcingProjectile : BaseProjectile
     private Vector3 targetPos;
     private int speed;
     
-    public override void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int range, Color dmgNumberColour)
+    public override void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
     {
-        base.GeneralSetup(sprite, damage, dmgNumberColour);
+        base.GeneralSetup(sprite, source);
 
         //random spread. works for now
         Vector3 spread = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * targetSpread;
-        
+
         this.targetPos = targetPos + spread;
         this.speed = speed;
 
