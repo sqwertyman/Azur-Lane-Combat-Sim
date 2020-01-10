@@ -47,7 +47,7 @@ public class MainGunController : WeaponController
             for (int y = 0; y < projPerShot; y++)
             {
                 lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, range);
+                lastProj.GetComponent<BaseProjectile>().Setup(targetPos, projSpreads[y], finalDamage, projectileSpeed, sprite, range, dmgNumberColour);
             }
 
             yield return new WaitForSeconds(reloadTime);

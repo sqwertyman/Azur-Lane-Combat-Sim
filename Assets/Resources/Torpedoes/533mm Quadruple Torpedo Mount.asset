@@ -17,9 +17,8 @@ MonoBehaviour:
   type: 3
   firepower: 0
   torpedo: 25
-  projectileSpeed: 30
   range: 90
-  sprite: {fileID: 21300000, guid: b2353d2543ffecb46ac5f9ff4c022bd5, type: 3}
+  ammo: {fileID: 11400000, guid: ed26a9c670ba184458d0f86db4d3ed24, type: 2}
   startDelay: 1
   fireRate: 23.14
   projPerShot: 4

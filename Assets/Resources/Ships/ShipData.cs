@@ -6,8 +6,17 @@ using UnityEngine;
 
 public class ShipData : DatabaseItem
 {
+    [Header("Ship Data")]
     [SerializeField]
-    private int health, speed, reload, firepower, torpedo;
+    private int health;
+    [SerializeField]
+    private int speed;
+    [SerializeField]
+    private int reload;
+    [SerializeField]
+    private int firepower;
+    [SerializeField]
+    private int torpedo;
     [SerializeField]
     private EquipmentType[] slot1 = new EquipmentType[1];
     [SerializeField]

@@ -5,8 +5,15 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
 public class GunData : EquipmentData
 {
+    [Header("Gun Specific Data")]
     [SerializeField]
-    private float startDelay, fireRate, volleyTime, spread;
+    private float startDelay;
+    [SerializeField]
+    private float fireRate;
+    [SerializeField]
+    private float volleyTime;
+    [SerializeField]
+    private float spread;
     [SerializeField]
     private int noOfShots, projPerShot, damage, angle;
 

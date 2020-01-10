@@ -10,17 +10,19 @@ public class BaseProjectile : MonoBehaviour
     protected Rigidbody2D rb;
     protected Vector3 startPos;
     protected float distanceToTravel;
+    protected Color dmgNumberColour;
 
-    public virtual void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int range)
+    public virtual void Setup(Vector3 targetPos, float targetSpread, int damage, int speed, Sprite sprite, int range, Color dmgNumberColour)
     {
         
     }
 
     //general setup for any projectile type
-    protected void GeneralSetup(Sprite sprite, int damage)
+    protected void GeneralSetup(Sprite sprite, int damage, Color dmgNumberColour)
     {
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        this.dmgNumberColour = dmgNumberColour;
         startPos = transform.position;
 
         this.damage = damage;
@@ -45,7 +47,7 @@ public class BaseProjectile : MonoBehaviour
     {
         //mathf.clamp here to keep on screen if needed later
         GameObject dmgNumber = Instantiate(dmgNumberPrefab, transform.position, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(damage);
+        dmgNumber.GetComponent<DamageNumber>().Init(damage, dmgNumberColour);
     }
 
     public int getDamage()

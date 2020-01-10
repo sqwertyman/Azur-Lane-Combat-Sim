@@ -4,6 +4,7 @@ using UnityEngine;
 
 public enum EquipmentType { CL, DD, BB, Torpedo };
 public enum FleetType { Main, Vanguard };
+public enum AmmoType { Normal, AP, HE };
 
 public static class Database
 {

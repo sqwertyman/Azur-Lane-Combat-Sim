@@ -5,13 +5,14 @@ using UnityEngine.UI;
 
 public class DamageNumber : MonoBehaviour
 {
-    public Color colour = new Color(0.8f, 0.8f, 0.1f);
+    //public Color colour = new Color(0.8f, 0.8f, 0.1f);
     public float scrollSpeed = 0.05f;
     public float duration = 1.5f;
 
     private float alpha;
     private new Renderer renderer;
     private TextMesh text;
+    private Color colour;
 
     void Awake()
     {
@@ -41,6 +42,18 @@ public class DamageNumber : MonoBehaviour
     public void Init(int damage)
     {
         text.text = damage.ToString();
+
+        //increase size if damage is large. could be more complex with gradual scaling
+        if (damage > 200)
+        {
+            text.fontSize += 10;
+        }
+    }
+
+    public void Init(int damage, Color textColour)
+    {
+        text.text = damage.ToString();
+        renderer.material.color = textColour;
 
         //increase size if damage is large. could be more complex with gradual scaling
         if (damage > 200)

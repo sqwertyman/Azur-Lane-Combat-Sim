@@ -11,10 +11,10 @@ public class WeaponController : MonoBehaviour
     protected float startDelay, fireRate, volleyTime, reloadTime, spread;
     protected Sprite sprite;
     protected int noOfShots, projPerShot, damage, finalDamage, projectileSpeed, range, angle;
-
     protected GameObject target;
     protected ShipController thisShip;
     protected float[] projSpreads;
+    protected Color dmgNumberColour;
 
     public virtual void Init(EquipmentData gunData)
     {
@@ -37,6 +37,7 @@ public class WeaponController : MonoBehaviour
         gameObject.name = data.name;
         sprite = data.Sprite;
         projectileSpeed = data.ProjectileSpeed;
+        dmgNumberColour = data.DmgNumberColour;
         range = data.Range * 2; //mulitplied to exaggerate for now
 
         thisShip = GetComponentInParent<ShipController>();

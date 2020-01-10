@@ -5,8 +5,11 @@ using UnityEngine;
 [CreateAssetMenu(fileName = "New Torpedo", menuName = "Torpedo")]
 public class TorpedoData : EquipmentData
 {
+    [Header("Torpedo Specific Data")]
     [SerializeField]
-    private float startDelay, fireRate;
+    private float startDelay;
+    [SerializeField]
+    private float fireRate;
     [SerializeField]
     private int projPerShot, damage, spread;
 

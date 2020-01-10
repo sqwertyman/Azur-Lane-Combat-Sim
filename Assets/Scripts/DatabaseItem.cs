@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DatabaseItem : ScriptableObject
 {
+    [Header("Database Data")]
     [SerializeField]
     private new string name;
     [SerializeField]

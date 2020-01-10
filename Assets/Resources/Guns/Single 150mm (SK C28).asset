@@ -19,7 +19,6 @@ MonoBehaviour:
   torpedo: 0
   projectileSpeed: 220
   range: 50
-  sprite: {fileID: 21300000, guid: 0ba6eacafb5789b4b93c7a75aaeca5e2, type: 3}
   startDelay: 0.5
   fireRate: 1.38
   volleyTime: 0
@@ -28,3 +27,4 @@ MonoBehaviour:
   projPerShot: 1
   damage: 21
   angle: 120
+  ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}

@@ -30,7 +30,7 @@ public class TorpedoController : WeaponController
             for (int x = 0; x < projPerShot; x++)
             {
                 lastProj = Instantiate(projectilePrefab, transform.position, transform.rotation);
-                lastProj.GetComponent<BaseProjectile>().Setup(transform.position + Vector3.right, projSpreads[x], finalDamage, projectileSpeed, sprite, range);
+                lastProj.GetComponent<BaseProjectile>().Setup(transform.position + Vector3.right, projSpreads[x], finalDamage, projectileSpeed, sprite, range, dmgNumberColour);
             }
             yield return new WaitForSeconds(reloadTime);
         }

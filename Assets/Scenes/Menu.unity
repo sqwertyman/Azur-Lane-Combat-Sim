@@ -377,7 +377,22 @@ PrefabInstance:
       propertyPath: m_Name
       value: Main Menu
       objectReference: {fileID: 0}
-    - target: {fileID: 4690550816948543401, guid: 155eb9997519410499790addf6cffbb2,
+    - target: {fileID: 8190392582111947571, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 4699608063885512358, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 5605125267624620067, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 5200362277474851810, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: menuController
       value: 
@@ -385,6 +400,21 @@ PrefabInstance:
     - target: {fileID: 4690550816999592481, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 6258803087209457499, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 4171901781743908942, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
+      value: 
+      objectReference: {fileID: 648917659}
+    - target: {fileID: 4690550816948543401, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: menuController
       value: 
       objectReference: {fileID: 648917659}
     - target: {fileID: 4690550816623241615, guid: 155eb9997519410499790addf6cffbb2,
@@ -602,31 +632,16 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 4699608063885512358, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 4343286510936252915, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 8190392582111947571, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 10428878854814435, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5605125267624620067, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     - target: {fileID: 8361487035406824078, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_IsActive
@@ -637,21 +652,6 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 5200362277474851810, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
-    - target: {fileID: 6258803087209457499, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
-    - target: {fileID: 4171901781743908942, guid: 155eb9997519410499790addf6cffbb2,
-        type: 3}
-      propertyPath: menuController
-      value: 
-      objectReference: {fileID: 648917659}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155eb9997519410499790addf6cffbb2, type: 3}
 --- !u!1001 &8133262389154001113
