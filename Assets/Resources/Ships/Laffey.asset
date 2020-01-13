@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Laffey
   id: 19
+  sprite: {fileID: 2512016244973588079, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 2145
   speed: 45
   reload: 220

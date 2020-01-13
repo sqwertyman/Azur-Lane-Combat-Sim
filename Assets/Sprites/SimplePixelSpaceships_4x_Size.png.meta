@@ -1,0 +1,403 @@
+fileFormatVersion: 2
+guid: e6157377aa84a884f962e324390c435e
+TextureImporter:
+  internalIDToNameTable:
+  - first:
+      213: -6603907174368212725
+    second: EnemyLarge1_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 8507049442734280579
+    second: EnemyLarge2_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 7638247883214764514
+    second: EnemyLarge3_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 161722362096049007
+    second: EnemyLarge4_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 549610850968800891
+    second: 1_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 8114255583150467457
+    second: 2_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 5216559275792777423
+    second: 3_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 8216866832853643077
+    second: 4_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 2512016244973588079
+    second: 5_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 3365752292109705745
+    second: 6_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: 638133645672949602
+    second: 7_SimplePixelSpaceships_4x_Size_0
+  - first:
+      213: -4551761150027209550
+    second: 8_SimplePixelSpaceships_4x_Size_0
+  externalObjects: {}
+  serializedVersion: 10
+  mipmaps:
+    mipMapMode: 0
+    enableMipMap: 0
+    sRGBTexture: 1
+    linearTexture: 0
+    fadeOut: 0
+    borderMipMap: 0
+    mipMapsPreserveCoverage: 0
+    alphaTestReferenceValue: 0.5
+    mipMapFadeDistanceStart: 1
+    mipMapFadeDistanceEnd: 3
+  bumpmap:
+    convertToNormalMap: 0
+    externalNormalMap: 0
+    heightScale: 0.25
+    normalMapFilter: 0
+  isReadable: 0
+  streamingMipmaps: 0
+  streamingMipmapsPriority: 0
+  grayScaleToAlpha: 0
+  generateCubemap: 6
+  cubemapConvolution: 0
+  seamlessCubemap: 0
+  textureFormat: 1
+  maxTextureSize: 2048
+  textureSettings:
+    serializedVersion: 2
+    filterMode: -1
+    aniso: -1
+    mipBias: -100
+    wrapU: 1
+    wrapV: 1
+    wrapW: 1
+  nPOTScale: 0
+  lightmap: 0
+  compressionQuality: 50
+  spriteMode: 2
+  spriteExtrude: 1
+  spriteMeshType: 1
+  alignment: 0
+  spritePivot: {x: 0.5, y: 0.5}
+  spritePixelsToUnits: 15
+  spriteBorder: {x: 0, y: 0, z: 0, w: 0}
+  spriteGenerateFallbackPhysicsShape: 0
+  alphaUsage: 1
+  alphaIsTransparency: 1
+  spriteTessellationDetail: -1
+  textureType: 8
+  textureShape: 1
+  singleChannelComponent: 0
+  maxTextureSizeSet: 0
+  compressionQualitySet: 0
+  textureFormatSet: 0
+  platformSettings:
+  - serializedVersion: 3
+    buildTarget: DefaultTexturePlatform
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Standalone
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  - serializedVersion: 3
+    buildTarget: Android
+    maxTextureSize: 2048
+    resizeAlgorithm: 0
+    textureFormat: -1
+    textureCompression: 1
+    compressionQuality: 50
+    crunchedCompression: 0
+    allowsAlphaSplitting: 0
+    overridden: 0
+    androidETC2FallbackOverride: 0
+    forceMaximumCompressionQuality_BC6H_BC7: 0
+  spriteSheet:
+    serializedVersion: 2
+    sprites:
+    - serializedVersion: 2
+      name: EnemyLarge1_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 552
+        y: 278
+        width: 168
+        height: 214
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: b5c0a70281849fc4181d7c643aa5d7ab
+      internalID: -6603907174368212725
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyLarge2_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 789
+        y: 281
+        width: 213
+        height: 206
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 22cc2171cfa0eab4eb26520bd3f9cefb
+      internalID: 8507049442734280579
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyLarge3_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 569
+        y: 36
+        width: 149
+        height: 185
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 5aae1491d091a1f42b77c268456cf4b6
+      internalID: 7638247883214764514
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: EnemyLarge4_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 798
+        y: 22
+        width: 201
+        height: 212
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 758cf19c0433a8441833554df8457056
+      internalID: 161722362096049007
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 1_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 265
+        y: 457
+        width: 49
+        height: 47
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 587d9adef0c98cd47bffc3b8bf014818
+      internalID: 549610850968800891
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 2_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 389
+        width: 56
+        height: 55
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 3957ac1d87fc5034eb6bdf39b6f2b595
+      internalID: 8114255583150467457
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 3_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 261
+        y: 326
+        width: 53
+        height: 52
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 2954388369bdb3640b9e051f60d63fc8
+      internalID: 5216559275792777423
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 4_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 262
+        width: 52
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 487d9cc66f72dc244aa09ffcad494452
+      internalID: 8216866832853643077
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 5_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 194
+        width: 52
+        height: 60
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: bbabca33dc326d24b8df3a50cb9b6654
+      internalID: 2512016244973588079
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 6_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 134
+        width: 56
+        height: 53
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 1c7b351fa1cfd9a4cb6f9cf4a84f3467
+      internalID: 3365752292109705745
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 7_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 70
+        width: 53
+        height: 54
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: aa8950d87071a364c936a15df3cccf5a
+      internalID: 638133645672949602
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: 8_SimplePixelSpaceships_4x_Size_0
+      rect:
+        serializedVersion: 2
+        x: 262
+        y: 7
+        width: 54
+        height: 51
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6a6445bfbfd0a1f4fa34033a0a74ef6a
+      internalID: -4551761150027209550
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline: []
+    physicsShape: []
+    bones: []
+    spriteID: 5e97eb03825dee720800000000000000
+    internalID: 0
+    vertices: []
+    indices: 
+    edges: []
+    weights: []
+    secondaryTextures: []
+  spritePackingTag: 
+  pSDRemoveMatte: 0
+  pSDShowRemoveMatteOption: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

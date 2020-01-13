@@ -29,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 6642478477606611311}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_Children:
   - {fileID: 747382054313865027}
   m_Father: {fileID: 0}
@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: eef18d33c7eb7c64cb92f40f54a334b0, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!58 &6642478477606611306
@@ -97,9 +97,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.04, y: 0.06}
+  m_Offset: {x: 0.41, y: 0.06}
   serializedVersion: 2
-  m_Radius: 2.31
+  m_Radius: 8.07
 --- !u!50 &6642478477606611304
 Rigidbody2D:
   serializedVersion: 4
@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.42
+      value: 8.17
       objectReference: {fileID: 0}
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
@@ -255,12 +255,12 @@ PrefabInstance:
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.003
+      value: 0.006
       objectReference: {fileID: 0}
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.001
+      value: 0.002
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f5bc3ed28b24e2489691993b81ea792, type: 3}

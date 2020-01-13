@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Leander
   id: 104
+  sprite: {fileID: 3365752292109705745, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 3486
   speed: 32
   reload: 176

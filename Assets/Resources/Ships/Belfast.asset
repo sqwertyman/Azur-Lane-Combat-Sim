@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Belfast
   id: 115
+  sprite: {fileID: 8114255583150467457, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 3970
   speed: 32
   reload: 182

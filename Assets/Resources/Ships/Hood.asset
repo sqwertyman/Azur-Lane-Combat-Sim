@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hood
   id: 129
+  sprite: {fileID: 8216866832853643077, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 8445
   speed: 31
   reload: 159

@@ -19,8 +19,8 @@ public class ShipController : MonoBehaviour
     {
         ShipData ship = loadoutData.Ship;
 
+        gameObject.GetComponent<SpriteRenderer>().sprite = ship.Sprite;
         healthBar.color = healthBarColour;
-
         gameObject.name = ship.name;
         maxHealth = ship.Health;
         speed = ship.Speed;
@@ -77,7 +77,7 @@ public class ShipController : MonoBehaviour
     //called to make the ship take damage, and updates healthbar
     public void TakeDamage(GameObject source)
     {
-        health -= source.GetComponent<WeaponController>().GetDamage(armour);
+        health -= source.GetComponent<ProjectileWeaponController>().GetDamage(armour);
         healthBar.fillAmount = (float)health / maxHealth;
     }
 

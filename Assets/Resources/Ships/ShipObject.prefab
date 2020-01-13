@@ -73,7 +73,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 21300000, guid: f743ae65363a58b4bb63d471b4978b1a, type: 3}
+  m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -81,7 +81,7 @@ SpriteRenderer:
   m_Size: {x: 5.12, y: 5.12}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!50 &8766707748262291895
@@ -118,9 +118,9 @@ CircleCollider2D:
   m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: -0.08, y: -0.026229542}
   serializedVersion: 2
-  m_Radius: 2.56
+  m_Radius: 1.5607074
 --- !u!114 &7316638151145026767
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,7 +210,7 @@ PrefabInstance:
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 3.17
+      value: 2.35
       objectReference: {fileID: 0}
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
@@ -255,7 +255,7 @@ PrefabInstance:
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.003
+      value: 0.0025
       objectReference: {fileID: 0}
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}

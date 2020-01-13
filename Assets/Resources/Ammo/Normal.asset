@@ -12,6 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 60cc7d69d5cc3704ca5bc03a721052b4, type: 3}
   m_Name: Normal
   m_EditorClassIdentifier: 
-  sprite: {fileID: 21300000, guid: 0624d1770d48c4b408cfc5690634a4d7, type: 3}
+  ammo: 0
+  sprite: {fileID: 21300000, guid: a68061ce15bdffd47ad782dc19107799, type: 3}
   projectileSpeed: 180
   dmgNumberColour: {r: 1, g: 0.9019608, b: 0, a: 1}

@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "New Gun", menuName = "Gun")]
-public class GunData : WeaponData
+public class GunData : ProjectileWeaponData
 {
     [Header("Gun Specific Data")]
     [SerializeField]

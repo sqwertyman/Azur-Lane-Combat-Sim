@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //various enums used. order of some important (mainly for armour multipliers)
-public enum EquipmentType { DD, CL, CA, BB, Torpedo };
+public enum Class { DD, CL, CA, BB, BC, CV };
+public enum EquipmentType { DD, CL, CA, BB, Torpedo, Plane };
 public enum FleetType { Main, Vanguard };
 public enum ArmourType { Light, Medium, Heavy };
-public enum AmmoType { Normal, HE, AP, Torpedo };
+public enum AmmoType { Normal, HE, AP, Torpedo, AirTorpedo };
 
 //persistent database of all ships, guns, etc
 public static class Database
@@ -20,7 +21,11 @@ public static class Database
     [SerializeField]
     private static Dictionary<string, WeaponData> gunList;
     [SerializeField]
-    private static float[][][] armourMutlipliers;
+    private static float[][][] gunArmourMutlipliers;
+    [SerializeField]
+    private static float[] torpedoArmourMultipliers;
+    [SerializeField]
+    private static float[] planeArmourModifiers;
 
     //public static Dictionary<int, ShipData> ShipList { get => shipList; set => shipList = value; }
     //public static Dictionary<int, GunData> GunList { get => gunList; set => gunList = value; }
@@ -60,18 +65,35 @@ public static class Database
         }
 
         resources = Resources.LoadAll<WeaponData>(@"Torpedoes");
-        foreach (TorpedoData gun in resources)
+        foreach (TorpedoData torpedo in resources)
         {
             //gunList.Add(gun.ID, gun);
-            gunList.Add(gun.Name, gun);
+            gunList.Add(torpedo.Name, torpedo);
+        }
+
+        resources = Resources.LoadAll<WeaponData>(@"Planes");
+        foreach (PlaneWeaponData plane in resources)
+        {
+            //gunList.Add(gun.ID, gun);
+            gunList.Add(plane.Name, plane);
         }
     }
 
-    //returns the armour damage multiplier for the gun armour and ammo combination
+    //returns the armour damage multiplier for the gun, armour, and ammo combination
     public static float ArmourMultiplier(EquipmentType gun, ArmourType armour, AmmoType ammo)
     {
-        float multiply = armourMutlipliers[(int)gun][(int)armour][(int)ammo];
-        return multiply;
+        if (gun == EquipmentType.Torpedo)
+        {
+            return torpedoArmourMultipliers[(int)armour];
+        }
+        else if (gun == EquipmentType.Plane)
+        {
+            return planeArmourModifiers[(int)armour];
+        }
+        else
+        {
+            return gunArmourMutlipliers[(int)gun][(int)armour][(int)ammo];
+        }
     }
 
     //sets up the armourMultipliers array, with all the different multiplier values. has to follow same orders as appropriate enums
@@ -90,8 +112,14 @@ public static class Database
         //bb
         float[][] bbMod = { new float[] { 0.7f, 1.4f, 0.3f }, new float[] { 1f, 1.1f, 1.3f }, new float[] { 0.9f, 0.9f, 1f } };
         //torp
-        float[][] torpMod = { new float[] { 0f, 0f, 0f, 0.8f }, new float[] { 0f, 0f, 0f, 1f }, new float[] { 0f, 0f, 0f, 1.3f } };
+        float[] torpMod = { 0.8f, 1f, 1.3f };
+        //air torps
+        float[] airTorpMod = { 0.8f, 1.1f, 1.3f };
 
-        armourMutlipliers = new float[][][] { ddMod, clMod, caMod, bbMod, torpMod };
+        gunArmourMutlipliers = new float[][][] { ddMod, clMod, caMod, bbMod };
+
+        torpedoArmourMultipliers = torpMod;
+
+        planeArmourModifiers = airTorpMod;
     }
 }

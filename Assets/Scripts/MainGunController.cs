@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainGunController : WeaponController
+public class MainGunController : ProjectileWeaponController
 {
     public override void Init(GunData gunData)
     {

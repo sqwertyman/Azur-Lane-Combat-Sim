@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject vanguardSpawn, enemyObject, shipObject, gunObject, mainGunObject, torpedoObject;
+    public GameObject vanguardSpawn, enemyObject, shipObject, gunObject, mainGunObject, torpedoObject, planeObject;
     public GameObject[] enemySpawns = new GameObject[2];
     public GameObject[] mainSpawns = new GameObject[3];
     public ShipLoadoutData[] vanguardLoadouts = new ShipLoadoutData[3];
@@ -155,11 +155,17 @@ public class GameController : MonoBehaviour
                 gunInst.transform.SetParent(ship.transform);
                 gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
             }
+            else if (toLoad.Type == EquipmentType.Plane)
+            {
+                var gunInst = Instantiate(planeObject, ship.transform.position, Quaternion.identity);
+                gunInst.transform.SetParent(ship.transform);
+                gunInst.GetComponent<WeaponController>().Init(toLoad as PlaneWeaponData);
+            }
             else
             {
                 var gunInst = Instantiate(gunObject, ship.transform.position, Quaternion.identity);
                 gunInst.transform.SetParent(ship.transform);
-                gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
+                gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
             }
         }
     }

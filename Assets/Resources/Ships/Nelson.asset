@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Nelson
   id: 132
+  sprite: {fileID: 638133645672949602, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 7654
   speed: 23
   reload: 149

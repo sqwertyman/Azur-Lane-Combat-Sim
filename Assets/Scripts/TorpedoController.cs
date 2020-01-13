@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 //subclass that handles only torpedo specifics
-public class TorpedoController : WeaponController
+public class TorpedoController : ProjectileWeaponController
 {
     public override void Init(TorpedoData torpData)
     {

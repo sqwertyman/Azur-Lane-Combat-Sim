@@ -313,7 +313,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &125628844 stripped
 GameObject:
@@ -580,7 +580,7 @@ PrefabInstance:
     - target: {fileID: 2036792379594265787, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
       propertyPath: m_RootOrder
-      value: 5
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 2036792379594265787, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
@@ -661,6 +661,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2712715223774682574, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Name
+      value: Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 1092013748788246964, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_Color.r
@@ -681,16 +691,6 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 2712715223774682574, guid: 8e450caf6dd74024286b8a74bf606d04,
-        type: 3}
-      propertyPath: m_Name
-      value: Game UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 2712715223774682562, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -729,7 +729,7 @@ PrefabInstance:
     - target: {fileID: 2712715223774682562, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_RootOrder
-      value: 4
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 2712715223774682562, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
@@ -1004,6 +1004,12 @@ PrefabInstance:
       propertyPath: mainGunObject
       value: 
       objectReference: {fileID: 7071556487156599320, guid: 09e109b9797425443ab671a867f66462,
+        type: 3}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: planeObject
+      value: 
+      objectReference: {fileID: 7071556487156599320, guid: 4213b75af7ba1a5489445ae3d107221c,
         type: 3}
     - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}

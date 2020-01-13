@@ -8,6 +8,8 @@ public class ShipData : DatabaseItem
 {
     [Header("Ship Data")]
     [SerializeField]
+    private Sprite sprite;
+    [SerializeField]
     private int health;
     [SerializeField]
     private int speed;
@@ -35,4 +37,5 @@ public class ShipData : DatabaseItem
     public int Torpedo { get => torpedo; set => torpedo = value; }
     public FleetType FleetType { get => fleetType; set => fleetType = value; }
     public ArmourType Armour { get => armour; set => armour = value; }
+    public Sprite Sprite { get => sprite; set => sprite = value; }
 }

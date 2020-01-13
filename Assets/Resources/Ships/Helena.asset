@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Helena
   id: 33
+  sprite: {fileID: 5216559275792777423, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 3604
   speed: 32
   reload: 185
