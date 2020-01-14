@@ -77,7 +77,7 @@ public class ShipController : MonoBehaviour
     //called to make the ship take damage, and updates healthbar
     public void TakeDamage(GameObject source)
     {
-        health -= source.GetComponent<ProjectileWeaponController>().GetDamage(armour);
+        health -= source.GetComponent<WeaponController>().GetDamage(armour);
         healthBar.fillAmount = (float)health / maxHealth;
     }
 

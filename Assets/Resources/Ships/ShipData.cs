@@ -8,6 +8,12 @@ public class ShipData : DatabaseItem
 {
     [Header("Ship Data")]
     [SerializeField]
+    private FleetType fleetType;
+    [SerializeField]
+    private Class shipClass;
+    [SerializeField]
+    private ArmourType armour;
+    [SerializeField]
     private Sprite sprite;
     [SerializeField]
     private int health;
@@ -22,11 +28,11 @@ public class ShipData : DatabaseItem
     [SerializeField]
     private EquipmentType[] slot1 = new EquipmentType[1];
     [SerializeField]
+    private int noOfSlot1 = 1;
+    [SerializeField]
     private EquipmentType[] slot2 = new EquipmentType[1];
     [SerializeField]
-    private FleetType fleetType;
-    [SerializeField]
-    private ArmourType armour;
+    private int noOfSlot2 = 1;
 
     public int Health { get => health; set => health = value; }
     public int Speed { get => speed; set => speed = value; }
@@ -38,4 +44,7 @@ public class ShipData : DatabaseItem
     public FleetType FleetType { get => fleetType; set => fleetType = value; }
     public ArmourType Armour { get => armour; set => armour = value; }
     public Sprite Sprite { get => sprite; set => sprite = value; }
+    public Class ShipClass { get => shipClass; set => shipClass = value; }
+    public int NoOfSlot1 { get => noOfSlot1; set => noOfSlot1 = value; }
+    public int NoOfSlot2 { get => noOfSlot2; set => noOfSlot2 = value; }
 }

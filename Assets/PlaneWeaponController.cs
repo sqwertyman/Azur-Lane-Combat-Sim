@@ -7,14 +7,19 @@ public class PlaneWeaponController : WeaponController
     public GameObject planePrefab;
 
     private int speed;
+    private int noOfProj;
+    private Sprite planeSprite;
 
     public override void Init(PlaneWeaponData planeData)
     {
         speed = planeData.Speed;
+        noOfProj = planeData.NoOfProj;
+        planeSprite = planeData.PlaneSprite;
 
         base.Init(planeData);
     }
 
+    //spawns a plane once every reloadtime
     protected override IEnumerator Fire()
     {
         yield return new WaitForSeconds(startDelay);
@@ -22,16 +27,17 @@ public class PlaneWeaponController : WeaponController
 
         for (; ; )
         {
-
             SpawnPlane();
+
             yield return new WaitForSeconds(reloadTime);
         }
     }
 
+    //spawns a single plane, and sets it up with its init method
     private void SpawnPlane()
     {
-        GameObject inst = Instantiate(planePrefab, transform.position, transform.rotation);
-        inst.GetComponent<PlaneController>().Init(speed);
+        GameObject inst = Instantiate(planePrefab, new Vector3(Random.Range(-140, -130), Random.Range(-40,40),-1), transform.rotation);
+        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, sprite, gameObject);
     }
 
     protected override void CalculateDamage()

@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Dummy
   id: 0
+  fleetType: 0
+  shipClass: 0
+  armour: 0
   sprite: {fileID: 161722362096049007, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 10000
   speed: 10
@@ -21,6 +24,6 @@ MonoBehaviour:
   firepower: 0
   torpedo: 0
   slot1: 
+  noOfSlot1: 1
   slot2: 
-  fleetType: 0
-  armour: 2
+  noOfSlot2: 1

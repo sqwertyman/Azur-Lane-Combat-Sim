@@ -9,11 +9,9 @@ public class ProjectileWeaponController : WeaponController
     protected GameObject projectilePrefab;
 
     protected float volleyTime, spread;
-    protected Sprite sprite;
-    protected int noOfShots, projPerShot, projectileSpeed, range;
+    protected int noOfShots, projPerShot, range;
     protected GameObject target;
     protected float[] projSpreads;
-    protected AmmoType ammo;
 
     public virtual void Init(GunData gunData)
     {
@@ -27,11 +25,7 @@ public class ProjectileWeaponController : WeaponController
 
     public override void Init(ProjectileWeaponData gunData)
     {
-        dmgNumberColour = gunData.DmgNumberColour;
-        sprite = gunData.Sprite;
-        projectileSpeed = gunData.ProjectileSpeed;
         range = gunData.Range * 2; //mulitplied to exaggerate for now
-        ammo = gunData.Ammo.Ammo;
         projPerShot = gunData.ProjPerShot;
         spread = gunData.Spread;
 

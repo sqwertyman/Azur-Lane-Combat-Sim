@@ -15,4 +15,4 @@ MonoBehaviour:
   ammo: 1
   sprite: {fileID: 21300000, guid: 265f122419804d2409527389b1f3b88a, type: 3}
   projectileSpeed: 100
-  dmgNumberColour: {r: 1, g: 0.25882354, b: 0.08235294, a: 0}
+  dmgNumberColour: {r: 1, g: 0.25882354, b: 0.08235294, a: 1}

@@ -5,10 +5,12 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     protected float startDelay, fireRate, reloadTime;
-    protected int damage, finalDamage;
+    protected int damage, finalDamage, projectileSpeed;
     protected ShipController thisShip;
     protected Color dmgNumberColour;
     protected EquipmentType gunClass;
+    protected Sprite sprite;
+    protected AmmoType ammo;
 
     public virtual void Init(ProjectileWeaponData gunData)
     {
@@ -28,6 +30,10 @@ public class WeaponController : MonoBehaviour
         startDelay = weaponData.StartDelay;
         fireRate = weaponData.FireRate;
         damage = weaponData.Damage;
+        ammo = weaponData.Ammo.Ammo;
+        sprite = weaponData.Sprite;
+        projectileSpeed = weaponData.ProjectileSpeed;
+        dmgNumberColour = weaponData.DmgNumberColour;
 
         thisShip = GetComponentInParent<ShipController>();
 

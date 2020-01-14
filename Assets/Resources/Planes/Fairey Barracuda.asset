@@ -10,14 +10,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: c95a72653b7d91744ab0a6ddc5eaf1f0, type: 3}
-  m_Name: testplane
+  m_Name: Fairey Barracuda
   m_EditorClassIdentifier: 
-  name: test
+  name: Fairey Barracuda
   id: 0
   type: 5
   firepower: 0
   torpedo: 0
-  damage: 0
+  damage: 288
   startDelay: 1
-  fireRate: 5
+  fireRate: 10.31
+  ammo: {fileID: 11400000, guid: 6f7d7986a6ec39748bb44df9b34cd896, type: 2}
+  planeSprite: {fileID: 549610850968800891, guid: e6157377aa84a884f962e324390c435e,
+    type: 3}
+  noOfProj: 3
   speed: 52

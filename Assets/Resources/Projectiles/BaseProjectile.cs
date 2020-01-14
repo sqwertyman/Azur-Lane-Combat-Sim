@@ -46,6 +46,6 @@ public class BaseProjectile : MonoBehaviour
     {
         //mathf.clamp here to keep on screen if needed later
         GameObject dmgNumber = Instantiate(dmgNumberPrefab, transform.position, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(source.GetComponent<ProjectileWeaponController>().GetDamage(armour), source.GetComponent<ProjectileWeaponController>().GetDmgNumberColour());
+        dmgNumber.GetComponent<DamageNumber>().Init(source.GetComponent<WeaponController>().GetDamage(armour), source.GetComponent<WeaponController>().GetDmgNumberColour());
     }
 }

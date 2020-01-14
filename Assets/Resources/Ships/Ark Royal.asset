@@ -14,6 +14,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ark Royal
   id: 144
+  fleetType: 0
+  shipClass: 0
+  armour: 1
   sprite: {fileID: 7638247883214764514, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 6107
   speed: 31
@@ -21,6 +24,6 @@ MonoBehaviour:
   firepower: 0
   torpedo: 0
   slot1: 05000000
+  noOfSlot1: 3
   slot2: 05000000
-  fleetType: 0
-  armour: 1
+  noOfSlot2: 3

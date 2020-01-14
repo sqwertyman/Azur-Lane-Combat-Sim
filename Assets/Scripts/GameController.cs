@@ -125,8 +125,8 @@ public class GameController : MonoBehaviour
             var tempShip = Instantiate(shipObject, spawnPos, Quaternion.identity);
             tempShip.GetComponent<ShipController>().Init(shipLoadout);
 
-            LoadWeapon(shipLoadout.Slot1, tempShip);
-            LoadWeapon(shipLoadout.Slot2, tempShip);
+            LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.NoOfSlot1);
+            LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.NoOfSlot2);
 
             fleetList.Add(tempShip);
 
@@ -139,33 +139,45 @@ public class GameController : MonoBehaviour
     }
 
     //loads in the weapon denoted by toLoad, assigning it to the ship given
-    private void LoadWeapon(WeaponData toLoad, GameObject ship)
+    private void LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad)
     {
         if (toLoad != null)
         {
             if (toLoad.Type == EquipmentType.Torpedo)
             {
-                var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity);
-                gunInst.transform.SetParent(ship.transform);
-                gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
+                for (int i = 0; i < noToLoad; i++)
+                {
+                    var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity, ship.transform);
+                    gunInst.transform.SetParent(ship.transform);
+                    gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
+                }
             }
             else if (toLoad.Type == EquipmentType.BB)
             {
-                var gunInst = Instantiate(mainGunObject, ship.transform.position, Quaternion.identity);
-                gunInst.transform.SetParent(ship.transform);
-                gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
+                for (int i = 0; i < noToLoad; i++)
+                {
+                    var gunInst = Instantiate(mainGunObject, ship.transform.position, Quaternion.identity, ship.transform);
+                    gunInst.transform.SetParent(ship.transform);
+                    gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
+                }
             }
             else if (toLoad.Type == EquipmentType.Plane)
             {
-                var gunInst = Instantiate(planeObject, ship.transform.position, Quaternion.identity);
-                gunInst.transform.SetParent(ship.transform);
-                gunInst.GetComponent<WeaponController>().Init(toLoad as PlaneWeaponData);
+                for (int i = 0; i < noToLoad; i++)
+                {
+                    var gunInst = Instantiate(planeObject, ship.transform.position, Quaternion.identity, ship.transform);
+                    gunInst.transform.SetParent(ship.transform);
+                    gunInst.GetComponent<WeaponController>().Init(toLoad as PlaneWeaponData);
+                }
             }
             else
             {
-                var gunInst = Instantiate(gunObject, ship.transform.position, Quaternion.identity);
-                gunInst.transform.SetParent(ship.transform);
-                gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
+                for (int i = 0; i < noToLoad; i++)
+                {
+                    var gunInst = Instantiate(gunObject, ship.transform.position, Quaternion.identity, ship.transform);
+                    //gunInst.transform.SetParent(ship.transform);
+                    gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
+                }
             }
         }
     }
