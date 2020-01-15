@@ -26,6 +26,8 @@ public class ShipData : DatabaseItem
     [SerializeField]
     private int torpedo;
     [SerializeField]
+    private int aviation;
+    [SerializeField]
     private EquipmentType[] slot1 = new EquipmentType[1];
     [SerializeField]
     private int noOfSlot1 = 1;
@@ -47,4 +49,5 @@ public class ShipData : DatabaseItem
     public Class ShipClass { get => shipClass; set => shipClass = value; }
     public int NoOfSlot1 { get => noOfSlot1; set => noOfSlot1 = value; }
     public int NoOfSlot2 { get => noOfSlot2; set => noOfSlot2 = value; }
+    public int Aviation { get => aviation; set => aviation = value; }
 }

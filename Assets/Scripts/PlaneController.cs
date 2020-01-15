@@ -6,17 +6,18 @@ public class PlaneController : MonoBehaviour
 {
     public GameObject projectilePrefab;
 
-    private int speed, noOfProj;
+    private int speed, noOfProj, projectileSpeed;
     private Rigidbody2D rb;
     private GameObject source;
     private Sprite projectileSprite;
 
-    public void Init(int speed, int noOfProj, Sprite planeSprite, Sprite projectileSprite, GameObject source)
+    public void Init(int speed, int projectileSpeed, int noOfProj, Sprite planeSprite, Sprite projectileSprite, GameObject source)
     {
         this.speed = speed;
         this.noOfProj = noOfProj;
         this.source = source;
         this.projectileSprite = projectileSprite;
+        this.projectileSpeed = projectileSpeed;
 
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = planeSprite;
@@ -26,34 +27,24 @@ public class PlaneController : MonoBehaviour
         StartCoroutine(Fly());
     }
 
+    //sequence of events for a plane's lifetime
     private IEnumerator Fly()
     {
-        yield return new WaitUntil(() => CloseToCenter());
+        //torps are dropped 2 secs after plane launched
+        yield return new WaitForSeconds(2);
 
         for (int i = 0; i < noOfProj; i++)
         {
             Fire();
         }
-
-        yield return new WaitUntil(() => AtEdgeOfScreen());
-
-        Destroy(gameObject);
     }
 
-    //launches a single torp from the plane
+    //launches a single torp from the plane. currently they have range of 200, may change in future
     private void Fire()
     {
         Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-10, -20));
         GameObject inst = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        inst.GetComponent<BaseProjectile>().Setup(spawnPos + Vector3.right, 0, 30, projectileSprite, 100, source);
-    }
-
-    private bool CloseToCenter()
-    {
-        if (transform.position.x > 0)
-            return true;
-        else
-            return false;
+        inst.GetComponent<BaseProjectile>().Setup(spawnPos + Vector3.right, 0, projectileSpeed, projectileSprite, 200, source);
     }
 
     private bool AtEdgeOfScreen()
@@ -62,5 +53,14 @@ public class PlaneController : MonoBehaviour
             return true;
         else
             return false;
+    }
+
+    //destroy plane when it reaches edge of play area. this is where to implement kamikaze damage if/when wanted
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.tag == "Border")
+        {
+            Destroy(gameObject);
+        }
     }
 }

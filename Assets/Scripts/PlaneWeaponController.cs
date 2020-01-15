@@ -33,22 +33,23 @@ public class PlaneWeaponController : WeaponController
         }
     }
 
-    //spawns a single plane, and sets it up with its init method
+    //spawns a single plane, and sets it up with its init method. hardcoded randomise for now as don't know specifics
     private void SpawnPlane()
     {
         GameObject inst = Instantiate(planePrefab, new Vector3(Random.Range(-140, -130), Random.Range(-40,40),-1), transform.rotation);
-        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, sprite, gameObject);
+        inst.GetComponent<PlaneController>().Init(speed, projectileSpeed, noOfProj, planeSprite, sprite, gameObject);
     }
+
 
     protected override void CalculateDamage()
     {
-        finalDamage = 1000;
+        finalDamage = (damage * ((100 + thisShip.GetAviation()) / 100));
     }
 
-    //returns the damage (rounded to int) of the gun to the armour type passed in (with random variation too)
+    //returns the damage (rounded to int) of the gun to the armour type passed in
     public override int GetDamage(ArmourType armour)
     {
-        float multiplier = Database.ArmourMultiplier(gunClass, armour, AmmoType.AirTorpedo);
-        return ((int)((finalDamage * multiplier)) + Random.Range(-1, 3));
+        float multiplier = Database.ArmourMultiplier(gunClass, armour, ammo);
+        return ((int)((finalDamage * multiplier)));
     }
 }

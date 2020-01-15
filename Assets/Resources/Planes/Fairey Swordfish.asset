@@ -17,7 +17,7 @@ MonoBehaviour:
   type: 5
   firepower: 0
   torpedo: 0
-  damage: 288
+  damage: 28
   startDelay: 1
   fireRate: 11.97
   ammo: {fileID: 11400000, guid: 6f7d7986a6ec39748bb44df9b34cd896, type: 2}

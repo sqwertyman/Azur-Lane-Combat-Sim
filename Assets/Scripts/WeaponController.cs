@@ -54,6 +54,7 @@ public class WeaponController : MonoBehaviour
         reloadTime = fireRate * (Mathf.Sqrt(200 / (thisShip.GetFireRate() + 100)));
     }
 
+    //calculates the "finaldamage" dealt, which is used later. does not take into account enemy armour; that's done later
     protected virtual void CalculateDamage()
     {
 

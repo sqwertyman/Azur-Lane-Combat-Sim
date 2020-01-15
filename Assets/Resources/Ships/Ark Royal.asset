@@ -23,6 +23,7 @@ MonoBehaviour:
   reload: 117
   firepower: 0
   torpedo: 0
+  aviation: 400
   slot1: 05000000
   noOfSlot1: 3
   slot2: 05000000

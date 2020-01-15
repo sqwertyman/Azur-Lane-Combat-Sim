@@ -7,7 +7,7 @@ public class LeadMovement : MonoBehaviour
     private float moveSpeed;
     private Rigidbody2D rb;
     private Vector2 velocity;
-    private bool up, down, left, right;
+    //private bool up, down, left, right;
     private Vector2 centerPos;
     
     void Start()
@@ -68,27 +68,27 @@ public class LeadMovement : MonoBehaviour
         }
     }
 
-    void ManualMove()
-    {
-        var newVelocity = Vector2.zero;
-        if (up)
-        {
-            newVelocity += (Vector2.up * moveSpeed);
-        }
-        if (down)
-        {
-            newVelocity += (Vector2.down * moveSpeed);
-        }
-        if (left)
-        {
-            newVelocity += (Vector2.left * moveSpeed);
-        }
-        if (right)
-        {
-            newVelocity += (Vector2.right * moveSpeed);
-        }
+    //void ManualMove()
+    //{
+    //    var newVelocity = Vector2.zero;
+    //    if (up)
+    //    {
+    //        newVelocity += (Vector2.up * moveSpeed);
+    //    }
+    //    if (down)
+    //    {
+    //        newVelocity += (Vector2.down * moveSpeed);
+    //    }
+    //    if (left)
+    //    {
+    //        newVelocity += (Vector2.left * moveSpeed);
+    //    }
+    //    if (right)
+    //    {
+    //        newVelocity += (Vector2.right * moveSpeed);
+    //    }
 
-        rb.velocity = newVelocity;
-    }
+    //    rb.velocity = newVelocity;
+    //}
 
 }

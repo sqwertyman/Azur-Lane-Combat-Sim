@@ -9,7 +9,7 @@ public class ShipController : MonoBehaviour
     public Image healthBar;
     public Color healthBarColour;
 
-    private int maxHealth, firepower, health, torpedo;
+    private int maxHealth, firepower, health, torpedo, aviation;
     private float speed, reload;
     private GameObject enemy;
     private ArmourType armour;
@@ -28,6 +28,7 @@ public class ShipController : MonoBehaviour
         firepower = ship.Firepower;
         torpedo = ship.Torpedo;
         armour = ship.Armour;
+        aviation = ship.Aviation;
         if (loadoutData.Slot1)
         {
             firepower += loadoutData.Slot1.Firepower;
@@ -119,5 +120,10 @@ public class ShipController : MonoBehaviour
     public ArmourType GetArmour()
     {
         return armour;
+    }
+
+    public int GetAviation()
+    {
+        return aviation;
     }
 }
