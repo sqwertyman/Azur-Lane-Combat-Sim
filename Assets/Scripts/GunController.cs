@@ -17,7 +17,7 @@ public class GunController : ProjectileWeaponController
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
-    protected override IEnumerator Fire()
+    protected override IEnumerator FiringLoop()
     {
         yield return new WaitForSeconds(startDelay);
 
@@ -39,12 +39,12 @@ public class GunController : ProjectileWeaponController
                 targetPos = transform.position + Vector3.right;
             }
 
-            //nested for loops to instantiate projectiles for each shell of each wave
+            //nested for loops to instantiate projectiles for each shell of each wave, and play sfx
             for (int x = 0; x < noOfShots; x++)
             {
                 for (int y = 0; y < projPerShot; y++)
                 {
-                    SpawnProjectile(targetPos, y);
+                    FireProjectile(targetPos, y);
                 }
                 yield return new WaitForSeconds(volleyTime);
             }

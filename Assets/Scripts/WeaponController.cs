@@ -11,6 +11,7 @@ public class WeaponController : MonoBehaviour
     protected EquipmentType gunClass;
     protected Sprite sprite;
     protected AmmoType ammo;
+    protected AudioSource audioSource;
 
     public virtual void Init(ProjectileWeaponData gunData)
     {
@@ -37,14 +38,18 @@ public class WeaponController : MonoBehaviour
 
         thisShip = GetComponentInParent<ShipController>();
 
+        audioSource = GetComponent<AudioSource>();
+        if (weaponData.Sfx)
+            audioSource.clip = weaponData.Sfx;
+
         CalculateDamage();
         CalculateReloadTime();
 
-        StartCoroutine(Fire());
+        StartCoroutine(FiringLoop());
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
-    protected virtual IEnumerator Fire()
+    protected virtual IEnumerator FiringLoop()
     {
         yield return new WaitForSeconds(startDelay);
     }
@@ -69,5 +74,12 @@ public class WeaponController : MonoBehaviour
     public Color GetDmgNumberColour()
     {
         return dmgNumberColour;
+    }
+
+    //play's the gun's firing sfx
+    protected void PlayFireSound()
+    {
+        audioSource.pitch = Random.Range(0.85f, 1.1f);
+        audioSource.Play();
     }
 }

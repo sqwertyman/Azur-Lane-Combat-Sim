@@ -12,7 +12,7 @@ public class MainGunController : ProjectileWeaponController
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
-    protected override IEnumerator Fire()
+    protected override IEnumerator FiringLoop()
     {
         yield return new WaitForSeconds(startDelay);
         yield return new WaitForSeconds(reloadTime);
@@ -38,7 +38,7 @@ public class MainGunController : ProjectileWeaponController
 
             for (int y = 0; y < projPerShot; y++)
             {
-                SpawnProjectile(targetPos, y);
+                FireProjectile(targetPos, y);
             }
 
             yield return new WaitForSeconds(reloadTime);
@@ -55,10 +55,12 @@ public class MainGunController : ProjectileWeaponController
     protected override void CalculateAngles()
     {
         projSpreads = new float[projPerShot];
+        projOffsets = new float[projPerShot];
 
         for (int x = 0; x < projPerShot; x++)
         {
             projSpreads[x] = Random.Range(-spread, spread);
+            projOffsets[x] = Random.Range(-projectileSpacing, projectileSpacing);
         }
     }
 }

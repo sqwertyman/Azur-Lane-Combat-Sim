@@ -15,6 +15,8 @@ public class WeaponData : DatabaseItem
     private float fireRate;
     [SerializeField]
     private AmmoData ammo;
+    [SerializeField]
+    private AudioClip sfx;
 
     private Sprite sprite;
     private Color dmgNumberColour;
@@ -30,6 +32,7 @@ public class WeaponData : DatabaseItem
     public Sprite Sprite { get => sprite; set => sprite = value; }
     public Color DmgNumberColour { get => dmgNumberColour; set => dmgNumberColour = value; }
     public int ProjectileSpeed { get => projectileSpeed; set => projectileSpeed = value; }
+    public AudioClip Sfx { get => sfx; set => sfx = value; }
 
     private void OnEnable()
     {

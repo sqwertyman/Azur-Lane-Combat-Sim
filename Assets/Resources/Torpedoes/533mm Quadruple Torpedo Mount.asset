@@ -17,10 +17,11 @@ MonoBehaviour:
   type: 4
   firepower: 0
   torpedo: 25
-  range: 90
-  ammo: {fileID: 11400000, guid: ed26a9c670ba184458d0f86db4d3ed24, type: 2}
+  damage: 156
   startDelay: 1
   fireRate: 23.14
+  ammo: {fileID: 11400000, guid: ed26a9c670ba184458d0f86db4d3ed24, type: 2}
+  sfx: {fileID: 8300000, guid: 66773f577952c12489967d528494507b, type: 3}
+  range: 90
   projPerShot: 4
-  damage: 156
   spread: 48

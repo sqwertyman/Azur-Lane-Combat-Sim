@@ -17,12 +17,13 @@ MonoBehaviour:
   type: 0
   firepower: 15
   torpedo: 0
-  range: 50
-  ammo: {fileID: 11400000, guid: c95152d54b1cf0a45ad3f0e97b854a90, type: 2}
+  damage: 12
   startDelay: 0.5
   fireRate: 0.96
+  ammo: {fileID: 11400000, guid: c95152d54b1cf0a45ad3f0e97b854a90, type: 2}
+  sfx: {fileID: 8300000, guid: 3df95e353ee3f964085422da5c582a65, type: 3}
+  range: 50
   projPerShot: 2
-  damage: 12
   spread: 0
   volleyTime: 0.1
   noOfShots: 2
