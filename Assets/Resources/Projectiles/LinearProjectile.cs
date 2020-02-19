@@ -18,12 +18,11 @@ public class LinearProjectile : BaseProjectile
         rb.velocity = transform.right * speed;
     }
 
-    private void Update()
+    protected override bool ReachedMaxRange()
     {
-        //destroy projectile if it reaches max range
         if ((transform.position - startPos).magnitude > range)
-        {
-            Destroy(gameObject);
-        }
+            return true;
+        else
+            return false;
     }
 }

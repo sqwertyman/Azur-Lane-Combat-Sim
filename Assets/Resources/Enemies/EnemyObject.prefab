@@ -49,10 +49,11 @@ SpriteRenderer:
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
+  m_RayTracingMode: 0
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 10754, guid: 0000000000000000f000000000000000, type: 0}
+  - {fileID: 2100000, guid: 535388e9b3ddb0e44a690d2033433b04, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -135,6 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 2394339003031419855}
   healthBarColour: {r: 0.9019608, g: 0.09019608, b: 0.09019608, a: 1}
+  hitFlashIntensity: 0.5
+  hitFlashTime: 0.05
 --- !u!1001 &4504760347790014657
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -142,11 +145,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 6642478477606611309}
     m_Modifications:
-    - target: {fileID: 4998954912938355935, guid: 0f5bc3ed28b24e2489691993b81ea792,
-        type: 3}
-      propertyPath: m_Name
-      value: Health Bar
-      objectReference: {fileID: 0}
     - target: {fileID: 3808677146724456322, guid: 0f5bc3ed28b24e2489691993b81ea792,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -261,6 +259,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalScale.y
       value: 0.002
+      objectReference: {fileID: 0}
+    - target: {fileID: 4998954912938355935, guid: 0f5bc3ed28b24e2489691993b81ea792,
+        type: 3}
+      propertyPath: m_Name
+      value: Health Bar
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0f5bc3ed28b24e2489691993b81ea792, type: 3}

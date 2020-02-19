@@ -9,8 +9,6 @@ public class ProjectileWeaponController : WeaponController
     protected GameObject projectilePrefab;
     [SerializeField]
     protected float projectileSpacing;
-    [SerializeField]
-    protected float projForwardOffset;
 
     protected float volleyTime, spread;
     protected int noOfShots, projPerShot, range;

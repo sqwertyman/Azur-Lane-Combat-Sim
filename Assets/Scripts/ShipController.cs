@@ -9,6 +9,10 @@ public class ShipController : MonoBehaviour
     public Image healthBar;
     public Color healthBarColour;
 
+    [Range(0.0f, 1.0f)]
+    public float hitFlashIntensity;
+    public float hitFlashTime;
+
     private int maxHealth, firepower, health, torpedo, aviation;
     private float speed, reload;
     private GameObject enemy;
@@ -78,8 +82,20 @@ public class ShipController : MonoBehaviour
     //called to make the ship take damage, and updates healthbar
     public void TakeDamage(GameObject source)
     {
+        //restart visual effect coroutine
+        StopCoroutine("FlashSprite");
+        StartCoroutine("FlashSprite");
+
         health -= source.GetComponent<WeaponController>().GetDamage(armour);
         healthBar.fillAmount = (float)health / maxHealth;
+    }
+
+    //makes the sprite flash as a visual effect
+    private IEnumerator FlashSprite()
+    {
+        GetComponent<Renderer>().material.SetFloat("_FlashAmount", hitFlashIntensity);
+        yield return new WaitForSeconds(hitFlashTime);
+        GetComponent<Renderer>().material.SetFloat("_FlashAmount", 0);
     }
 
     public int GetHealth()
