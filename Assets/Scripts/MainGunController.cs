@@ -59,7 +59,7 @@ public class MainGunController : ProjectileWeaponController
 
         for (int x = 0; x < projPerShot; x++)
         {
-            projSpreads[x] = Random.Range(-spread, spread);
+            projSpreads[x] = spread;
             projOffsets[x] = Random.Range(-projectileSpacing, projectileSpacing);
         }
     }

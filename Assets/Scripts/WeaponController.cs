@@ -12,6 +12,7 @@ public class WeaponController : MonoBehaviour
     protected Sprite sprite;
     protected AmmoType ammo;
     protected AudioSource audioSource;
+    protected AmmoData ammoData;
 
     public virtual void Init(ProjectileWeaponData gunData)
     {
@@ -26,6 +27,8 @@ public class WeaponController : MonoBehaviour
     //init method for any weapon type. each specific init calls this. whole system feels messy at the moment
     private void BaseInit(WeaponData weaponData)
     {
+        ammoData = weaponData.Ammo;
+
         gameObject.name = weaponData.name;
         gunClass = weaponData.Type;
         startDelay = weaponData.StartDelay;

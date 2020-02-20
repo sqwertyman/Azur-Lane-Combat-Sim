@@ -8,6 +8,7 @@ public class DamageNumber : MonoBehaviour
     //public Color colour = new Color(0.8f, 0.8f, 0.1f);
     public float scrollSpeed = 0.05f;
     public float duration = 1.5f;
+    public float depthOffset;
 
     private float alpha;
     private new Renderer renderer;
@@ -43,6 +44,7 @@ public class DamageNumber : MonoBehaviour
     {
         text.text = damage.ToString();
         renderer.material.color = textColour;
+        transform.position += new Vector3(0, 0, depthOffset);
 
         //increase size if damage is large. could be more complex with gradual scaling
         if (damage > 200)

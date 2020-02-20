@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5305288597906409776}
   - component: {fileID: 1953703513351544646}
   - component: {fileID: 1461375324476532585}
-  - component: {fileID: 1147401321091517116}
   - component: {fileID: 347050519405773235}
   - component: {fileID: 1298179719675141064}
+  - component: {fileID: 3608762695440162792}
   m_Layer: 0
   m_Name: Arcing Projectile Object
   m_TagString: FriendlyProjectile
@@ -106,32 +106,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!61 &1147401321091517116
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6461742912502857454}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: -0.58890605, y: 0.019016564}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 5.13, y: 5.13}
-    newSize: {x: 5.13, y: 5.13}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 4.3229957, y: 1.6387228}
-  m_EdgeRadius: 0
 --- !u!114 &347050519405773235
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -149,6 +123,7 @@ MonoBehaviour:
   hitSound: {fileID: 8300000, guid: caf6932eb62367d42b28d7a9617971ab, type: 3}
   missSound: {fileID: 8300000, guid: a9b28c095f6284241ad45dcaedbac1c9, type: 3}
   arcHeight: 40
+  splashRange: 15
 --- !u!82 &1298179719675141064
 AudioSource:
   m_ObjectHideFlags: 0
@@ -245,3 +220,19 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!58 &3608762695440162792
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6461742912502857454}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 7.5

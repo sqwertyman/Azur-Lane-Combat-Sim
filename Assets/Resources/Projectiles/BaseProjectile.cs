@@ -29,25 +29,6 @@ public class BaseProjectile : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         this.source = source;
         startPos = transform.position;
-
-        StartCoroutine(LifeLoop());
-    }
-
-    //when collides with something
-    protected void OnTriggerEnter2D(Collider2D collision)
-    {
-        //if the colliding object is an enemy (needs generalising), tells it to take damage, spawns dmg number ,and destroys
-        if (collision.tag == "Enemy")
-        {
-            //stopping here currently to stop both miss and hit scenarios happening (temp and messy)
-            StopCoroutine(LifeLoop());
-
-            collision.GetComponent<ShipController>().TakeDamage(source);
-
-            SpawnDamageNumber(collision.GetComponent<ShipController>().GetArmour());
-
-            Despawn(hitSound);
-        }
     }
 
     //spawns a damage number/indicator at pos with value damage
@@ -59,32 +40,25 @@ public class BaseProjectile : MonoBehaviour
     }
 
     //for when the projectile needs to die. either the hit or miss audioclip is passed in to be played
-    protected void Despawn(AudioClip sound)
+    protected virtual void Despawn(AudioClip sound)
     {
         //play sound
         audioSource.pitch = Random.Range(0.9f, 1.1f);
         audioSource.PlayOneShot(sound);
 
-        //deactivate necessary components etc
+        //deactivate components etc
         gameObject.GetComponent<Renderer>().enabled = false;
-        gameObject.GetComponent<Collider2D>().enabled = false;
-        rb.velocity = Vector2.zero;
-
-        //destroy after sound will have finished
-        Destroy(gameObject, sound.length);
+        
+        //destroy after sound(s) will have finished. both included here for splash projectiles
+        Destroy(gameObject, hitSound.length + missSound.length);
     }
 
-    //coroutine to kill projectile at end of its travel
-    protected IEnumerator LifeLoop()
+    //tells collider's ship to take damage
+    protected void DealDamage(Collider2D collision)
     {
-        yield return new WaitUntil(() => ReachedMaxRange());
-        print("miss");
-        Despawn(missSound);
-    }
+        var ship = collision.GetComponent<ShipController>();
 
-    //implemented by subclasses, and used by coroutine to check if projectile is at its max range
-    protected virtual bool ReachedMaxRange()
-    {
-        return false;
+        ship.TakeDamage(source);
+        SpawnDamageNumber(ship.GetArmour());
     }
 }
