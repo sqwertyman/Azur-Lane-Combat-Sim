@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class LinearProjectile : BaseProjectile
 {
-    public override void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
+    public override void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
     {
-        base.GeneralSetup(sprite, source);
+        base.GeneralSetup(ammoData, source);
 
         this.range = range;
 
@@ -15,7 +15,7 @@ public class LinearProjectile : BaseProjectile
         Vector3 direction = heading / distanceToTravel;
         transform.right = direction;
         transform.Rotate(0, 0, targetSpread);
-        rb.velocity = transform.right * speed;
+        rb.velocity = transform.right * ammoData.ProjectileSpeed;
 
         StartCoroutine(LifeLoop());
     }

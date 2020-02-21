@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject vanguardSpawn, enemyObject, shipObject, gunObject, mainGunObject, torpedoObject, planeObject;
+    public GameObject vanguardSpawn, enemyObject, shipObject, lockonGunObject, bracketingGunObject, scattershotGunObject, torpedoObject, planeObject;
     public GameObject[] enemySpawns = new GameObject[2];
     public GameObject[] mainSpawns = new GameObject[3];
     public ShipLoadoutData[] vanguardLoadouts = new ShipLoadoutData[3];
@@ -148,17 +148,8 @@ public class GameController : MonoBehaviour
                 for (int i = 0; i < noToLoad; i++)
                 {
                     var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    gunInst.transform.SetParent(ship.transform);
+                    //gunInst.transform.SetParent(ship.transform);
                     gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
-                }
-            }
-            else if (toLoad.Type == EquipmentType.BB)
-            {
-                for (int i = 0; i < noToLoad; i++)
-                {
-                    var gunInst = Instantiate(mainGunObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    gunInst.transform.SetParent(ship.transform);
-                    gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
                 }
             }
             else if (toLoad.Type == EquipmentType.Plane)
@@ -166,17 +157,35 @@ public class GameController : MonoBehaviour
                 for (int i = 0; i < noToLoad; i++)
                 {
                     var gunInst = Instantiate(planeObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    gunInst.transform.SetParent(ship.transform);
+                    //gunInst.transform.SetParent(ship.transform);
                     gunInst.GetComponent<WeaponController>().Init(toLoad as PlaneWeaponData);
                 }
             }
             else
             {
-                for (int i = 0; i < noToLoad; i++)
+                if ((toLoad as GunData).FiringType == FiringType.Bracketing)
                 {
-                    var gunInst = Instantiate(gunObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    //gunInst.transform.SetParent(ship.transform);
-                    gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
+                    for (int i = 0; i < noToLoad; i++)
+                    {
+                        var gunInst = Instantiate(bracketingGunObject, ship.transform.position, Quaternion.identity, ship.transform);
+                        gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
+                    }
+                }
+                else if ((toLoad as GunData).FiringType == FiringType.Scattershot)
+                {
+                    for (int i = 0; i < noToLoad; i++)
+                    {
+                        var gunInst = Instantiate(scattershotGunObject, ship.transform.position, Quaternion.identity, ship.transform);
+                        gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
+                    }
+                }
+                else
+                {
+                    for (int i = 0; i < noToLoad; i++)
+                    {
+                        var gunInst = Instantiate(lockonGunObject, ship.transform.position, Quaternion.identity, ship.transform);
+                        gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
+                    }
                 }
             }
         }

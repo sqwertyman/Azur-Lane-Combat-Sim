@@ -2,15 +2,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainGunController : ProjectileWeaponController
+public class BracketingGunController : GunController
 {
-    public override void Init(GunData gunData)
-    {
-        volleyTime = gunData.VolleyTime;
-
-        base.Init(gunData);
-    }
-
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
     protected override IEnumerator FiringLoop()
     {
@@ -24,7 +17,7 @@ public class MainGunController : ProjectileWeaponController
             thisShip.FindNearestEnemy();
             target = thisShip.GetEnemy();
 
-            CalculateAngles();
+            RecalculateAngles();
 
             //fires at target, or straight ahead if no target exists
             if (target)
@@ -45,21 +38,27 @@ public class MainGunController : ProjectileWeaponController
         }
     }
 
-    //calculates the final damage numbers used, based on firepower, damage, etc
-    protected override void CalculateDamage()
-    {
-        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100));
-    }
-
     //gives each projectile a random spread based on the gun's spread angle
     protected override void CalculateAngles()
     {
         projSpreads = new float[projPerShot];
         projOffsets = new float[projPerShot];
 
+        //these always the same for now so init them all first
         for (int x = 0; x < projPerShot; x++)
         {
             projSpreads[x] = spread;
+        }
+
+        RecalculateAngles();
+    }
+
+    //recalc the random spreads
+    private void RecalculateAngles()
+    {
+        for (int x = 0; x < projPerShot; x++)
+        {
+            //projSpreads[x] = spread;
             projOffsets[x] = Random.Range(-projectileSpacing, projectileSpacing);
         }
     }

@@ -15,7 +15,7 @@ public class PlaneWeaponController : WeaponController
         speed = planeData.Speed;
         noOfProj = planeData.NoOfProj;
         planeSprite = planeData.PlaneSprite;
-
+        
         base.Init(planeData);
     }
 
@@ -37,7 +37,7 @@ public class PlaneWeaponController : WeaponController
     private void SpawnPlane()
     {
         GameObject inst = Instantiate(planePrefab, new Vector3(Random.Range(-140, -130), Random.Range(-40,40),-1), transform.rotation);
-        inst.GetComponent<PlaneController>().Init(speed, projectileSpeed, noOfProj, planeSprite, sprite, gameObject);
+        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, ammoData, gameObject);
     }
 
 

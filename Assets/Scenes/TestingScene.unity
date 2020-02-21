@@ -96,6 +96,7 @@ LightmapSettings:
     m_PVRFilteringAtrousPositionSigmaAO: 1
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
+    m_LightProbeSampleCountMultiplier: 4
   m_LightingDataAsset: {fileID: 0}
   m_UseShadowmask: 1
 --- !u!196 &4
@@ -127,16 +128,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2036792379594265791, guid: a99564ae2e5648b41a3de301164952cf,
-        type: 3}
-      propertyPath: m_Name
-      value: Game Over Screen
-      objectReference: {fileID: 0}
     - target: {fileID: 1735745581685064216, guid: a99564ae2e5648b41a3de301164952cf,
         type: 3}
       propertyPath: gameController
       value: 
       objectReference: {fileID: 1474020336}
+    - target: {fileID: 2036792379594265784, guid: a99564ae2e5648b41a3de301164952cf,
+        type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
     - target: {fileID: 2036792379594265787, guid: a99564ae2e5648b41a3de301164952cf,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -242,11 +243,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2036792379594265784, guid: a99564ae2e5648b41a3de301164952cf,
+    - target: {fileID: 2036792379594265791, guid: a99564ae2e5648b41a3de301164952cf,
         type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
+      propertyPath: m_Name
+      value: Game Over Screen
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a99564ae2e5648b41a3de301164952cf, type: 3}
 --- !u!1 &13537389
@@ -464,10 +465,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 6384659764402713893, guid: 79c3bd48557bf58418ff3c064e869470,
+    - target: {fileID: 2734522073243758261, guid: 79c3bd48557bf58418ff3c064e869470,
         type: 3}
-      propertyPath: m_Name
-      value: Field
+      propertyPath: m_Enabled
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6041224588568931134, guid: 79c3bd48557bf58418ff3c064e869470,
         type: 3}
@@ -489,15 +490,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2734522073243758261, guid: 79c3bd48557bf58418ff3c064e869470,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6086278180602712562, guid: 79c3bd48557bf58418ff3c064e869470,
         type: 3}
       propertyPath: m_Name
       value: Vanguard Spawn
+      objectReference: {fileID: 0}
+    - target: {fileID: 6384659764402713893, guid: 79c3bd48557bf58418ff3c064e869470,
+        type: 3}
+      propertyPath: m_Name
+      value: Field
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c3bd48557bf58418ff3c064e869470, type: 3}
@@ -532,16 +533,16 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2036792379594265791, guid: 3ffabbb4514e94140a64b9601bd4f1be,
-        type: 3}
-      propertyPath: m_Name
-      value: Pause Menu
-      objectReference: {fileID: 0}
     - target: {fileID: 2036792379594265784, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 519420031}
+    - target: {fileID: 2036792379594265786, guid: 3ffabbb4514e94140a64b9601bd4f1be,
+        type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1474020336}
     - target: {fileID: 2036792379594265787, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -647,11 +648,11 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2036792379594265786, guid: 3ffabbb4514e94140a64b9601bd4f1be,
+    - target: {fileID: 2036792379594265791, guid: 3ffabbb4514e94140a64b9601bd4f1be,
         type: 3}
-      propertyPath: gameController
-      value: 
-      objectReference: {fileID: 1474020336}
+      propertyPath: m_Name
+      value: Pause Menu
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 3ffabbb4514e94140a64b9601bd4f1be, type: 3}
 --- !u!1001 &2712715223661434265
@@ -661,16 +662,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2712715223774682574, guid: 8e450caf6dd74024286b8a74bf606d04,
-        type: 3}
-      propertyPath: m_Name
-      value: Game UI
-      objectReference: {fileID: 0}
-    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
-        type: 3}
-      propertyPath: m_Camera
-      value: 
-      objectReference: {fileID: 519420031}
     - target: {fileID: 1092013748788246964, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_Color.r
@@ -691,6 +682,11 @@ PrefabInstance:
       propertyPath: m_FillAmount
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 2550159263163733111, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: gameController
+      value: 
+      objectReference: {fileID: 1474020336}
     - target: {fileID: 2712715223774682562, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -796,12 +792,17 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 2712715225154783931, guid: 8e450caf6dd74024286b8a74bf606d04,
+    - target: {fileID: 2712715223774682563, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
-      propertyPath: gameController
+      propertyPath: m_Camera
       value: 
-      objectReference: {fileID: 1474020336}
-    - target: {fileID: 2550159263163733111, guid: 8e450caf6dd74024286b8a74bf606d04,
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 2712715223774682574, guid: 8e450caf6dd74024286b8a74bf606d04,
+        type: 3}
+      propertyPath: m_Name
+      value: Game UI
+      objectReference: {fileID: 0}
+    - target: {fileID: 2712715225154783931, guid: 8e450caf6dd74024286b8a74bf606d04,
         type: 3}
       propertyPath: gameController
       value: 
@@ -820,10 +821,25 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 4942762273560811747, guid: fdadc3b2009703b428b66d18b8292c02,
+    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
-      propertyPath: m_Name
-      value: GameController
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
@@ -1011,25 +1027,28 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7071556487156599320, guid: 4213b75af7ba1a5489445ae3d107221c,
         type: 3}
-    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+      propertyPath: lockonGunObject
+      value: 
+      objectReference: {fileID: 7071556487156599320, guid: 7735e4fa19db00c40bb49538a4099565,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 4942762273560811745, guid: fdadc3b2009703b428b66d18b8292c02,
+      propertyPath: scattershotGunObject
+      value: 
+      objectReference: {fileID: 7071556487156599320, guid: 1fd662ecdeb5bfd4fb2622937ad2b6b3,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: bracketingGunObject
+      value: 
+      objectReference: {fileID: 7071556487156599320, guid: 09e109b9797425443ab671a867f66462,
+        type: 3}
+    - target: {fileID: 4942762273560811747, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: m_Name
+      value: GameController
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: fdadc3b2009703b428b66d18b8292c02, type: 3}

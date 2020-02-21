@@ -105,7 +105,7 @@ public class ProjectileWeaponController : WeaponController
         transform.LookAt(targetPosition);
 
         GameObject lastProj = Instantiate(projectilePrefab, transform.position + offset, Quaternion.identity);
-        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], projectileSpeed, sprite, range, gameObject);
+        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, range, gameObject);
 
         PlayFireSound();
     }

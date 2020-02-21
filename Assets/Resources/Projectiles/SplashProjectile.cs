@@ -2,33 +2,30 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ArcingProjectile : BaseProjectile
+public class SplashProjectile : BaseProjectile
 {
     public float arcHeight = 3;
-    public float splashRange;
-    
+
     private Vector3 targetPos, nextPos;
-    private int speed;
     private bool atTarget;
     private CircleCollider2D splashCollider;
     
-    public override void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
+    public override void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
     {
-        base.GeneralSetup(sprite, source);
+        base.GeneralSetup(ammoData, source);
 
         //random spread
         Vector3 spread = new Vector3(Random.Range(-1f, 1f), Random.Range(-1f, 1f)) * targetSpread;
 
         this.targetPos = targetPos + spread;
-        this.speed = speed;
-
+        
         Vector3 heading = targetPos - transform.position;
         distanceToTravel = heading.magnitude;
 
         atTarget = false;
 
         splashCollider = GetComponent<CircleCollider2D>();
-        splashCollider.radius = splashRange / 2;
+        splashCollider.radius = ammoData.SplashRange / 2;
         splashCollider.enabled = false;
     }
     
@@ -47,7 +44,7 @@ public class ArcingProjectile : BaseProjectile
     {
         if (!atTarget)
         {
-            float nextX = Mathf.MoveTowards(transform.position.x, targetPos.x, speed * Time.deltaTime);
+            float nextX = Mathf.MoveTowards(transform.position.x, targetPos.x, ammoData.ProjectileSpeed * Time.deltaTime);
             float baseY = Mathf.Lerp(startPos.y, targetPos.y, (nextX - startPos.x) / distanceToTravel);
             float arc = arcHeight * (nextX - startPos.x) * (nextX - targetPos.x) / (-0.25f * distanceToTravel * distanceToTravel);
             nextPos = new Vector3(nextX, baseY + arc, transform.position.z);

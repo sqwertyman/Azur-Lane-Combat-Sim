@@ -25,6 +25,7 @@ MonoBehaviour:
   range: 200
   projPerShot: 2
   spread: 16
+  firingType: 2
   volleyTime: 0
   noOfShots: 1
   angle: 50

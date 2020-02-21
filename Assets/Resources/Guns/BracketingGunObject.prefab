@@ -9,10 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 7071556487156599326}
-  - component: {fileID: -4120650672548414439}
   - component: {fileID: -3386178574325983654}
+  - component: {fileID: -6990976844669495541}
   m_Layer: 0
-  m_Name: MainGunObject
+  m_Name: BracketingGunObject
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -32,22 +32,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &-4120650672548414439
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7071556487156599320}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7edd30bfa72274e4dad459f71597978e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  projectilePrefab: {fileID: 6461742912502857454, guid: 922be8f4995943e4baa00e7bce713a28,
-    type: 3}
-  projectileSpacing: 2
-  projForwardOffset: 0
 --- !u!82 &-3386178574325983654
 AudioSource:
   m_ObjectHideFlags: 0
@@ -144,3 +128,18 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &-6990976844669495541
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7071556487156599320}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7edd30bfa72274e4dad459f71597978e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  projectilePrefab: {fileID: 6461742912502857454, guid: 922be8f4995943e4baa00e7bce713a28,
+    type: 3}
+  projectileSpacing: 2

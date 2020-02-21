@@ -9,6 +9,8 @@ public enum FleetType { Main, Vanguard };
 public enum ArmourType { Light, Medium, Heavy };
 public enum AmmoType { Normal, HE, AP, Torpedo, AirTorpedo };
 
+public enum FiringType { LockOn, Scattershot, Bracketing };
+
 //persistent database of all ships, guns, etc
 public static class Database
 {

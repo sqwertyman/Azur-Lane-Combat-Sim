@@ -12,20 +12,22 @@ public class BaseProjectile : MonoBehaviour
     protected Rigidbody2D rb;
     protected Vector3 startPos;
     protected float distanceToTravel;
-    protected Color dmgNumberColour;
     protected GameObject source;
     protected AudioSource audioSource;
+    protected AmmoData ammoData;
     
-    public virtual void Setup(Vector3 targetPos, float targetSpread, int speed, Sprite sprite, int range, GameObject source)
+    public virtual void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
     {
 
     }
 
     //general setup for any projectile type
-    protected void GeneralSetup(Sprite sprite,  GameObject source)
+    protected void GeneralSetup(AmmoData ammoData,  GameObject source)
     {
+        this.ammoData = ammoData;
+
         rb = GetComponent<Rigidbody2D>();
-        gameObject.GetComponent<SpriteRenderer>().sprite = sprite;
+        gameObject.GetComponent<SpriteRenderer>().sprite = ammoData.Sprite;
         audioSource = GetComponent<AudioSource>();
         this.source = source;
         startPos = transform.position;
@@ -36,7 +38,7 @@ public class BaseProjectile : MonoBehaviour
     {
         //mathf.clamp here to keep on screen if needed later
         GameObject dmgNumber = Instantiate(dmgNumberPrefab, transform.position, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(source.GetComponent<WeaponController>().GetDamage(armour), source.GetComponent<WeaponController>().GetDmgNumberColour());
+        dmgNumber.GetComponent<DamageNumber>().Init(source.GetComponent<WeaponController>().GetDamage(armour), ammoData.DmgNumberColour);
     }
 
     //for when the projectile needs to die. either the hit or miss audioclip is passed in to be played

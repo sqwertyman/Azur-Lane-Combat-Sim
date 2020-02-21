@@ -10,10 +10,10 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 60cc7d69d5cc3704ca5bc03a721052b4, type: 3}
-  m_Name: HE (Main Gun)
+  m_Name: AP (Main Gun)
   m_EditorClassIdentifier: 
-  ammo: 1
-  sprite: {fileID: 21300000, guid: 265f122419804d2409527389b1f3b88a, type: 3}
-  projectileSpeed: 100
+  ammo: 2
+  sprite: {fileID: 21300000, guid: 2134018c737f2304196549593696630a, type: 3}
+  projectileSpeed: 120
   splashRange: 15
-  dmgNumberColour: {r: 1, g: 0.25882354, b: 0.08235294, a: 1}
+  dmgNumberColour: {r: 0.44705883, g: 0.32156864, b: 1, a: 1}

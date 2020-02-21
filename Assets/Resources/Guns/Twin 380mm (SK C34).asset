@@ -10,21 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
-  m_Name: Quadruple 356mm (BL 14 Mk VII)
+  m_Name: Twin 380mm (SK C34)
   m_EditorClassIdentifier: 
-  name: Quadruple 356mm (BL 14" Mk VII)
-  id: 7
+  name: Twin 380mm (SK C/34)
+  id: 9
   type: 3
   firepower: 45
   torpedo: 0
-  damage: 108
+  damage: 132
   startDelay: 1
-  fireRate: 29.19
-  ammo: {fileID: 11400000, guid: 7d0f606577cf7ab44b6f1fcc326b24d5, type: 2}
+  fireRate: 18.38
+  ammo: {fileID: 11400000, guid: ee8facfb0a1583d4492029f098ae1bb0, type: 2}
   sfx: {fileID: 8300000, guid: cfaa05756a21a464583dfd1cb9eaf9f3, type: 3}
   range: 200
-  projPerShot: 4
-  spread: 22
+  projPerShot: 2
+  spread: 16
   firingType: 2
   volleyTime: 0
   noOfShots: 1
