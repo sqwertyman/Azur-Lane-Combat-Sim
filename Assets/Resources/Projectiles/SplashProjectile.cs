@@ -36,6 +36,9 @@ public class SplashProjectile : BaseProjectile
         if (collision.tag == "Enemy")
         {
             DealDamage(collision);
+
+            //separately play effects for hit here (as both hit an miss need to play, and a hit for each enemy)
+            PlayEffects(true);
         }
     }
 
@@ -54,7 +57,7 @@ public class SplashProjectile : BaseProjectile
             if (nextPos == targetPos || nextPos == transform.position)
             {
                 atTarget = true;
-                Despawn(missSound);
+                Despawn(false);
             }
 
             transform.right = nextPos - transform.position;
@@ -63,10 +66,10 @@ public class SplashProjectile : BaseProjectile
     }
 
     //re-enables collider for aoe damage
-    protected override void Despawn(AudioClip sound)
+    protected override void Despawn(bool hit)
     {
         GetComponent<Collider2D>().enabled = true;
         
-        base.Despawn(sound);
+        base.Despawn(hit);
     }
 }

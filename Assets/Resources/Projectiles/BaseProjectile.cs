@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class BaseProjectile : MonoBehaviour
 {
-    public GameObject dmgNumberPrefab;
+    public GameObject dmgNumberPrefab, missEffectPrefab, hitEffectPrefab;
     public AudioClip hitSound;
     public AudioClip missSound;
 
@@ -42,11 +42,10 @@ public class BaseProjectile : MonoBehaviour
     }
 
     //for when the projectile needs to die. either the hit or miss audioclip is passed in to be played
-    protected virtual void Despawn(AudioClip sound)
+    protected virtual void Despawn(bool hit)
     {
-        //play sound
-        audioSource.pitch = Random.Range(0.9f, 1.1f);
-        audioSource.PlayOneShot(sound);
+        //play appropriate effects
+        PlayEffects(hit);
 
         //deactivate components etc
         gameObject.GetComponent<Renderer>().enabled = false;
@@ -62,5 +61,30 @@ public class BaseProjectile : MonoBehaviour
 
         ship.TakeDamage(source);
         SpawnDamageNumber(ship.GetArmour());
+    }
+
+    //takes a bool denoting whether the proj has hit or missed, and plays the appropriate visual and sound effects
+    protected void PlayEffects(bool hit)
+    {
+        GameObject effect;
+        AudioClip sound;
+
+        if (hit)
+        {
+            effect = hitEffectPrefab;
+            sound = hitSound;
+        }
+        else
+        {
+            effect = missEffectPrefab;
+            sound = missSound;
+        }
+        
+        //play effect
+        Instantiate(effect, transform.position, effect.transform.rotation).GetComponent<ParticleSystem>().Play();
+
+        //play sound
+        audioSource.pitch = Random.Range(0.9f, 1.1f);
+        audioSource.PlayOneShot(sound);
     }
 }

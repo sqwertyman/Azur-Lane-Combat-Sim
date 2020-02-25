@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class LinearProjectile : BaseProjectile
 {
+    bool alreadyHit;
+
     public override void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
     {
         base.GeneralSetup(ammoData, source);
@@ -17,6 +19,8 @@ public class LinearProjectile : BaseProjectile
         transform.Rotate(0, 0, targetSpread);
         rb.velocity = transform.right * ammoData.ProjectileSpeed;
 
+        alreadyHit = false;
+
         StartCoroutine(LifeLoop());
     }
 
@@ -24,11 +28,13 @@ public class LinearProjectile : BaseProjectile
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         //if the colliding object is an enemy (needs generalising), tells it to take damage, spawns dmg number, and destroys
-        if (collision.tag == "Enemy")
+        if (collision.tag == "Enemy" && !alreadyHit)
         {
+            alreadyHit = true;
+
             DealDamage(collision);
 
-            Despawn(hitSound);
+            Despawn(true);
         }
     }
 
@@ -46,15 +52,15 @@ public class LinearProjectile : BaseProjectile
     {
         yield return new WaitUntil(() => ReachedMaxRange());
         
-        Despawn(missSound);
+        Despawn(false);
     }
 
     //disables more components etc so only one impact happens
-    protected override void Despawn(AudioClip sound)
+    protected override void Despawn(bool hit)
     {
-        gameObject.GetComponent<Collider2D>().enabled = false;
+        //gameObject.GetComponent<Collider2D>().enabled = false;
         rb.velocity = Vector2.zero;
 
-        base.Despawn(sound);
+        base.Despawn(hit);
     }
 }

@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 1298179719675141064}
   - component: {fileID: 3608762695440162792}
   m_Layer: 0
-  m_Name: Arcing Projectile Object
+  m_Name: Splash Projectile Object
   m_TagString: FriendlyProjectile
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -120,10 +120,12 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmgNumberPrefab: {fileID: 78213216389322679, guid: 5612ee7924b89234e96def56fc7b4b3d,
     type: 3}
+  missEffectPrefab: {fileID: 1687118924408352, guid: 609967688275340478b49df55511fcc4,
+    type: 3}
+  hitEffectPrefab: {fileID: 100002, guid: 65cedd62a50a1324fb957075b727fb08, type: 3}
   hitSound: {fileID: 8300000, guid: caf6932eb62367d42b28d7a9617971ab, type: 3}
   missSound: {fileID: 8300000, guid: a9b28c095f6284241ad45dcaedbac1c9, type: 3}
   arcHeight: 40
-  splashRange: 15
 --- !u!82 &1298179719675141064
 AudioSource:
   m_ObjectHideFlags: 0

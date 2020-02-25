@@ -99,6 +99,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   dmgNumberPrefab: {fileID: 78213216389322679, guid: 5612ee7924b89234e96def56fc7b4b3d,
     type: 3}
+  missEffectPrefab: {fileID: 1687118924408352, guid: 609967688275340478b49df55511fcc4,
+    type: 3}
+  hitEffectPrefab: {fileID: 100002, guid: 65cedd62a50a1324fb957075b727fb08, type: 3}
   hitSound: {fileID: 8300000, guid: caf6932eb62367d42b28d7a9617971ab, type: 3}
   missSound: {fileID: 8300000, guid: a9b28c095f6284241ad45dcaedbac1c9, type: 3}
 --- !u!50 &1461375324476532585
