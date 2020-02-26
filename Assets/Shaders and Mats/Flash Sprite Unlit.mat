@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Sprite Unlit Flash
+  m_Name: Flash Sprite Unlit
   m_Shader: {fileID: 4800000, guid: c08549fbbf6557647b6400de6fd0012e, type: 3}
   m_ShaderKeywords: ETC1_EXTERNAL_ALPHA
   m_LightmapFlags: 4

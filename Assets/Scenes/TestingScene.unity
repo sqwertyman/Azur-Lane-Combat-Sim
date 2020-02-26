@@ -465,11 +465,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 2734522073243758261, guid: 79c3bd48557bf58418ff3c064e869470,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 6041224588568931134, guid: 79c3bd48557bf58418ff3c064e869470,
         type: 3}
       propertyPath: m_RootOrder
@@ -489,11 +484,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 6086278180602712562, guid: 79c3bd48557bf58418ff3c064e869470,
-        type: 3}
-      propertyPath: m_Name
-      value: Vanguard Spawn
       objectReference: {fileID: 0}
     - target: {fileID: 6384659764402713893, guid: 79c3bd48557bf58418ff3c064e869470,
         type: 3}

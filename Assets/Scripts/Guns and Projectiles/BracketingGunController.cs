@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class BracketingGunController : GunController
 {
+    public float individualProjDelay;
+
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
     protected override IEnumerator FiringLoop()
     {
@@ -32,6 +34,7 @@ public class BracketingGunController : GunController
             for (int y = 0; y < projPerShot; y++)
             {
                 FireProjectile(targetPos, y);
+                yield return new WaitForSeconds(individualProjDelay);
             }
 
             yield return new WaitForSeconds(reloadTime);
