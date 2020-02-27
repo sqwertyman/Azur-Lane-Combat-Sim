@@ -6,12 +6,12 @@ public class LinearProjectile : BaseProjectile
 {
     bool alreadyHit;
 
-    public override void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
+    public override void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source, string targetTag)
     {
-        base.GeneralSetup(ammoData, source);
+        base.GeneralSetup(ammoData, source, targetTag);
 
         this.range = range;
-
+        
         Vector3 heading = targetPos - transform.position;
         distanceToTravel = heading.magnitude;
         Vector3 direction = heading / distanceToTravel;
@@ -28,7 +28,7 @@ public class LinearProjectile : BaseProjectile
     protected void OnTriggerEnter2D(Collider2D collision)
     {
         //if the colliding object is an enemy (needs generalising), tells it to take damage, spawns dmg number, and destroys
-        if (collision.tag == "Enemy" && !alreadyHit)
+        if (collision.tag == targetTag && !alreadyHit)
         {
             alreadyHit = true;
 

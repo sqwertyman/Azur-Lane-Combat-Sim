@@ -16,25 +16,16 @@ public class ProjectileWeaponController : WeaponController
     protected float[] projSpreads;
     protected float[] projOffsets;
 
-    public virtual void Init(GunData gunData)
+    public override void Init()
     {
-        Init(gunData as ProjectileWeaponData);
-    }
-
-    public virtual void Init(TorpedoData torpdata)
-    {
-        Init(torpdata as ProjectileWeaponData);
-    }
-
-    public override void Init(ProjectileWeaponData gunData)
-    {
-        range = gunData.Range * 2; //mulitplied to exaggerate for now
-        projPerShot = gunData.ProjPerShot;
-        spread = gunData.Spread;
+        ProjectileWeaponData newTempData = weaponData as ProjectileWeaponData;
+        range = newTempData.Range * 2; //mulitplied to exaggerate for now
+        projPerShot = newTempData.ProjPerShot;
+        spread = newTempData.Spread;
 
         CalculateAngles();
-        
-        base.Init(gunData);
+
+        base.Init();
     }
 
     //populates projSpreads array with angles for each projectile to be fired at
@@ -85,7 +76,7 @@ public class ProjectileWeaponController : WeaponController
     protected float DistanceToNearest()
     {
         thisShip.FindNearestEnemy();
-        target = thisShip.GetEnemy();
+        target = thisShip.GetTarget();
 
         Vector3 heading = target.transform.position - transform.position;
         return heading.magnitude;
@@ -105,7 +96,7 @@ public class ProjectileWeaponController : WeaponController
         transform.LookAt(targetPosition);
 
         GameObject lastProj = Instantiate(projectilePrefab, transform.position + offset, Quaternion.identity);
-        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, range, gameObject);
+        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, range, gameObject, targetTag);
 
         PlayFireSound();
     }

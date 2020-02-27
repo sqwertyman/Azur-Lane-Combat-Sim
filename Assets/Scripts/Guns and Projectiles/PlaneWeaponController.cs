@@ -10,13 +10,14 @@ public class PlaneWeaponController : WeaponController
     private int noOfProj;
     private Sprite planeSprite;
 
-    public override void Init(PlaneWeaponData planeData)
+    public override void Init()
     {
-        speed = planeData.Speed;
-        noOfProj = planeData.NoOfProj;
-        planeSprite = planeData.PlaneSprite;
-        
-        base.Init(planeData);
+        PlaneWeaponData newTempData = weaponData as PlaneWeaponData;
+        speed = newTempData.Speed;
+        noOfProj = newTempData.NoOfProj;
+        planeSprite = newTempData.PlaneSprite;
+
+        base.Init();
     }
 
     //spawns a plane once every reloadtime
@@ -37,7 +38,7 @@ public class PlaneWeaponController : WeaponController
     private void SpawnPlane()
     {
         GameObject inst = Instantiate(planePrefab, new Vector3(Random.Range(-140, -130), Random.Range(-40,40),-1), transform.rotation);
-        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, ammoData, gameObject);
+        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, ammoData, gameObject, targetTag);
     }
 
 

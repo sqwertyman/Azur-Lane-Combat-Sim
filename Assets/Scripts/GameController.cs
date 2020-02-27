@@ -38,7 +38,7 @@ public class GameController : MonoBehaviour
         //updates current target only if friendly ships exist, to stop errors
         if (vanguardFleet.Count != 0)
         {
-            currentTarget = vanguardFleet[0].GetComponent<ShipController>().GetEnemy();
+            currentTarget = vanguardFleet[0].GetComponent<ShipController>().GetTarget();
         }
 
         //pause/unpause game with escape
@@ -77,21 +77,18 @@ public class GameController : MonoBehaviour
         //load enemies
         for (int x = 0 ; x < enemyFleet.Capacity ; x++)
         {
-            var tempEnemy = Instantiate(enemyObject, enemySpawns[x].transform.position, Quaternion.identity);
-            tempEnemy.GetComponent<ShipController>().Init(enemyData);
-
-            enemyFleet.Add(tempEnemy);
+            LoadShip(enemyData, enemySpawns[x].transform.position, enemyFleet, enemyObject, "Friendly");
         }
 
         //load vanguard ships
         for (int x = 0; x < vanguardLoadouts.Length; x++)
         {
-            LoadShip(vanguardLoadouts[x], vanguardSpawn.transform.position, vanguardFleet);
+            LoadShip(vanguardLoadouts[x], vanguardSpawn.transform.position, vanguardFleet, shipObject, "Enemy");
         }
         //load main ships
         for (int x = 0; x < mainLoadouts.Length; x++)
         {
-            LoadShip(mainLoadouts[x], mainSpawns[x].transform.position, mainFleet);
+            LoadShip(mainLoadouts[x], mainSpawns[x].transform.position, mainFleet, shipObject, "Enemy");
         }
 
         //calculate average speed of fleet
@@ -118,12 +115,12 @@ public class GameController : MonoBehaviour
     }
 
     //loads in the particular ship denoted by shipLoadout, storing it at the index shipIndex in friendlyFleet
-    int LoadShip(ShipLoadoutData shipLoadout, Vector3 spawnPos, List<GameObject> fleetList)
+    int LoadShip(ShipLoadoutData shipLoadout, Vector3 spawnPos, List<GameObject> fleetList, GameObject prefab, string targetTag)
     {
         if (shipLoadout.Ship != null)
         {
-            var tempShip = Instantiate(shipObject, spawnPos, Quaternion.identity);
-            tempShip.GetComponent<ShipController>().Init(shipLoadout);
+            var tempShip = Instantiate(prefab, spawnPos, Quaternion.identity);
+            tempShip.GetComponent<ShipController>().Init(shipLoadout, targetTag);
 
             LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.NoOfSlot1);
             LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.NoOfSlot2);
@@ -141,52 +138,30 @@ public class GameController : MonoBehaviour
     //loads in the weapon denoted by toLoad, assigning it to the ship given
     private void LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad)
     {
+        GameObject prefab;
+
         if (toLoad != null)
         {
+            //select correct prefab object based on weapon's type
             if (toLoad.Type == EquipmentType.Torpedo)
-            {
-                for (int i = 0; i < noToLoad; i++)
-                {
-                    var gunInst = Instantiate(torpedoObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    //gunInst.transform.SetParent(ship.transform);
-                    gunInst.GetComponent<WeaponController>().Init(toLoad as TorpedoData);
-                }
-            }
+                prefab = torpedoObject;
             else if (toLoad.Type == EquipmentType.Plane)
-            {
-                for (int i = 0; i < noToLoad; i++)
-                {
-                    var gunInst = Instantiate(planeObject, ship.transform.position, Quaternion.identity, ship.transform);
-                    //gunInst.transform.SetParent(ship.transform);
-                    gunInst.GetComponent<WeaponController>().Init(toLoad as PlaneWeaponData);
-                }
-            }
+                prefab = planeObject;
             else
             {
                 if ((toLoad as GunData).FiringType == FiringType.Bracketing)
-                {
-                    for (int i = 0; i < noToLoad; i++)
-                    {
-                        var gunInst = Instantiate(bracketingGunObject, ship.transform.position, Quaternion.identity, ship.transform);
-                        gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
-                    }
-                }
+                    prefab = bracketingGunObject;
                 else if ((toLoad as GunData).FiringType == FiringType.Scattershot)
-                {
-                    for (int i = 0; i < noToLoad; i++)
-                    {
-                        var gunInst = Instantiate(scattershotGunObject, ship.transform.position, Quaternion.identity, ship.transform);
-                        gunInst.GetComponent<WeaponController>().Init(toLoad as GunData);
-                    }
-                }
+                    prefab = scattershotGunObject;
                 else
-                {
-                    for (int i = 0; i < noToLoad; i++)
-                    {
-                        var gunInst = Instantiate(lockonGunObject, ship.transform.position, Quaternion.identity, ship.transform);
-                        gunInst.GetComponent<ProjectileWeaponController>().Init(toLoad as GunData);
-                    }
-                }
+                    prefab = lockonGunObject;
+            }
+
+            for (int i = 0; i < noToLoad; i++)
+            {
+                var gunInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
+                gunInst.GetComponent<WeaponController>().SetWeaponData(toLoad);
+                gunInst.GetComponent<WeaponController>().Init();
             }
         }
     }

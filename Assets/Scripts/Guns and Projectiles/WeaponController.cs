@@ -13,19 +13,13 @@ public class WeaponController : MonoBehaviour
     protected AmmoType ammo;
     protected AudioSource audioSource;
     protected AmmoData ammoData;
+    protected string targetTag;
 
-    public virtual void Init(ProjectileWeaponData gunData)
-    {
-        BaseInit(gunData);
-    }
+    protected WeaponData weaponData;
 
-    public virtual void Init(PlaneWeaponData planeData)
-    {
-        BaseInit(planeData);
-    }
-
-    //init method for any weapon type. each specific init calls this. whole system feels messy at the moment
-    private void BaseInit(WeaponData weaponData)
+    //sets up data for the weapon, needs weapondata to have been set first
+    //subclasses need to cast the weapondata to their appropriate equivalent to then get their specific data
+    public virtual void Init()
     {
         ammoData = weaponData.Ammo;
 
@@ -40,6 +34,7 @@ public class WeaponController : MonoBehaviour
         dmgNumberColour = weaponData.DmgNumberColour;
 
         thisShip = GetComponentInParent<ShipController>();
+        targetTag = thisShip.GetTargetTag();
 
         audioSource = GetComponent<AudioSource>();
         if (weaponData.Sfx)
@@ -84,5 +79,11 @@ public class WeaponController : MonoBehaviour
     {
         audioSource.pitch = Random.Range(0.85f, 1.1f);
         audioSource.Play();
+    }
+
+    //set the weapon's data. separate from init method to prevent excessive duplicate methods, and tidy up the gun initialisations
+    public void SetWeaponData(WeaponData weaponData)
+    {
+        this.weaponData = weaponData;
     }
 }

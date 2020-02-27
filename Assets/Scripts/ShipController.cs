@@ -15,13 +15,16 @@ public class ShipController : MonoBehaviour
 
     private int maxHealth, firepower, health, torpedo, aviation;
     private float speed, reload;
-    private GameObject enemy;
+    private GameObject target;
     private ArmourType armour;
+    private string targetTag;
 
     //sets ship's stats from loadoutData (includes its gun's stats too)
-    public void Init(ShipLoadoutData loadoutData)
+    public void Init(ShipLoadoutData loadoutData, string targetTag)
     {
         ShipData ship = loadoutData.Ship;
+
+        this.targetTag = targetTag;
 
         gameObject.GetComponent<SpriteRenderer>().sprite = ship.Sprite;
         healthBar.color = healthBarColour;
@@ -56,27 +59,27 @@ public class ShipController : MonoBehaviour
         }
     }
 
-    //finds the nearest enemy to the ship. used for targetting
+    //finds the nearest enemy/target to the ship. used for targetting
     public void FindNearestEnemy()
     {
-        var enemies = GameObject.FindGameObjectsWithTag("Enemy");
-        GameObject nearestEnemy = null;
-        if (enemies.Length != 0)
+        var targets = GameObject.FindGameObjectsWithTag(targetTag);
+        GameObject nearestTarget = null;
+        if (targets.Length != 0)
         {
             float nearestDistance = Mathf.Infinity;
             Vector3 position = transform.position;
-            foreach (var thisEnemy in enemies)
+            foreach (var thisEnemy in targets)
             {
                 Vector2 difference = thisEnemy.transform.position - position;
                 float thisDistance = difference.sqrMagnitude;
                 if (thisDistance < nearestDistance)
                 {
-                    nearestEnemy = thisEnemy;
+                    nearestTarget = thisEnemy;
                     nearestDistance = thisDistance;
                 }
             }
         }
-        enemy = nearestEnemy;
+        target = nearestTarget;
     }
 
     //called to make the ship take damage, and updates healthbar
@@ -103,9 +106,9 @@ public class ShipController : MonoBehaviour
         return health;
     }
 
-    public GameObject GetEnemy()
+    public GameObject GetTarget()
     {
-        return enemy;
+        return target;
     }
 
     public float GetFireRate()
@@ -141,5 +144,10 @@ public class ShipController : MonoBehaviour
     public int GetAviation()
     {
         return aviation;
+    }
+
+    public string GetTargetTag()
+    {
+        return targetTag;
     }
 }

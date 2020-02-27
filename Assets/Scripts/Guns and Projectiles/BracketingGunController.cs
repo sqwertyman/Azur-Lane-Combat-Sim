@@ -17,7 +17,7 @@ public class BracketingGunController : GunController
         for (; ; )
         {
             thisShip.FindNearestEnemy();
-            target = thisShip.GetEnemy();
+            target = thisShip.GetTarget();
 
             RecalculateAngles();
 

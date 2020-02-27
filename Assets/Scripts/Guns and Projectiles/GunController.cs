@@ -7,13 +7,14 @@ public class GunController : ProjectileWeaponController
 {
     protected int angle;
 
-    public override void Init(GunData gunData)
+    public override void Init()
     {
-        volleyTime = gunData.VolleyTime;
-        noOfShots = gunData.NoOfShots;
-        angle = gunData.Angle;
-        
-        base.Init(gunData);
+        GunData tempData = weaponData as GunData;
+        volleyTime = tempData.VolleyTime;
+        noOfShots = tempData.NoOfShots;
+        angle = tempData.Angle;
+
+        base.Init();
     }
 
     protected override void CalculateDamage()

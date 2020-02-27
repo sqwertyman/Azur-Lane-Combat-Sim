@@ -5,9 +5,18 @@ using UnityEngine;
 //subclass that handles only torpedo specifics
 public class TorpedoController : ProjectileWeaponController
 {
-    public override void Init(TorpedoData torpData)
+    private Vector3 targetDirection;
+
+    public override void Init()
     {
-        base.Init(torpData);
+        //base init first as targettag needs to be set
+        base.Init();
+
+        //select direction to fire based on target
+        if (targetTag == "Friendly")
+            targetDirection = -Vector3.right;
+        else
+            targetDirection = Vector3.right;
     }
 
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
@@ -21,7 +30,7 @@ public class TorpedoController : ProjectileWeaponController
 
             for (int x = 0; x < projPerShot; x++)
             {
-                FireProjectile(transform.position + Vector3.right, x);
+                FireProjectile(transform.position + targetDirection, x);
             }
             yield return new WaitForSeconds(reloadTime);
         }

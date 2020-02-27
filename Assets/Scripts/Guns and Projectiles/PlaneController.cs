@@ -10,12 +10,14 @@ public class PlaneController : MonoBehaviour
     private Rigidbody2D rb;
     private GameObject source;
     private AmmoData ammoData;
+    private string targetTag;
 
-    public void Init(int speed, int noOfProj, Sprite planeSprite, AmmoData ammoData, GameObject source)
+    public void Init(int speed, int noOfProj, Sprite planeSprite, AmmoData ammoData, GameObject source, string targetTag)
     {
         this.noOfProj = noOfProj;
         this.source = source;
         this.ammoData = ammoData;
+        this.targetTag = targetTag;
 
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = planeSprite;
@@ -42,7 +44,7 @@ public class PlaneController : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-10, -20));
         GameObject inst = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        inst.GetComponent<BaseProjectile>().Setup(spawnPos + Vector3.right, 0, ammoData, 200, source);
+        inst.GetComponent<BaseProjectile>().Setup(spawnPos + Vector3.right, 0, ammoData, 200, source, targetTag);
     }
 
     private bool AtEdgeOfScreen()

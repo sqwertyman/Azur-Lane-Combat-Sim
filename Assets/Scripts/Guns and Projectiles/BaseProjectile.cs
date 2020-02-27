@@ -15,16 +15,18 @@ public class BaseProjectile : MonoBehaviour
     protected GameObject source;
     protected AudioSource audioSource;
     protected AmmoData ammoData;
+    protected string targetTag;
     
-    public virtual void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source)
+    public virtual void Setup(Vector3 targetPos, float targetSpread, AmmoData ammoData, int range, GameObject source, string targetTag)
     {
 
     }
 
     //general setup for any projectile type
-    protected void GeneralSetup(AmmoData ammoData,  GameObject source)
+    protected void GeneralSetup(AmmoData ammoData,  GameObject source, string targetTag)
     {
         this.ammoData = ammoData;
+        this.targetTag = targetTag;
 
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = ammoData.Sprite;
