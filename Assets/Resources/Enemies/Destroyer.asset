@@ -10,20 +10,21 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37d1e9dc44c58d4896f9654f343e1d0, type: 3}
-  m_Name: Dummy
+  m_Name: Destroyer
   m_EditorClassIdentifier: 
-  name: Dummy
+  name: Enemy Destroyer
   id: 0
-  fleetType: 0
+  fleetType: 2
   shipClass: 0
   armour: 0
   sprite: {fileID: 161722362096049007, guid: e6157377aa84a884f962e324390c435e, type: 3}
-  health: 10000
+  health: 3000
   speed: 10
   reload: 0
   firepower: 0
   torpedo: 0
-  slot1: 
+  aviation: 0
+  slot1: 00000000
   noOfSlot1: 1
-  slot2: 
+  slot2: 04000000
   noOfSlot2: 1

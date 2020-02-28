@@ -17,14 +17,14 @@ public class LockonGunController : GunController
             yield return new WaitUntil(() => DistanceToNearest() <= range);
 
             //target enemy position, or straight ahead if no target or out of firing angle
-            float targetAngle = Vector2.Angle(Vector2.right, target.transform.position - transform.position);
+            float targetAngle = Vector2.Angle(targetDirection, target.transform.position - transform.position);
             if (target && targetAngle <= (angle / 2))
             {
                 targetPos = target.transform.position;
             }
             else
             {
-                targetPos = transform.position + Vector3.right;
+                targetPos = transform.position + targetDirection;
             }
 
             //nested for loops to instantiate projectiles for each shell of each wave, and play sfx

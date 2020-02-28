@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class ShipMenu : MonoBehaviour
 {
     public Dropdown shipDrop, slot1Drop, slot2Drop;
-    public MenuController menuController;
+    public FleetMenuController menuController;
 
     private string ship, slot1, slot2;
 

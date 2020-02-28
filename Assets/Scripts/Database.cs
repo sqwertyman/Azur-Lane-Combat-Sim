@@ -2,13 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-//various enums used. order of some important (mainly for armour multipliers)
+//various enums used. order of some important (mainly armour multipliers)
 public enum Class { DD, CL, CA, BB, BC, CV };
 public enum EquipmentType { DD, CL, CA, BB, Torpedo, Plane };
-public enum FleetType { Main, Vanguard };
+public enum FleetType { Main, Vanguard, Enemy };
 public enum ArmourType { Light, Medium, Heavy };
 public enum AmmoType { Normal, HE, AP, Torpedo, AirTorpedo };
-
 public enum FiringType { LockOn, Scattershot, Bracketing };
 
 //persistent database of all ships, guns, etc
@@ -34,50 +33,43 @@ public static class Database
     public static Dictionary<string, ShipData> ShipList { get => shipList; set => shipList = value; }
     public static Dictionary<string, WeaponData> GunList { get => gunList; set => gunList = value; }
 
+    public static string savePath, mainFileName, vanguardFileName, enemyFileName;
+
     public static void Start()
     {
+        savePath = Application.persistentDataPath + "/Saves";
+        mainFileName = "/mainshipsave";
+        vanguardFileName = "/vanguardshipsave";
+        enemyFileName = "/enemyshipsave";
+
         //shipList = new Dictionary<int, ShipData>();
         //gunList = new Dictionary<int, GunData>();
         shipList = new Dictionary<string, ShipData>();
         gunList = new Dictionary<string, WeaponData>();
-        LoadShips();
-        LoadGuns();
+
+        LoadAllData();
 
         InitArmourMultipliers();
     }
 
-    //use generics?
-    private static void LoadShips()
+    private static void LoadAllData()
     {
-        ShipData[] resources = Resources.LoadAll<ShipData>(@"Ships");
-        foreach (ShipData ship in resources)
-        {
-            //shipList.Add(ship.ID, ship);
-            shipList.Add(ship.Name, ship);
-        }
+        LoadData("Guns", gunList);
+        LoadData("Torpedoes", gunList);
+        LoadData("Planes", gunList);
+
+        LoadData("Ships", shipList);
+        LoadData("Enemies", shipList);
     }
 
-    private static void LoadGuns()
+    //generic method to load all T (a databaseitem) into the list from the resource folder directory
+    private static void LoadData<T>(string directory, Dictionary<string, T> list)
+        where T : DatabaseItem, new()
     {
-        WeaponData[] resources = Resources.LoadAll<WeaponData>(@"Guns");
-        foreach (GunData gun in resources)
+        T[] tempList = Resources.LoadAll<T>(directory);
+        foreach (T item in tempList)
         {
-            //gunList.Add(gun.ID, gun);
-            gunList.Add(gun.Name, gun);
-        }
-
-        resources = Resources.LoadAll<WeaponData>(@"Torpedoes");
-        foreach (TorpedoData torpedo in resources)
-        {
-            //gunList.Add(gun.ID, gun);
-            gunList.Add(torpedo.Name, torpedo);
-        }
-
-        resources = Resources.LoadAll<WeaponData>(@"Planes");
-        foreach (PlaneWeaponData plane in resources)
-        {
-            //gunList.Add(gun.ID, gun);
-            gunList.Add(plane.Name, plane);
+            list.Add(item.Name, item);
         }
     }
 

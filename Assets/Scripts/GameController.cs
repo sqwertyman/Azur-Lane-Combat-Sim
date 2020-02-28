@@ -14,7 +14,7 @@ public class GameController : MonoBehaviour
     public GameObject[] mainSpawns = new GameObject[3];
     public ShipLoadoutData[] vanguardLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData[] mainLoadouts = new ShipLoadoutData[3];
-    public ShipLoadoutData enemyData;
+    public ShipLoadoutData[] enemyLoadouts = new ShipLoadoutData[2];
     public Canvas pauseCanvas, gameCanvas, gameOverCanvas;
 
     private GameObject currentTarget;
@@ -77,7 +77,7 @@ public class GameController : MonoBehaviour
         //load enemies
         for (int x = 0 ; x < enemyFleet.Capacity ; x++)
         {
-            LoadShip(enemyData, enemySpawns[x].transform.position, enemyFleet, enemyObject, "Friendly");
+            LoadShip(enemyLoadouts[x], enemySpawns[x].transform.position, enemyFleet, enemyObject, "Friendly");
         }
 
         //load vanguard ships

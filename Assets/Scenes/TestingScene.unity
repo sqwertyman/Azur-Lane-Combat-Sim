@@ -1035,6 +1035,18 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 7071556487156599320, guid: 09e109b9797425443ab671a867f66462,
         type: 3}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: enemyLoadouts.Array.data[0]
+      value: 
+      objectReference: {fileID: 11400000, guid: 6be68038c9c9c1045810b11eebbdb8a9,
+        type: 2}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: enemyLoadouts.Array.data[1]
+      value: 
+      objectReference: {fileID: 11400000, guid: 5746e160727032a4e92519728dbab2c0,
+        type: 2}
     - target: {fileID: 4942762273560811747, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
       propertyPath: m_Name

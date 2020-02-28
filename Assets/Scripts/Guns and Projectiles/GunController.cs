@@ -6,6 +6,7 @@ using UnityEngine;
 public class GunController : ProjectileWeaponController
 {
     protected int angle;
+    protected Vector3 targetDirection;
 
     public override void Init()
     {
@@ -15,6 +16,12 @@ public class GunController : ProjectileWeaponController
         angle = tempData.Angle;
 
         base.Init();
+
+        //select direction to fire based on target
+        if (targetTag == "Friendly")
+            targetDirection = -Vector3.right;
+        else
+            targetDirection = Vector3.right;
     }
 
     protected override void CalculateDamage()

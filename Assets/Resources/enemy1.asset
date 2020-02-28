@@ -13,5 +13,5 @@ MonoBehaviour:
   m_Name: enemy1
   m_EditorClassIdentifier: 
   ship: {fileID: 11400000, guid: 53ae9568206d2d148b68cc8c9d0e6c5c, type: 2}
-  slot1: {fileID: 11400000, guid: a674dade050be6d4485217c1cfca5240, type: 2}
-  slot2: {fileID: 11400000, guid: 19e677041d3f73d42b4a4a8e25c8276d, type: 2}
+  slot1: {fileID: 11400000, guid: fd064593c0c2c2d4faa788c923361f92, type: 2}
+  slot2: {fileID: 0}
