@@ -6,11 +6,9 @@ using UnityEngine.UI;
 
 public class PauseController : MonoBehaviour
 {
-    public GameObject gameController;
-
     public void Resume()
     {
-        gameController.GetComponent<GameController>().SwitchPauseState();
+        gameObject.GetComponent<GameController>().SwitchPauseState();
     }
 
     public void Exit()

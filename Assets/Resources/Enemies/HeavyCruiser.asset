@@ -24,6 +24,8 @@ MonoBehaviour:
   firepower: 0
   torpedo: 0
   aviation: 0
+  accuracy: 100
+  evasion: 20
   slot1: 02000000
   noOfSlot1: 1
   slot2: 00000000

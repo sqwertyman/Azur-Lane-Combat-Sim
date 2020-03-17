@@ -42,7 +42,11 @@ public class DamageNumber : MonoBehaviour
     //used to set details on instantiation
     public void Init(int damage, Color textColour)
     {
-        text.text = damage.ToString();
+        if (damage == 0)
+            text.text = "miss";
+        else
+            text.text = damage.ToString();
+
         renderer.material.color = textColour;
         transform.position += new Vector3(0, 0, depthOffset);
 

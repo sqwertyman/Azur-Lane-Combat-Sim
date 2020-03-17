@@ -21,16 +21,17 @@ public class GameController : MonoBehaviour
     private List<GameObject> vanguardFleet = new List<GameObject>(3);
     private List<GameObject> mainFleet = new List<GameObject>(3);
     private List<GameObject> enemyFleet = new List<GameObject>(2);
-    private bool paused, gameOver;
+    private bool paused, victory, defeat;
     private float fleetSpeed;
 
     void Awake()
     {
         Time.timeScale = 1;
         paused = false;
-        gameOver = false;
+        victory = false;
+        defeat = false;
         StartGame();
-        EventManager.StartListening("enemy died", HandleEnemyDied);
+        EventManager.StartListening("ship died", ShipDied);
     }
 
     void Update()
@@ -48,23 +49,28 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //called if an enemy dies. the dying enemy *should* trigger the event. removes enemy from fleet list, and checks for game over
-    void HandleEnemyDied(GameObject dead)
+    //called if an ship dies. the dying ship *should* trigger the event. removes ship from fleet list, and checks for game over
+    void ShipDied(GameObject dead)
     {
+        //try to remove dead ship from all fleet lists (nothing will happen if it doesn't exist in the list)
         enemyFleet.Remove(dead);
+        vanguardFleet.Remove(dead);
+        mainFleet.Remove(dead);
+
         CheckGameOver();
     }
 
-    //checks whether the game has ended, and ends it if so. will have more use later
+    //checks whether the game has ended in victory of defeat, and ends it if so. will have more use later
     void CheckGameOver()
     {
         if (enemyFleet.Count == 0)
-        {
-            gameOver = true;
-        }
+            victory = true;
+        else if (vanguardFleet.Count == 0 || mainFleet.Count == 0)
+            defeat = true;
 
-        if (gameOver)
+        if (victory || defeat)
         {
+            gameOverCanvas.GetComponent<GameOverController>().Init(victory);
             gameOverCanvas.gameObject.SetActive(true);
             gameCanvas.gameObject.SetActive(false);
             Time.timeScale = 0;

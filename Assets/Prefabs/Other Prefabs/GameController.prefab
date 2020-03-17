@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 4942762273560811745}
   - component: {fileID: 4942762273560811746}
   - component: {fileID: 7208594427571945264}
+  - component: {fileID: 1474020337}
   m_Layer: 0
   m_Name: GameController
   m_TagString: GameController
@@ -44,19 +45,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815dd0001f807024194e68c5fd83b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  friendlySpawn: {fileID: 0}
-  enemyObject: {fileID: 0}
-  shipObject: {fileID: 0}
-  gunObject: {fileID: 0}
-  torpedoObject: {fileID: 0}
+  vanguardSpawn: {fileID: 0}
+  enemyObject: {fileID: 6642478477606611311, guid: 42e1f45516b96d7489fa89669cfb573c,
+    type: 3}
+  shipObject: {fileID: 8766707748262291900, guid: f571376df6e57f54889569a1072c7894,
+    type: 3}
+  lockonGunObject: {fileID: 7071556487156599320, guid: 7735e4fa19db00c40bb49538a4099565,
+    type: 3}
+  bracketingGunObject: {fileID: 7071556487156599320, guid: 09e109b9797425443ab671a867f66462,
+    type: 3}
+  scattershotGunObject: {fileID: 7071556487156599320, guid: 1fd662ecdeb5bfd4fb2622937ad2b6b3,
+    type: 3}
+  torpedoObject: {fileID: 7071556487156599320, guid: e5035b5585967f14ca5f830fcafb847a,
+    type: 3}
+  planeObject: {fileID: 7071556487156599320, guid: 4213b75af7ba1a5489445ae3d107221c,
+    type: 3}
   enemySpawns:
   - {fileID: 0}
   - {fileID: 0}
-  shipLoadouts:
+  mainSpawns:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  enemyData: {fileID: 0}
+  vanguardLoadouts:
+  - {fileID: 11400000, guid: a82c703d2c653fa4c8a35436852d912e, type: 2}
+  - {fileID: 11400000, guid: b0ac8551f77a3df40a7b4c7451ea52a1, type: 2}
+  - {fileID: 11400000, guid: c43175556a5a2eb43b2dead3e7813cfb, type: 2}
+  mainLoadouts:
+  - {fileID: 11400000, guid: 1be90106cdc334b47a5f54943db06989, type: 2}
+  - {fileID: 11400000, guid: e2f15a68fa4dd5a478c696cd6a50c69f, type: 2}
+  - {fileID: 11400000, guid: a5d4b25aee5f2cd4e987fdef9de348f4, type: 2}
+  enemyLoadouts:
+  - {fileID: 11400000, guid: 6be68038c9c9c1045810b11eebbdb8a9, type: 2}
+  - {fileID: 11400000, guid: 5746e160727032a4e92519728dbab2c0, type: 2}
   pauseCanvas: {fileID: 0}
   gameCanvas: {fileID: 0}
   gameOverCanvas: {fileID: 0}
@@ -70,5 +91,17 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 7422c23ed76a81c4fb8d616f240d5a1b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1474020337
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4942762273560811747}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b0b6174ca9f5a8a4592f8267fa0fffc8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 

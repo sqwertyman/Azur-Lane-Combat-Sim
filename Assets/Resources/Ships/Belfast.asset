@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Belfast
   id: 115
+  fleetType: 1
+  shipClass: 1
+  armour: 0
   sprite: {fileID: 8114255583150467457, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 3970
   speed: 32
   reload: 182
   firepower: 179
   torpedo: 340
+  aviation: 0
+  accuracy: 160
+  evasion: 96
   slot1: 01000000
+  noOfSlot1: 1
   slot2: 04000000
-  fleetType: 1
-  armour: 0
+  noOfSlot2: 1

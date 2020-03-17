@@ -13,7 +13,7 @@ public class ShipController : MonoBehaviour
     public float hitFlashIntensity;
     public float hitFlashTime;
 
-    private int maxHealth, firepower, health, torpedo, aviation;
+    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion;
     private float speed, reload;
     private GameObject target;
     private ArmourType armour;
@@ -36,6 +36,8 @@ public class ShipController : MonoBehaviour
         torpedo = ship.Torpedo;
         armour = ship.Armour;
         aviation = ship.Aviation;
+        accuracy = ship.Accuracy;
+        evasion = ship.Evasion;
         if (loadoutData.Slot1)
         {
             firepower += loadoutData.Slot1.Firepower;
@@ -54,7 +56,7 @@ public class ShipController : MonoBehaviour
         //triggers appropriate event and destroys the gameobject, if health reaches 0 (dead)
         if (health <= 0)
         {
-            EventManager.TriggerEvent("enemy died", gameObject);
+            EventManager.TriggerEvent("ship died", gameObject);
             Destroy(gameObject);
         }
     }
@@ -82,15 +84,30 @@ public class ShipController : MonoBehaviour
         target = nearestTarget;
     }
 
-    //called to make the ship take damage, and updates healthbar
-    public void TakeDamage(GameObject source)
+    //called to make the ship take damage, and updates healthbar. returns true when not evaded, for damage number spawning
+    public bool TakeDamage(GameObject source)
     {
-        //restart visual effect coroutine
-        StopCoroutine("FlashSprite");
-        StartCoroutine("FlashSprite");
+        ShipController attacker = source.GetComponentInParent<ShipController>();
+        
+        //evasion chance
+        float hitChance = 0.1f + (attacker.GetAccuracy() / (attacker.GetAccuracy()+evasion+2f));
 
-        health -= source.GetComponent<WeaponController>().GetDamage(armour);
-        healthBar.fillAmount = (float)health / maxHealth;
+        if (Random.Range(0.1f, 1f) <= hitChance)
+        {
+            //restart visual effect coroutine
+            StopCoroutine("FlashSprite");
+            StartCoroutine("FlashSprite");
+
+            health -= source.GetComponent<WeaponController>().GetDamage(armour);
+            healthBar.fillAmount = (float)health / maxHealth;
+
+            return true;
+        }
+        else
+        {
+            //evaded
+            return false;
+        }
     }
 
     //makes the sprite flash as a visual effect
@@ -149,5 +166,10 @@ public class ShipController : MonoBehaviour
     public string GetTargetTag()
     {
         return targetTag;
+    }
+
+    public int GetAccuracy()
+    {
+        return accuracy;
     }
 }

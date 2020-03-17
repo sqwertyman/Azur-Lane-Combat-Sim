@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Ajax
   id: 106
-  sprite: {fileID: 549610850968800891, guid: e6157377aa84a884f962e324390c435e, type: 3}
-  health: 3214
-  speed: 32
-  reload: 180
-  firepower: 213
-  torpedo: 359
-  slot1: 01000000
-  slot2: 04000000
   fleetType: 1
+  shipClass: 1
   armour: 0
+  sprite: {fileID: 549610850968800891, guid: e6157377aa84a884f962e324390c435e, type: 3}
+  health: 2974
+  speed: 32
+  reload: 175
+  firepower: 163
+  torpedo: 324
+  aviation: 0
+  accuracy: 148
+  evasion: 97
+  slot1: 01000000
+  noOfSlot1: 1
+  slot2: 04000000
+  noOfSlot2: 1

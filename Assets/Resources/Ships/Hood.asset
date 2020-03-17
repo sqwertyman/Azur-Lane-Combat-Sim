@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Hood
   id: 129
+  fleetType: 0
+  shipClass: 4
+  armour: 1
   sprite: {fileID: 8216866832853643077, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 8445
   speed: 31
   reload: 159
   firepower: 343
   torpedo: 0
+  aviation: 0
+  accuracy: 68
+  evasion: 37
   slot1: 03000000
+  noOfSlot1: 1
   slot2: 00000000
-  fleetType: 0
-  armour: 1
+  noOfSlot2: 1

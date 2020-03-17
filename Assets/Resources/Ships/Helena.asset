@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Helena
   id: 33
+  fleetType: 1
+  shipClass: 1
+  armour: 0
   sprite: {fileID: 5216559275792777423, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 3604
   speed: 32
   reload: 185
   firepower: 171
   torpedo: 0
+  aviation: 0
+  accuracy: 175
+  evasion: 90
   slot1: 01000000
+  noOfSlot1: 1
   slot2: 00000000
-  fleetType: 1
-  armour: 0
+  noOfSlot2: 1

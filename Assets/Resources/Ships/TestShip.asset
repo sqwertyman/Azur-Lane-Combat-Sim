@@ -10,23 +10,23 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b37d1e9dc44c58d4896f9654f343e1d0, type: 3}
-  m_Name: Laffey
+  m_Name: TestShip
   m_EditorClassIdentifier: 
-  name: Laffey
-  id: 19
+  name: Test
+  id: 0
   fleetType: 1
   shipClass: 0
   armour: 0
-  sprite: {fileID: 2512016244973588079, guid: e6157377aa84a884f962e324390c435e, type: 3}
-  health: 1980
-  speed: 45
-  reload: 220
-  firepower: 101
-  torpedo: 302
+  sprite: {fileID: 21300000, guid: 0fe0630a5042aba40978bc3ed45577f7, type: 3}
+  health: 100
+  speed: 10
+  reload: 0
+  firepower: 0
+  torpedo: 0
   aviation: 0
-  accuracy: 205
-  evasion: 163
+  accuracy: 0
+  evasion: 0
   slot1: 00000000
   noOfSlot1: 1
-  slot2: 04000000
+  slot2: 00000000
   noOfSlot2: 1

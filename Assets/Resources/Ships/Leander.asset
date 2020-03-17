@@ -14,13 +14,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   name: Leander
   id: 104
-  sprite: {fileID: 3365752292109705745, guid: e6157377aa84a884f962e324390c435e, type: 3}
-  health: 3486
-  speed: 32
-  reload: 176
-  firepower: 196
-  torpedo: 305
-  slot1: 01000000
-  slot2: 04000000
   fleetType: 1
+  shipClass: 1
   armour: 0
+  sprite: {fileID: 3365752292109705745, guid: e6157377aa84a884f962e324390c435e, type: 3}
+  health: 3246
+  speed: 32
+  reload: 171
+  firepower: 146
+  torpedo: 270
+  aviation: 0
+  accuracy: 145
+  evasion: 102
+  slot1: 01000000
+  noOfSlot1: 1
+  slot2: 04000000
+  noOfSlot2: 1
