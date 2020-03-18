@@ -10,7 +10,7 @@ public class WeaponData : DatabaseItem
     [SerializeField]
     private int firepower, torpedo, damage;
     [SerializeField]
-    private float startDelay;
+    private float preFireTime, postFireTime;
     [SerializeField]
     private float fireRate;
     [SerializeField]
@@ -21,7 +21,7 @@ public class WeaponData : DatabaseItem
     public EquipmentType Type { get => type; set => type = value; }
     public int Firepower { get => firepower; set => firepower = value; }
     public int Torpedo { get => torpedo; set => torpedo = value; }
-    public float StartDelay { get => startDelay; set => startDelay = value; }
+    public float PreFireTime { get => preFireTime; set => preFireTime = value; }
     public float FireRate { get => fireRate; set => fireRate = value; }
     public int Damage { get => damage; set => damage = value; }
     public AmmoData Ammo { get => ammo; set => ammo = value; }
@@ -29,4 +29,5 @@ public class WeaponData : DatabaseItem
     public Color DmgNumberColour { get => ammo.DmgNumberColour; set => ammo.DmgNumberColour = value; }
     public int ProjectileSpeed { get => ammo.ProjectileSpeed; set => ammo.ProjectileSpeed = value; }
     public AudioClip Sfx { get => sfx; set => sfx = value; }
+    public float PostFireTime { get => postFireTime; set => postFireTime = value; }
 }

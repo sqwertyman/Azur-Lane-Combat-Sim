@@ -10,6 +10,19 @@ public enum ArmourType { Light, Medium, Heavy };
 public enum AmmoType { Normal, HE, AP, Torpedo, AirTorpedo };
 public enum FiringType { LockOn, Scattershot, Bracketing };
 
+//struct for storing data about a damage instance. used for damage numbers
+public struct DamageStruct
+{
+    public DamageStruct(int _damage, bool _crit)
+    {
+        damage = _damage;
+        crit = _crit;
+    }
+
+    public int damage;
+    public bool crit;
+}
+
 //persistent database of all ships, guns, etc
 public static class Database
 {

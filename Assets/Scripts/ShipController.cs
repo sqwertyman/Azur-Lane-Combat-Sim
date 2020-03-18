@@ -13,7 +13,7 @@ public class ShipController : MonoBehaviour
     public float hitFlashIntensity;
     public float hitFlashTime;
 
-    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion;
+    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion, luck;
     private float speed, reload;
     private GameObject target;
     private ArmourType armour;
@@ -38,6 +38,8 @@ public class ShipController : MonoBehaviour
         aviation = ship.Aviation;
         accuracy = ship.Accuracy;
         evasion = ship.Evasion;
+        luck = ship.Luck;
+
         if (loadoutData.Slot1)
         {
             firepower += loadoutData.Slot1.Firepower;
@@ -84,29 +86,34 @@ public class ShipController : MonoBehaviour
         target = nearestTarget;
     }
 
-    //called to make the ship take damage, and updates healthbar. returns true when not evaded, for damage number spawning
-    public bool TakeDamage(GameObject source)
+    //called to make the ship take damage, and updates healthbar. updates ref struct holding damage dealt (0 if evaded)
+    public void TakeDamage(GameObject source, ref DamageStruct damageInfo)
     {
         ShipController attacker = source.GetComponentInParent<ShipController>();
-        
-        //evasion chance
-        float hitChance = 0.1f + (attacker.GetAccuracy() / (attacker.GetAccuracy()+evasion+2f));
 
-        if (Random.Range(0.1f, 1f) <= hitChance)
+        //evasion chance
+        float hitChance = 0.1f + (attacker.GetAccuracy() / (attacker.GetAccuracy() + evasion + 2f)) + ((attacker.GetLuck() - luck) / 1000f);
+        //crit chance
+        float critChance = 0.05f + (attacker.GetAccuracy() / (attacker.GetAccuracy() + evasion + 2000f)) + ((attacker.GetLuck() - luck) / 5000f);
+
+        //check for evade
+        if (Random.Range(0f, 1f) <= hitChance)
         {
             //restart visual effect coroutine
             StopCoroutine("FlashSprite");
             StartCoroutine("FlashSprite");
 
-            health -= source.GetComponent<WeaponController>().GetDamage(armour);
-            healthBar.fillAmount = (float)health / maxHealth;
+            damageInfo.damage = source.GetComponent<WeaponController>().GetDamage(armour);
 
-            return true;
-        }
-        else
-        {
-            //evaded
-            return false;
+            //crit multiplies by 1.5
+            if (Random.Range(0f, 1f) <= critChance)
+            {
+                damageInfo.damage = (int)(damageInfo.damage * 1.5f);
+                damageInfo.crit = true;
+            }
+            
+            health -= damageInfo.damage;
+            healthBar.fillAmount = (float)health / maxHealth;
         }
     }
 
@@ -171,5 +178,10 @@ public class ShipController : MonoBehaviour
     public int GetAccuracy()
     {
         return accuracy;
+    }
+
+    public int GetLuck()
+    {
+        return luck;
     }
 }

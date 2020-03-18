@@ -40,20 +40,21 @@ public class DamageNumber : MonoBehaviour
     }
 
     //used to set details on instantiation
-    public void Init(int damage, Color textColour)
+    public void Init(DamageStruct damageInfo, Color textColour)
     {
-        if (damage == 0)
+        //0 if evaded
+        if (damageInfo.damage == 0)
             text.text = "miss";
         else
-            text.text = damage.ToString();
+            text.text = damageInfo.damage.ToString();
 
         renderer.material.color = textColour;
         transform.position += new Vector3(0, 0, depthOffset);
 
-        //increase size if damage is large. could be more complex with gradual scaling
-        if (damage > 200)
+        //increase size if damage is large/crit. could be more complex with gradual scaling
+        if (damageInfo.damage > 200 || damageInfo.crit)
         {
-            text.fontSize += 10;
+            text.fontSize += 12;
         }
     }
 }

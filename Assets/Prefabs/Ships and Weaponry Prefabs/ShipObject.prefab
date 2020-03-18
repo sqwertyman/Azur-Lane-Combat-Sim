@@ -136,8 +136,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   healthBar: {fileID: 1354798415294931998}
   healthBarColour: {r: 0.0627451, g: 0.94509804, b: 0.078431375, a: 1}
-  hitFlashIntensity: 0
-  hitFlashTime: 0
+  hitFlashIntensity: 0.5
+  hitFlashTime: 0.05
 --- !u!1001 &969202953358386960
 PrefabInstance:
   m_ObjectHideFlags: 0

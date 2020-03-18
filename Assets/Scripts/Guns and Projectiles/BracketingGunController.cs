@@ -9,13 +9,13 @@ public class BracketingGunController : GunController
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
     protected override IEnumerator FiringLoop()
     {
-        yield return new WaitForSeconds(startDelay);
-        yield return new WaitForSeconds(reloadTime);
-
         Vector3 targetPos;
 
         for (; ; )
         {
+            yield return new WaitForSeconds(preFireTime);
+            yield return new WaitForSeconds(reloadTime);
+
             thisShip.FindNearestEnemy();
             target = thisShip.GetTarget();
 
@@ -36,6 +36,8 @@ public class BracketingGunController : GunController
                 FireProjectile(targetPos, y);
                 yield return new WaitForSeconds(individualProjDelay);
             }
+
+            yield return new WaitForSeconds(postFireTime);
 
             yield return new WaitForSeconds(reloadTime);
         }

@@ -35,18 +35,12 @@ public class BaseProjectile : MonoBehaviour
         startPos = transform.position;
     }
 
-    //spawns a damage number/indicator at pos with value damage
-    protected void SpawnDamageNumber(ArmourType armour, bool hit)
+    //spawns a damage number/indicator at pos with value damage held in the struct
+    protected void SpawnDamageNumber(DamageStruct damageInfo)
     {
-        int damage;
-        if (hit)
-            damage = source.GetComponent<WeaponController>().GetDamage(armour);
-        else
-            damage = 0;
-
         //mathf.clamp here to keep on screen if needed later
         GameObject dmgNumber = Instantiate(dmgNumberPrefab, transform.position, Quaternion.identity);
-        dmgNumber.GetComponent<DamageNumber>().Init(damage, ammoData.DmgNumberColour);
+        dmgNumber.GetComponent<DamageNumber>().Init(damageInfo, ammoData.DmgNumberColour);
     }
 
     //for when the projectile needs to die. either the hit or miss audioclip is passed in to be played
@@ -62,13 +56,14 @@ public class BaseProjectile : MonoBehaviour
         Destroy(gameObject, hitSound.length + missSound.length);
     }
 
-    //tells collider's ship to take damage
+    //tells collider's ship to take damage, gets damage dealt back through ref struct
     protected void DealDamage(Collider2D collision)
     {
         var ship = collision.GetComponent<ShipController>();
 
-        bool hit = ship.TakeDamage(source);
-        SpawnDamageNumber(ship.GetArmour(), hit);
+        DamageStruct damageInfo = new DamageStruct(0, false);
+        ship.TakeDamage(source, ref damageInfo);
+        SpawnDamageNumber(damageInfo);
     }
 
     //takes a bool denoting whether the proj has hit or missed, and plays the appropriate visual and sound effects

@@ -16,7 +16,7 @@ public class ShipData : DatabaseItem
     [SerializeField]
     private Sprite sprite;
     [SerializeField]
-    private int health, speed, reload, firepower, torpedo, aviation, accuracy, evasion;
+    private int health, speed, reload, firepower, torpedo, aviation, accuracy, evasion, luck;
     [SerializeField]
     private EquipmentType[] slot1 = new EquipmentType[1];
     [SerializeField]
@@ -42,4 +42,5 @@ public class ShipData : DatabaseItem
     public int Aviation { get => aviation; set => aviation = value; }
     public int Accuracy { get => accuracy; set => accuracy = value; }
     public int Evasion { get => evasion; set => evasion = value; }
+    public int Luck { get => luck; set => luck = value; }
 }

@@ -22,16 +22,19 @@ public class TorpedoController : ProjectileWeaponController
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
     protected override IEnumerator FiringLoop()
     {
-        yield return new WaitForSeconds(startDelay);
-
         for (; ; )
         {
             //thisShip.FindNearestEnemy();
+
+            yield return new WaitForSeconds(preFireTime);
 
             for (int x = 0; x < projPerShot; x++)
             {
                 FireProjectile(transform.position + targetDirection, x);
             }
+
+            yield return new WaitForSeconds(postFireTime);
+
             yield return new WaitForSeconds(reloadTime);
         }
     }

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    protected float startDelay, fireRate, reloadTime;
+    protected float preFireTime, postFireTime, fireRate, reloadTime;
     protected int damage, finalDamage, projectileSpeed;
     protected ShipController thisShip;
     protected Color dmgNumberColour;
@@ -25,7 +25,8 @@ public class WeaponController : MonoBehaviour
 
         gameObject.name = weaponData.name;
         gunClass = weaponData.Type;
-        startDelay = weaponData.StartDelay;
+        preFireTime = weaponData.PreFireTime;
+        postFireTime = weaponData.PostFireTime;
         fireRate = weaponData.FireRate;
         damage = weaponData.Damage;
         ammo = weaponData.Ammo.Ammo;
@@ -49,7 +50,7 @@ public class WeaponController : MonoBehaviour
     //fires pattern at regular intervals, based on startDelay, fireRate, etc.
     protected virtual IEnumerator FiringLoop()
     {
-        yield return new WaitForSeconds(startDelay);
+        yield return new WaitForSeconds(preFireTime);
     }
 
     protected void CalculateReloadTime()

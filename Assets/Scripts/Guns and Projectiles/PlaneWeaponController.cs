@@ -23,7 +23,7 @@ public class PlaneWeaponController : WeaponController
     //spawns a plane once every reloadtime
     protected override IEnumerator FiringLoop()
     {
-        yield return new WaitForSeconds(startDelay);
+        yield return new WaitForSeconds(preFireTime);
         yield return new WaitForSeconds(reloadTime);
 
         for (; ; )

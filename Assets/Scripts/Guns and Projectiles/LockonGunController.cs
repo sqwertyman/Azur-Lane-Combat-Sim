@@ -7,12 +7,12 @@ public class LockonGunController : GunController
     //fires pattern at regular intervals, based on startDelay, fireRate, etc. fires towards target
     protected override IEnumerator FiringLoop()
     {
-        yield return new WaitForSeconds(startDelay);
-
         Vector3 targetPos;
 
         for (; ; )
         {
+            yield return new WaitForSeconds(preFireTime);
+
             //waits until nearest enemy is within the gun's range
             yield return new WaitUntil(() => DistanceToNearest() <= range);
 
@@ -36,6 +36,9 @@ public class LockonGunController : GunController
                 }
                 yield return new WaitForSeconds(volleyTime);
             }
+
+            yield return new WaitForSeconds(postFireTime);
+
             yield return new WaitForSeconds(reloadTime);
         }
     }

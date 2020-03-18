@@ -18,13 +18,15 @@ MonoBehaviour:
   firepower: 25
   torpedo: 0
   damage: 21
-  startDelay: 0.5
+  preFireTime: 0.18
+  postFireTime: 0.1
   fireRate: 1.38
   ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}
   sfx: {fileID: 8300000, guid: 2b6e13f649cbc2c468de23cc74c4babb, type: 3}
   range: 65
   projPerShot: 1
   spread: 5
+  firingType: 0
   volleyTime: 0
   noOfShots: 1
   angle: 120
