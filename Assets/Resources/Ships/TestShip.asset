@@ -15,18 +15,19 @@ MonoBehaviour:
   name: Test
   id: 0
   fleetType: 1
-  shipClass: 0
+  shipClass: 1
   armour: 0
-  sprite: {fileID: 21300000, guid: 0fe0630a5042aba40978bc3ed45577f7, type: 3}
-  health: 100
+  sprite: {fileID: 549610850968800891, guid: e6157377aa84a884f962e324390c435e, type: 3}
+  health: 1000
   speed: 10
-  reload: 0
-  firepower: 0
+  reload: 100
+  firepower: 100
   torpedo: 0
   aviation: 0
-  accuracy: 0
+  accuracy: 100
   evasion: 0
-  slot1: 00000000
-  noOfSlot1: 1
+  luck: 50
+  slot1: 01000000
+  slot1Mounts: 2
   slot2: 00000000
-  noOfSlot2: 1
+  slot2Mounts: 4

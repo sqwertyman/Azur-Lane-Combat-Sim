@@ -9,18 +9,20 @@ public class ScattershotGunController : GunController
     {
         for (; ; )
         {
-            yield return new WaitForSeconds(preFireTime);
-
             //waits until nearest enemy is within the gun's range
-            yield return new WaitUntil(() => DistanceToNearest() <= range);
+            yield return new WaitUntil(() => DistanceToNearest() <= firingRange);
 
-            //need nested for >2 waves?
-            for (int x = 0; x < projPerShot; x++)
+            for (int x = 0; x < noOfMounts; x++)
             {
-                FireProjectile(transform.position + targetDirection, x);
-            }
+                yield return new WaitForSeconds(preFireTime);
 
-            yield return new WaitForSeconds(postFireTime);
+                //need nested for >2 waves?
+                for (int y = 0; y < projPerShot; y++)
+                {
+                    FireProjectile(transform.position + targetDirection, y);
+                }
+                yield return new WaitForSeconds(postFireTime);
+            }
 
             yield return new WaitForSeconds(reloadTime);
         }

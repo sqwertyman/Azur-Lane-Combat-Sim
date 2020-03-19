@@ -5,7 +5,7 @@ using UnityEngine;
 public class WeaponController : MonoBehaviour
 {
     protected float preFireTime, postFireTime, fireRate, reloadTime;
-    protected int damage, finalDamage, projectileSpeed;
+    protected int damage, finalDamage, projectileSpeed, noOfMounts;
     protected ShipController thisShip;
     protected Color dmgNumberColour;
     protected EquipmentType gunClass;
@@ -82,9 +82,10 @@ public class WeaponController : MonoBehaviour
         audioSource.Play();
     }
 
-    //set the weapon's data. separate from init method to prevent excessive duplicate methods, and tidy up the gun initialisations
-    public void SetWeaponData(WeaponData weaponData)
+    //set the weapon's data. separate from init method to prevent excessive duplicate methods, and tidy up the gun initialisations. just set mounts here as convinent
+    public void SetWeaponData(WeaponData weaponData, int noOfMounts)
     {
         this.weaponData = weaponData;
+        this.noOfMounts = noOfMounts;
     }
 }

@@ -128,8 +128,8 @@ public class GameController : MonoBehaviour
             var tempShip = Instantiate(prefab, spawnPos, Quaternion.identity);
             tempShip.GetComponent<ShipController>().Init(shipLoadout, targetTag);
 
-            LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.NoOfSlot1);
-            LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.NoOfSlot2);
+            LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts);
+            LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts);
 
             fleetList.Add(tempShip);
 
@@ -163,12 +163,9 @@ public class GameController : MonoBehaviour
                     prefab = lockonGunObject;
             }
 
-            for (int i = 0; i < noToLoad; i++)
-            {
-                var gunInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
-                gunInst.GetComponent<WeaponController>().SetWeaponData(toLoad);
-                gunInst.GetComponent<WeaponController>().Init();
-            }
+            var gunInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
+            gunInst.GetComponent<WeaponController>().SetWeaponData(toLoad, noToLoad);
+            gunInst.GetComponent<WeaponController>().Init();
         }
     }
 

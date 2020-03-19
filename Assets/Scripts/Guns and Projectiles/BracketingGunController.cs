@@ -13,33 +13,35 @@ public class BracketingGunController : GunController
 
         for (; ; )
         {
-            yield return new WaitForSeconds(preFireTime);
             yield return new WaitForSeconds(reloadTime);
 
-            thisShip.FindNearestEnemy();
-            target = thisShip.GetTarget();
-
-            RecalculateAngles();
-
-            //fires at target, or straight ahead if no target exists
-            if (target)
+            for (int x = 0; x < noOfMounts; x++)
             {
-                targetPos = target.transform.position;
-            }
-            else
-            {
-                targetPos = transform.position + Vector3.right;
-            }
+                yield return new WaitForSeconds(preFireTime);
 
-            for (int y = 0; y < projPerShot; y++)
-            {
-                FireProjectile(targetPos, y);
-                yield return new WaitForSeconds(individualProjDelay);
+                thisShip.FindNearestEnemy();
+                target = thisShip.GetTarget();
+
+                RecalculateAngles();
+
+                //fires at target, or straight ahead if no target exists
+                if (target)
+                {
+                    targetPos = target.transform.position;
+                }
+                else
+                {
+                    targetPos = transform.position + Vector3.right;
+                }
+
+                for (int y = 0; y < projPerShot; y++)
+                {
+                    FireProjectile(targetPos, y);
+                    yield return new WaitForSeconds(individualProjDelay);
+                }
+
+                yield return new WaitForSeconds(postFireTime);
             }
-
-            yield return new WaitForSeconds(postFireTime);
-
-            yield return new WaitForSeconds(reloadTime);
         }
     }
 

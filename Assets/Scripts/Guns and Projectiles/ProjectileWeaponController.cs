@@ -11,7 +11,7 @@ public class ProjectileWeaponController : WeaponController
     protected float projectileSpacing;
 
     protected float volleyTime, spread;
-    protected int noOfShots, projPerShot, range;
+    protected int noOfShots, projPerShot, firingRange, projRange;
     protected GameObject target;
     protected float[] projSpreads;
     protected float[] projOffsets;
@@ -19,7 +19,8 @@ public class ProjectileWeaponController : WeaponController
     public override void Init()
     {
         ProjectileWeaponData newTempData = weaponData as ProjectileWeaponData;
-        range = newTempData.Range * 2; //mulitplied to exaggerate for now
+        firingRange = newTempData.FiringRange * 2; //mulitplied to exaggerate for now
+        projRange = newTempData.ProjRange * 2;  //same here
         projPerShot = newTempData.ProjPerShot;
         spread = newTempData.Spread;
 
@@ -89,15 +90,12 @@ public class ProjectileWeaponController : WeaponController
         return ((int)((finalDamage * multiplier)) + Random.Range(-1, 3));
     }
 
-    //turns the gun to look at target, instantiates the projectile prefab with data, and plays sound
+    //instantiates the projectile prefab with data, and plays sound
     protected virtual void FireProjectile(Vector3 targetPosition, int projNumber)
     {
-        Vector3 offset = transform.up * projOffsets[projNumber];
-        transform.LookAt(targetPosition);
+        Vector3 offset = transform.up * projOffsets[projNumber];        
 
         GameObject lastProj = Instantiate(projectilePrefab, transform.position + offset, Quaternion.identity);
-        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, range, gameObject, targetTag);
-
-        PlayFireSound();
+        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, projRange, gameObject, targetTag);
     }
 }

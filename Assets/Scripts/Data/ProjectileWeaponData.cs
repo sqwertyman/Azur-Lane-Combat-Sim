@@ -6,11 +6,12 @@ public class ProjectileWeaponData : WeaponData
 {
     [Header("Projectile Weapon Data")]
     [SerializeField]
-    private int range;
+    private int firingRange;
     [SerializeField]
-    private int projPerShot, spread;
+    private int projRange, projPerShot, spread;
 
     public int Spread { get => spread; set => spread = value; }
     public int ProjPerShot { get => projPerShot; set => projPerShot = value; }
-    public int Range { get => range; set => range = value; }
+    public int FiringRange { get => firingRange; set => firingRange = value; }
+    public int ProjRange { get => projRange; set => projRange = value; }
 }

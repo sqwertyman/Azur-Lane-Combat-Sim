@@ -11,33 +11,35 @@ public class LockonGunController : GunController
 
         for (; ; )
         {
-            yield return new WaitForSeconds(preFireTime);
-
             //waits until nearest enemy is within the gun's range
-            yield return new WaitUntil(() => DistanceToNearest() <= range);
+            yield return new WaitUntil(() => DistanceToNearest() <= firingRange);
 
-            //target enemy position, or straight ahead if no target or out of firing angle
-            float targetAngle = Vector2.Angle(targetDirection, target.transform.position - transform.position);
-            if (target && targetAngle <= (angle / 2))
+            for (int x = 0; x < noOfMounts; x++)
             {
-                targetPos = target.transform.position;
-            }
-            else
-            {
-                targetPos = transform.position + targetDirection;
-            }
+                yield return new WaitForSeconds(preFireTime);
 
-            //nested for loops to instantiate projectiles for each shell of each wave, and play sfx
-            for (int x = 0; x < noOfShots; x++)
-            {
-                for (int y = 0; y < projPerShot; y++)
+                //target enemy position, or straight ahead if no target or out of firing angle
+                float targetAngle = Vector2.Angle(targetDirection, target.transform.position - transform.position);
+                if (target && targetAngle <= (angle / 2))
                 {
-                    FireProjectile(targetPos, y);
+                    targetPos = target.transform.position;
                 }
-                yield return new WaitForSeconds(volleyTime);
-            }
+                else
+                {
+                    targetPos = transform.position + targetDirection;
+                }
 
-            yield return new WaitForSeconds(postFireTime);
+                //nested for loops to instantiate projectiles for each shell of each wave, and play sfx
+                for (int y = 0; y < noOfShots; y++)
+                {
+                    for (int z = 0; z < projPerShot; z++)
+                    {
+                        FireProjectile(targetPos, z);
+                    }
+                    yield return new WaitForSeconds(volleyTime);
+                }
+                yield return new WaitForSeconds(postFireTime);
+            }
 
             yield return new WaitForSeconds(reloadTime);
         }

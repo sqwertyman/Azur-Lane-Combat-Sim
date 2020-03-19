@@ -23,7 +23,8 @@ MonoBehaviour:
   fireRate: 3.07
   ammo: {fileID: 11400000, guid: 6bbc24b542f84fd4ba3901cfb3dbf0f5, type: 2}
   sfx: {fileID: 8300000, guid: 2b6e13f649cbc2c468de23cc74c4babb, type: 3}
-  range: 55
+  firingRange: 63
+  projRange: 55
   projPerShot: 4
   spread: 21
   firingType: 1

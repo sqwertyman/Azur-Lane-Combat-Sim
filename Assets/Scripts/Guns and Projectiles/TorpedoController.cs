@@ -25,12 +25,12 @@ public class TorpedoController : ProjectileWeaponController
         for (; ; )
         {
             //thisShip.FindNearestEnemy();
-
+            
             yield return new WaitForSeconds(preFireTime);
 
-            for (int x = 0; x < projPerShot; x++)
+            for (int y = 0; y < projPerShot; y++)
             {
-                FireProjectile(transform.position + targetDirection, x);
+                FireProjectile(transform.position + targetDirection, y);
             }
 
             yield return new WaitForSeconds(postFireTime);
