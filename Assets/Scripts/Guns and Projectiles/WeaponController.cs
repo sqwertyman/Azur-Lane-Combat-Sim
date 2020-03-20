@@ -14,6 +14,7 @@ public class WeaponController : MonoBehaviour
     protected AudioSource audioSource;
     protected AmmoData ammoData;
     protected string targetTag;
+    protected Vector3 targetDirection;
 
     protected WeaponData weaponData;
 
@@ -40,6 +41,12 @@ public class WeaponController : MonoBehaviour
         audioSource = GetComponent<AudioSource>();
         if (weaponData.Sfx)
             audioSource.clip = weaponData.Sfx;
+
+        //select direction to fire based on target
+        if (targetTag == "Friendly")
+            targetDirection = -Vector3.right;
+        else
+            targetDirection = Vector3.right;
 
         CalculateDamage();
         CalculateReloadTime();

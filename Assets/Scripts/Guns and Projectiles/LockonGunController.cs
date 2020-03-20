@@ -8,6 +8,7 @@ public class LockonGunController : GunController
     protected override IEnumerator FiringLoop()
     {
         Vector3 targetPos;
+        bool useOffset;
 
         for (; ; )
         {
@@ -23,10 +24,12 @@ public class LockonGunController : GunController
                 if (target && targetAngle <= (angle / 2))
                 {
                     targetPos = target.transform.position;
+                    useOffset = false;
                 }
                 else
                 {
                     targetPos = transform.position + targetDirection;
+                    useOffset = true;
                 }
 
                 //nested for loops to instantiate projectiles for each shell of each wave, and play sfx
@@ -34,7 +37,7 @@ public class LockonGunController : GunController
                 {
                     for (int z = 0; z < projPerShot; z++)
                     {
-                        FireProjectile(targetPos, z);
+                        FireProjectile(targetPos, z, useOffset);
                     }
                     yield return new WaitForSeconds(volleyTime);
                 }

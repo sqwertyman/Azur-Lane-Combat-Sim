@@ -78,8 +78,14 @@ public class ProjectileWeaponController : WeaponController
     {
         thisShip.FindNearestEnemy();
         target = thisShip.GetTarget();
+        Vector3 heading;
 
-        Vector3 heading = target.transform.position - transform.position;
+        //stops errors. positiveinfinity makes it seem as if nothing is in range
+        if (target)
+            heading = target.transform.position - transform.position;
+        else
+            heading = Vector3.positiveInfinity;
+
         return heading.magnitude;
     }
 
@@ -90,12 +96,16 @@ public class ProjectileWeaponController : WeaponController
         return ((int)((finalDamage * multiplier)) + Random.Range(-1, 3));
     }
 
-    //instantiates the projectile prefab with data, and plays sound
-    protected virtual void FireProjectile(Vector3 targetPosition, int projNumber)
+    //instantiates the projectile prefab with data, and plays sound. default
+    protected virtual void FireProjectile(Vector3 targetPosition, int projNumber, bool useOffset)
     {
-        Vector3 offset = transform.up * projOffsets[projNumber];        
+        Vector3 offset = transform.up * projOffsets[projNumber];
 
+        //bool given to determine whether to adjust target position by the proj's offset. fixes issues when firing straight ahead
+        if (useOffset)
+            targetPosition += offset;
+        
         GameObject lastProj = Instantiate(projectilePrefab, transform.position + offset, Quaternion.identity);
-        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition + offset, projSpreads[projNumber], ammoData, projRange, gameObject, targetTag);
+        lastProj.GetComponent<BaseProjectile>().Setup(targetPosition, projSpreads[projNumber], ammoData, projRange, gameObject, targetTag);
     }
 }

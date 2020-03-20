@@ -10,6 +10,7 @@ public class BracketingGunController : GunController
     protected override IEnumerator FiringLoop()
     {
         Vector3 targetPos;
+        bool useOffset;
 
         for (; ; )
         {
@@ -28,15 +29,17 @@ public class BracketingGunController : GunController
                 if (target)
                 {
                     targetPos = target.transform.position;
+                    useOffset = false;
                 }
                 else
                 {
                     targetPos = transform.position + Vector3.right;
+                    useOffset = true;
                 }
 
                 for (int y = 0; y < projPerShot; y++)
                 {
-                    FireProjectile(targetPos, y);
+                    FireProjectile(targetPos, y, useOffset);
                     yield return new WaitForSeconds(individualProjDelay);
                 }
 

@@ -19,7 +19,7 @@ public class ScattershotGunController : GunController
                 //need nested for >2 waves?
                 for (int y = 0; y < projPerShot; y++)
                 {
-                    FireProjectile(transform.position + targetDirection, y);
+                    FireProjectile(transform.position + targetDirection, y, true);
                 }
                 yield return new WaitForSeconds(postFireTime);
             }
