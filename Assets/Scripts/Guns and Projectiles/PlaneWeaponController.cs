@@ -9,6 +9,7 @@ public class PlaneWeaponController : WeaponController
     private int speed;
     private int noOfProj;
     private Sprite planeSprite;
+    private float airstrikeReloadTime;
 
     public override void Init()
     {
@@ -23,10 +24,11 @@ public class PlaneWeaponController : WeaponController
     //spawns a plane once every reloadtime
     protected override IEnumerator FiringLoop()
     {
-
+        airstrikeReloadTime = GetComponentInParent<AirstrikeLaunchInfo>().GetAirstrikeReload();
+        print("airstrike: " + airstrikeReloadTime);
         for (; ; )
         {
-            yield return new WaitForSeconds(reloadTime);
+            yield return new WaitForSeconds(airstrikeReloadTime);
 
             for (int x = 0; x < noOfMounts; x++)
             {                

@@ -128,10 +128,19 @@ public class GameController : MonoBehaviour
             var tempShip = Instantiate(prefab, spawnPos, Quaternion.identity);
             tempShip.GetComponent<ShipController>().Init(shipLoadout, targetTag);
 
-            LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts);
-            LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts);
-
             fleetList.Add(tempShip);
+
+            //temporary array to store the weapons loaded
+            GameObject[] weapons = new GameObject[2];
+            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts);
+            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts);
+
+            //start firing the weapons together after they are all loaded
+            foreach (GameObject weapon in weapons)
+            {
+                if (weapon)
+                    weapon.GetComponent<WeaponController>().StartFiring();
+            }
 
             return 1;
         }
@@ -141,8 +150,8 @@ public class GameController : MonoBehaviour
         }
     }
 
-    //loads in the weapon denoted by toLoad, assigning it to the ship given
-    private void LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad)
+    //loads in the weapon denoted by toLoad, assigning it to the ship given. returns the weapon gameobject
+    private GameObject LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad)
     {
         GameObject prefab;
 
@@ -163,10 +172,23 @@ public class GameController : MonoBehaviour
                     prefab = lockonGunObject;
             }
 
-            var gunInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
-            gunInst.GetComponent<WeaponController>().SetWeaponData(toLoad, noToLoad);
-            gunInst.GetComponent<WeaponController>().Init();
+            //instantiate object and set up its data
+            var weaponInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
+            weaponInst.GetComponent<WeaponController>().SetWeaponData(toLoad, noToLoad);
+            weaponInst.GetComponent<WeaponController>().Init();
+
+            //only if its a plane weapon, gives the ship an extra component for syncing airstrike timings etc
+            if (prefab == planeObject)
+            {
+                if (!ship.TryGetComponent(out AirstrikeLaunchInfo airstrikeInfo))
+                    airstrikeInfo = ship.AddComponent<AirstrikeLaunchInfo>();
+                airstrikeInfo.AddPlane(weaponInst);
+            }
+
+            return weaponInst;
         }
+        else
+            return null;
     }
 
     public void SwitchPauseState()

@@ -51,6 +51,10 @@ public class WeaponController : MonoBehaviour
         CalculateDamage();
         CalculateReloadTime();
 
+    }
+
+    public void StartFiring()
+    {
         StartCoroutine(FiringLoop());
     }
 
@@ -60,7 +64,7 @@ public class WeaponController : MonoBehaviour
         yield return new WaitForSeconds(preFireTime);
     }
 
-    protected void CalculateReloadTime()
+    protected virtual void CalculateReloadTime()
     {
         reloadTime = fireRate * (Mathf.Sqrt(200 / (thisShip.GetFireRate() + 100)));
     }
@@ -94,5 +98,10 @@ public class WeaponController : MonoBehaviour
     {
         this.weaponData = weaponData;
         this.noOfMounts = noOfMounts;
+    }
+
+    public float GetReload()
+    {
+        return reloadTime;
     }
 }
