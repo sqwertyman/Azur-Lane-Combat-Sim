@@ -10,6 +10,8 @@ public class PlaneWeaponController : WeaponController
     private int noOfProj;
     private Sprite planeSprite;
     private float airstrikeReloadTime;
+    private AirstrikeLaunchInfo airstrikeInfo;
+    private Bounds spawnArea;
 
     public override void Init()
     {
@@ -24,8 +26,10 @@ public class PlaneWeaponController : WeaponController
     //spawns a plane once every reloadtime
     protected override IEnumerator FiringLoop()
     {
-        airstrikeReloadTime = GetComponentInParent<AirstrikeLaunchInfo>().GetAirstrikeReload();
-        print("airstrike: " + airstrikeReloadTime);
+        airstrikeInfo = GetComponentInParent<AirstrikeLaunchInfo>();
+        airstrikeReloadTime = airstrikeInfo.GetAirstrikeReload();
+        spawnArea = airstrikeInfo.GetSpawnObject().GetComponent<Collider2D>().bounds;
+
         for (; ; )
         {
             yield return new WaitForSeconds(airstrikeReloadTime);
@@ -40,13 +44,12 @@ public class PlaneWeaponController : WeaponController
         }
     }
 
-    //spawns a single plane, and sets it up with its init method. hardcoded randomise for now as don't know specifics
+    //spawns a single plane, and sets it up with its init method
     private void SpawnPlane()
     {
-        GameObject inst = Instantiate(planePrefab, new Vector3(Random.Range(-140, -130), Random.Range(-40,40),-1), transform.rotation);
+        GameObject inst = Instantiate(planePrefab, RandomPointInBounds(), transform.rotation);
         inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, ammoData, gameObject, targetTag);
     }
-
 
     protected override void CalculateDamage()
     {
@@ -58,5 +61,14 @@ public class PlaneWeaponController : WeaponController
     {
         float multiplier = Database.ArmourMultiplier(gunClass, armour, ammo);
         return ((int)((finalDamage * multiplier)));
+    }
+
+    //returns a random point within the spawn area bounds, always with z of -1 though
+    public Vector3 RandomPointInBounds()
+    {
+        return new Vector3(
+            Random.Range(spawnArea.min.x, spawnArea.max.x),
+            Random.Range(spawnArea.min.y, spawnArea.max.y),
+            -1);
     }
 }

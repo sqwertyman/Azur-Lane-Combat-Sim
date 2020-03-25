@@ -8,6 +8,7 @@ public class AirstrikeLaunchInfo : MonoBehaviour
 {
     private float combinedReloadTime;
     private List<float> individualTimes = new List<float>(3);
+    private GameObject spawnObject;
 
     //gets the individual plane weapon's reload passed in, storing in it in the list, before recalculating
     public void AddPlane(GameObject plane)
@@ -29,9 +30,18 @@ public class AirstrikeLaunchInfo : MonoBehaviour
 
         combinedReloadTime = sum / individualTimes.Count;
     }
+    public void SetSpawnObject(GameObject spawn)
+    {
+        spawnObject = spawn;
+    }
 
     public float GetAirstrikeReload()
     {
         return combinedReloadTime;
+    }
+
+    public GameObject GetSpawnObject()
+    {
+        return spawnObject;
     }
 }

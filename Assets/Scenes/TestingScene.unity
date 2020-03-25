@@ -543,6 +543,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 79c3bd48557bf58418ff3c064e869470, type: 3}
+--- !u!1 &871116789 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3693803918302783763, guid: 79c3bd48557bf58418ff3c064e869470,
+    type: 3}
+  m_PrefabInstance: {fileID: 871116788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &871116790 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8624046960767489041, guid: 79c3bd48557bf58418ff3c064e869470,
+    type: 3}
+  m_PrefabInstance: {fileID: 871116788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &871116791 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 2836692504435775075, guid: 79c3bd48557bf58418ff3c064e869470,
+    type: 3}
+  m_PrefabInstance: {fileID: 871116788}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &871116792 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 1382771894265574199, guid: 79c3bd48557bf58418ff3c064e869470,
+    type: 3}
+  m_PrefabInstance: {fileID: 871116788}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &1167673146 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 6692000317592445064, guid: a99564ae2e5648b41a3de301164952cf,
@@ -985,6 +1009,31 @@ PrefabInstance:
       propertyPath: gameOverCanvas
       value: 
       objectReference: {fileID: 809317559}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: vanguardSpawns.Array.data[0]
+      value: 
+      objectReference: {fileID: 1304813368}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: vanguardSpawns.Array.data[1]
+      value: 
+      objectReference: {fileID: 871116790}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: vanguardSpawns.Array.data[2]
+      value: 
+      objectReference: {fileID: 871116789}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: friendlyPlaneSpawn
+      value: 
+      objectReference: {fileID: 871116792}
+    - target: {fileID: 4942762273560811746, guid: fdadc3b2009703b428b66d18b8292c02,
+        type: 3}
+      propertyPath: enemyPlaneSpawn
+      value: 
+      objectReference: {fileID: 871116791}
     - target: {fileID: 4942762273560811747, guid: fdadc3b2009703b428b66d18b8292c02,
         type: 3}
       propertyPath: m_Name

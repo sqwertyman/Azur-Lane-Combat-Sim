@@ -11,6 +11,7 @@ public class PlaneController : MonoBehaviour
     private GameObject source;
     private AmmoData ammoData;
     private string targetTag;
+    private Vector3 targetDirection;
 
     public void Init(int speed, int noOfProj, Sprite planeSprite, AmmoData ammoData, GameObject source, string targetTag)
     {
@@ -22,7 +23,16 @@ public class PlaneController : MonoBehaviour
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = planeSprite;
 
-        rb.velocity = transform.right * speed;
+        // select direction to fire based on target, and flip sprite if necessary
+        if (targetTag == "Friendly")
+        {
+            targetDirection = -Vector3.right;
+            gameObject.GetComponent<SpriteRenderer>().flipX = true;
+        }
+        else
+            targetDirection = Vector3.right;
+
+        rb.velocity = targetDirection * speed;
 
         StartCoroutine(Fly());
     }
@@ -44,7 +54,7 @@ public class PlaneController : MonoBehaviour
     {
         Vector3 spawnPos = transform.position + new Vector3(0, Random.Range(-10, -20));
         GameObject inst = Instantiate(projectilePrefab, spawnPos, Quaternion.identity);
-        inst.GetComponent<BaseProjectile>().Setup(spawnPos + Vector3.right, 0, ammoData, 200, source, targetTag);
+        inst.GetComponent<BaseProjectile>().Setup(spawnPos + targetDirection, 0, ammoData, 200, source, targetTag);
     }
 
     private bool AtEdgeOfScreen()

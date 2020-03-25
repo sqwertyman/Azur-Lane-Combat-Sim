@@ -9,9 +9,10 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject vanguardSpawn, enemyObject, shipObject, lockonGunObject, bracketingGunObject, scattershotGunObject, torpedoObject, planeObject;
+    public GameObject enemyObject, shipObject, lockonGunObject, bracketingGunObject, scattershotGunObject, torpedoObject, planeObject, friendlyPlaneSpawn, enemyPlaneSpawn;
     public GameObject[] enemySpawns = new GameObject[2];
     public GameObject[] mainSpawns = new GameObject[3];
+    public GameObject[] vanguardSpawns = new GameObject[3];
     public ShipLoadoutData[] vanguardLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData[] mainLoadouts = new ShipLoadoutData[3];
     public ShipLoadoutData[] enemyLoadouts = new ShipLoadoutData[2];
@@ -89,7 +90,7 @@ public class GameController : MonoBehaviour
         //load vanguard ships
         for (int x = 0; x < vanguardLoadouts.Length; x++)
         {
-            LoadShip(vanguardLoadouts[x], vanguardSpawn.transform.position, vanguardFleet, shipObject, "Enemy");
+            LoadShip(vanguardLoadouts[x], vanguardSpawns[x].transform.position, vanguardFleet, shipObject, "Enemy");
         }
         //load main ships
         for (int x = 0; x < mainLoadouts.Length; x++)
@@ -132,8 +133,8 @@ public class GameController : MonoBehaviour
 
             //temporary array to store the weapons loaded
             GameObject[] weapons = new GameObject[2];
-            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts);
-            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts);
+            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts, targetTag);
+            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts, targetTag);
 
             //start firing the weapons together after they are all loaded
             foreach (GameObject weapon in weapons)
@@ -151,7 +152,7 @@ public class GameController : MonoBehaviour
     }
 
     //loads in the weapon denoted by toLoad, assigning it to the ship given. returns the weapon gameobject
-    private GameObject LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad)
+    private GameObject LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad, string targetTag)
     {
         GameObject prefab;
 
@@ -181,7 +182,13 @@ public class GameController : MonoBehaviour
             if (prefab == planeObject)
             {
                 if (!ship.TryGetComponent(out AirstrikeLaunchInfo airstrikeInfo))
+                {
                     airstrikeInfo = ship.AddComponent<AirstrikeLaunchInfo>();
+                    if (targetTag == "Friendly")
+                        airstrikeInfo.SetSpawnObject(enemyPlaneSpawn);
+                    else
+                        airstrikeInfo.SetSpawnObject(friendlyPlaneSpawn);
+                }
                 airstrikeInfo.AddPlane(weaponInst);
             }
 
