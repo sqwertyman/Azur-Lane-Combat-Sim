@@ -93,7 +93,8 @@ public class ProjectileWeaponController : WeaponController
     public override int GetDamage(ArmourType armour)
     {
         float multiplier = Database.ArmourMultiplier(gunClass, armour, ammo);
-        return ((int)((finalDamage * multiplier)) + Random.Range(-1, 3));
+        //clamp with max to keep number non-negative (due to random)
+        return Mathf.Max(0, ((int)((finalDamage * multiplier)) + Random.Range(-1, 3)));
     }
 
     //instantiates the projectile prefab with data, and plays sound. default

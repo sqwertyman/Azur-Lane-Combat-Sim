@@ -26,8 +26,10 @@ MonoBehaviour:
   aviation: 0
   accuracy: 70
   evasion: 33
-  luck: 0
+  luck: 66
   slot1: 03000000
   slot1Mounts: 3
+  slot1Efficiency: 130
   slot2: 0000000001000000
   slot2Mounts: 3
+  slot2Efficiency: 200

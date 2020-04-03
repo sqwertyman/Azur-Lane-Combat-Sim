@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class WeaponController : MonoBehaviour
 {
-    protected float preFireTime, postFireTime, fireRate, reloadTime;
-    protected int damage, finalDamage, projectileSpeed, noOfMounts;
+    protected float preFireTime, postFireTime, fireRate, reloadTime, finalDamage;
+    protected int damage, projectileSpeed, slotNumber, noOfMounts, efficiency;
     protected ShipController thisShip;
     protected Color dmgNumberColour;
     protected EquipmentType gunClass;
@@ -37,6 +37,8 @@ public class WeaponController : MonoBehaviour
 
         thisShip = GetComponentInParent<ShipController>();
         targetTag = thisShip.GetTargetTag();
+        noOfMounts = thisShip.GetSlotMounts(slotNumber);
+        efficiency = thisShip.GetSlotEfficiency(slotNumber);
 
         audioSource = GetComponent<AudioSource>();
         if (weaponData.Sfx)
@@ -94,10 +96,10 @@ public class WeaponController : MonoBehaviour
     }
 
     //set the weapon's data. separate from init method to prevent excessive duplicate methods, and tidy up the gun initialisations. just set mounts here as convinent
-    public void SetWeaponData(WeaponData weaponData, int noOfMounts)
+    public void SetWeaponData(WeaponData weaponData, int slotNumber)
     {
         this.weaponData = weaponData;
-        this.noOfMounts = noOfMounts;
+        this.slotNumber = slotNumber;
     }
 
     public float GetReload()

@@ -33,6 +33,6 @@ public class TorpedoController : ProjectileWeaponController
 
     protected override void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetTorpedo()) / 100));
+        finalDamage = damage * (efficiency / 100f) * ((100 + thisShip.GetTorpedo()) / 100f);
     }
 }

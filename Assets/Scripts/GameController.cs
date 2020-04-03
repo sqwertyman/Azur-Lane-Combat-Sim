@@ -133,8 +133,8 @@ public class GameController : MonoBehaviour
 
             //temporary array to store the weapons loaded
             GameObject[] weapons = new GameObject[2];
-            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, shipLoadout.Ship.Slot1Mounts, targetTag);
-            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, shipLoadout.Ship.Slot2Mounts, targetTag);
+            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, 1, targetTag);
+            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, 2, targetTag);
 
             //start firing the weapons together after they are all loaded
             foreach (GameObject weapon in weapons)
@@ -152,7 +152,7 @@ public class GameController : MonoBehaviour
     }
 
     //loads in the weapon denoted by toLoad, assigning it to the ship given. returns the weapon gameobject
-    private GameObject LoadWeapon(WeaponData toLoad, GameObject ship, int noToLoad, string targetTag)
+    private GameObject LoadWeapon(WeaponData toLoad, GameObject ship, int slotNumber, string targetTag)
     {
         GameObject prefab;
 
@@ -175,7 +175,7 @@ public class GameController : MonoBehaviour
 
             //instantiate object and set up its data
             var weaponInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
-            weaponInst.GetComponent<WeaponController>().SetWeaponData(toLoad, noToLoad);
+            weaponInst.GetComponent<WeaponController>().SetWeaponData(toLoad, slotNumber);
             weaponInst.GetComponent<WeaponController>().Init();
 
             //only if its a plane weapon, gives the ship an extra component for syncing airstrike timings etc

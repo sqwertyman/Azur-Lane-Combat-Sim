@@ -13,7 +13,9 @@ public class ShipController : MonoBehaviour
     public float hitFlashIntensity;
     public float hitFlashTime;
 
-    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion, luck, slot1Mounts, slot2Mounts;
+    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion, luck;
+    private int[] slotMounts = new int[3];
+    private int[] slotEfficiencies = new int[3];
     private float speed, reload;
     private GameObject target;
     private ArmourType armour;
@@ -39,8 +41,10 @@ public class ShipController : MonoBehaviour
         accuracy = ship.Accuracy;
         evasion = ship.Evasion;
         luck = ship.Luck;
-        slot1Mounts = ship.Slot1Mounts;
-        slot2Mounts = ship.Slot2Mounts;
+        slotMounts[0] = ship.Slot1Mounts;
+        slotMounts[1] = ship.Slot2Mounts;
+        slotEfficiencies[0] = ship.Slot1Efficiency;
+        slotEfficiencies[1] = ship.Slot2Efficiency;
 
         if (loadoutData.Slot1)
         {
@@ -187,13 +191,15 @@ public class ShipController : MonoBehaviour
         return luck;
     }
 
-    public int GetSlot1Mounts()
+    public int GetSlotMounts(int slotNo)
     {
-        return slot1Mounts;
+        //-1 as index start from 0
+        return slotMounts[slotNo - 1];
     }
 
-    public int GetSlot2Mounts()
+    public int GetSlotEfficiency(int slotNo)
     {
-        return slot2Mounts;
+        //-1 as index start from 0
+        return slotEfficiencies[slotNo - 1];
     }
 }

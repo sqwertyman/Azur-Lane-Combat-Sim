@@ -53,7 +53,7 @@ public class PlaneWeaponController : WeaponController
 
     protected override void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetAviation()) / 100));
+        finalDamage = damage * (efficiency / 100f) * ((100 + thisShip.GetAviation()) / 100f);
     }
 
     //returns the damage (rounded to int) of the gun to the armour type passed in

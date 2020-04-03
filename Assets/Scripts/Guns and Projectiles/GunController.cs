@@ -19,6 +19,6 @@ public class GunController : ProjectileWeaponController
 
     protected override void CalculateDamage()
     {
-        finalDamage = (damage * ((100 + thisShip.GetFirepower()) / 100));
+        finalDamage = damage * (efficiency / 100f) * ((100 + thisShip.GetFirepower()) / 100f);
     }
 }

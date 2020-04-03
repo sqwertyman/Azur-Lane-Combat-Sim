@@ -20,11 +20,11 @@ public class ShipData : DatabaseItem
     [SerializeField]
     private EquipmentType[] slot1 = new EquipmentType[1];
     [SerializeField]
-    private int slot1Mounts = 1;
+    private int slot1Mounts = 1, slot1Efficiency = 100;
     [SerializeField]
     private EquipmentType[] slot2 = new EquipmentType[1];
     [SerializeField]
-    private int slot2Mounts = 1;
+    private int slot2Mounts = 1, slot2Efficiency = 100;
 
     public int Health { get => health; set => health = value; }
     public int Speed { get => speed; set => speed = value; }
@@ -43,4 +43,6 @@ public class ShipData : DatabaseItem
     public int Accuracy { get => accuracy; set => accuracy = value; }
     public int Evasion { get => evasion; set => evasion = value; }
     public int Luck { get => luck; set => luck = value; }
+    public int Slot1Efficiency { get => slot1Efficiency; set => slot1Efficiency = value; }
+    public int Slot2Efficiency { get => slot2Efficiency; set => slot2Efficiency = value; }
 }
