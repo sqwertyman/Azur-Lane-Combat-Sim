@@ -79,12 +79,21 @@ public class FleetMenuController : MonoBehaviour
             {
                 shipLoadout.Slot2 = null;
             }
+            if (shipMenu.GetSlot3() != "None")
+            {
+                shipLoadout.Slot3 = Database.GunList[shipMenu.GetSlot3()];
+            }
+            else
+            {
+                shipLoadout.Slot3 = null;
+            }
         }
         else
         {
             shipLoadout.Ship = null;
             shipLoadout.Slot1 = null;
             shipLoadout.Slot2 = null;
+            shipLoadout.Slot3 = null;
         }
     }
 

@@ -5,10 +5,10 @@ using UnityEngine.UI;
 
 public class ShipMenu : MonoBehaviour
 {
-    public Dropdown shipDrop, slot1Drop, slot2Drop;
+    public Dropdown shipDrop, slot1Drop, slot2Drop, slot3Drop;
     public FleetMenuController menuController;
 
-    private string ship, slot1, slot2;
+    private string ship, slot1, slot2, slot3;
 
     //set ship dropdown choices
     public void Init(FleetType type)
@@ -33,11 +33,20 @@ public class ShipMenu : MonoBehaviour
     {
         slot1Drop.options.RemoveRange(1, slot1Drop.options.Count - 1);
         slot2Drop.options.RemoveRange(1, slot2Drop.options.Count - 1);
+        slot3Drop.options.RemoveRange(1, slot3Drop.options.Count - 1);
 
+        ShowAppropriateGuns(Database.GunList.Values, Database.ShipList[ship].Slot1, slot1Drop);
+        ShowAppropriateGuns(Database.GunList.Values, Database.ShipList[ship].Slot2, slot2Drop);
+        ShowAppropriateGuns(Database.GunList.Values, Database.ShipList[ship].Slot3, slot3Drop);
+    }
+
+    //shows only the usable guns in the ship's slot/dropdown
+    private void ShowAppropriateGuns(Dictionary<string, WeaponData>.ValueCollection guns, EquipmentType[] usableTypes, Dropdown dropdown)
+    {
         List<string> tempList = new List<string>();
-        foreach (WeaponData gun in Database.GunList.Values)
+        foreach (WeaponData gun in guns)
         {
-            foreach (EquipmentType type in Database.ShipList[ship].Slot1)
+            foreach (EquipmentType type in usableTypes)
             {
                 if (type == gun.Type)
                 {
@@ -45,20 +54,7 @@ public class ShipMenu : MonoBehaviour
                 }
             }
         }
-        slot1Drop.AddOptions(tempList);
-
-        tempList = new List<string>();
-        foreach (WeaponData gun in Database.GunList.Values)
-        {
-            foreach (EquipmentType type in Database.ShipList[ship].Slot2)
-            {
-                if (type == gun.Type)
-                {
-                    tempList.Add(gun.Name);
-                }
-            }
-        }
-        slot2Drop.AddOptions(tempList);
+        dropdown.AddOptions(tempList);
     }
 
     //called when ship selection is changed, showing or hiding gun options depending on whether "none" is selected
@@ -71,11 +67,13 @@ public class ShipMenu : MonoBehaviour
             ResetOptions();
             slot1Drop.gameObject.SetActive(true);
             slot2Drop.gameObject.SetActive(true);
+            slot3Drop.gameObject.SetActive(true);
         }
         else
         {
             slot1Drop.gameObject.SetActive(false);
             slot2Drop.gameObject.SetActive(false);
+            slot3Drop.gameObject.SetActive(false);
         }
 
         menuController.ShowNecessaryMenus();
@@ -95,6 +93,10 @@ public class ShipMenu : MonoBehaviour
         if (loadoutData.Slot2)
         {
             SetDropdownSelection(slot2Drop, loadoutData.Slot2.Name);
+        }
+        if (loadoutData.Slot3)
+        {
+            SetDropdownSelection(slot3Drop, loadoutData.Slot3.Name);
         }
     }
 
@@ -117,6 +119,7 @@ public class ShipMenu : MonoBehaviour
         shipDrop.value = 0;
         slot1Drop.value = 0;
         slot2Drop.value = 0;
+        slot3Drop.value = 0;
     }
 
     //force the selections to be updated
@@ -125,6 +128,7 @@ public class ShipMenu : MonoBehaviour
         ship = shipDrop.options[shipDrop.value].text;
         slot1 = slot1Drop.options[slot1Drop.value].text;
         slot2 = slot2Drop.options[slot2Drop.value].text;
+        slot3 = slot3Drop.options[slot3Drop.value].text;
     }
 
     public string GetShip()
@@ -140,5 +144,9 @@ public class ShipMenu : MonoBehaviour
     public string GetSlot2()
     {
         return slot2;
+    }
+    public string GetSlot3()
+    {
+        return slot3;
     }
 }

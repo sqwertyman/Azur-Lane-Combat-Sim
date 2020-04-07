@@ -20,7 +20,7 @@ MonoBehaviour:
   sprite: {fileID: 549610850968800891, guid: e6157377aa84a884f962e324390c435e, type: 3}
   health: 1000
   speed: 10
-  reload: 100
+  reload: 150
   firepower: 100
   torpedo: 0
   aviation: 0
@@ -28,6 +28,11 @@ MonoBehaviour:
   evasion: 0
   luck: 50
   slot1: 01000000
-  slot1Mounts: 2
+  slot1Mounts: 3
+  slot1Efficiency: 100
   slot2: 00000000
   slot2Mounts: 4
+  slot2Efficiency: 100
+  slot3: 00000000
+  slot3Mounts: 4
+  slot3Efficiency: 100

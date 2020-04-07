@@ -33,3 +33,6 @@ MonoBehaviour:
   slot2: 0000000001000000
   slot2Mounts: 3
   slot2Efficiency: 200
+  slot3: 08000000
+  slot3Mounts: 1
+  slot3Efficiency: 100

@@ -43,8 +43,10 @@ public class ShipController : MonoBehaviour
         luck = ship.Luck;
         slotMounts[0] = ship.Slot1Mounts;
         slotMounts[1] = ship.Slot2Mounts;
+        slotMounts[2] = ship.Slot3Mounts;
         slotEfficiencies[0] = ship.Slot1Efficiency;
         slotEfficiencies[1] = ship.Slot2Efficiency;
+        slotEfficiencies[2] = ship.Slot3Efficiency;
 
         if (loadoutData.Slot1)
         {
@@ -56,6 +58,12 @@ public class ShipController : MonoBehaviour
             firepower += loadoutData.Slot2.Firepower;
             torpedo += loadoutData.Slot2.Torpedo;
         }
+        if (loadoutData.Slot3)
+        {
+            firepower += loadoutData.Slot3.Firepower;
+            torpedo += loadoutData.Slot3.Torpedo;
+        }
+
         health = maxHealth;
     }
 

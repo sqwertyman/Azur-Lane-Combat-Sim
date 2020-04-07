@@ -545,11 +545,26 @@ PrefabInstance:
       propertyPath: m_Name
       value: FleetMenu
       objectReference: {fileID: 0}
+    - target: {fileID: 2471596725860254276, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2471596727694451270, guid: 155eb9997519410499790addf6cffbb2,
         type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
       value: 
       objectReference: {fileID: 68512437}
+    - target: {fileID: 7391463019755462717, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8034695678137087353, guid: 155eb9997519410499790addf6cffbb2,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 155eb9997519410499790addf6cffbb2, type: 3}
 --- !u!1001 &3623747774427618464

@@ -4,7 +4,7 @@ using UnityEngine;
 
 //various enums used. order of some important (mainly armour multipliers)
 public enum Class { DD, CL, CA, BB, BC, CV };
-public enum EquipmentType { DD, CL, CA, BB, Torpedo, Plane };
+public enum EquipmentType { DD, CL, CA, BB, Torpedo, TorpedoBomber, Fighter, DiveBomber, AA };
 public enum FleetType { Main, Vanguard, Enemy };
 public enum ArmourType { Light, Medium, Heavy };
 public enum AmmoType { Normal, HE, AP, Torpedo, AirTorpedo };
@@ -93,7 +93,7 @@ public static class Database
         {
             return torpedoArmourMultipliers[(int)armour];
         }
-        else if (gun == EquipmentType.Plane)
+        else if (gun == EquipmentType.TorpedoBomber)
         {
             return planeArmourModifiers[(int)armour];
         }

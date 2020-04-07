@@ -132,9 +132,10 @@ public class GameController : MonoBehaviour
             fleetList.Add(tempShip);
 
             //temporary array to store the weapons loaded
-            GameObject[] weapons = new GameObject[2];
+            GameObject[] weapons = new GameObject[3];
             weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, 1, targetTag);
             weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, 2, targetTag);
+            weapons[2] = LoadWeapon(shipLoadout.Slot3, tempShip, 3, targetTag);
 
             //start firing the weapons together after they are all loaded
             foreach (GameObject weapon in weapons)
@@ -161,7 +162,7 @@ public class GameController : MonoBehaviour
             //select correct prefab object based on weapon's type
             if (toLoad.Type == EquipmentType.Torpedo)
                 prefab = torpedoObject;
-            else if (toLoad.Type == EquipmentType.Plane)
+            else if (toLoad.Type == EquipmentType.TorpedoBomber)
                 prefab = planeObject;
             else
             {
