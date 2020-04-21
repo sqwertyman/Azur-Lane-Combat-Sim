@@ -13,8 +13,14 @@ public class AirstrikeLaunchInfo : MonoBehaviour
     //gets the individual plane weapon's reload passed in, storing in it in the list, before recalculating
     public void AddPlane(GameObject plane)
     {
-        individualTimes.Add(plane.GetComponent<WeaponController>().GetReload());
+        WeaponController weapon = plane.GetComponent<WeaponController>();
 
+        //add reload to list of individual reload times for each plane/mount
+        for (int i = 0; i < weapon.GetNoOfMounts(); i++)
+        {
+            individualTimes.Add(weapon.GetReload());
+        }
+        
         RecalculateReload();
     }
 
@@ -28,7 +34,8 @@ public class AirstrikeLaunchInfo : MonoBehaviour
             sum += time;
         }
 
-        combinedReloadTime = sum / individualTimes.Count;
+        //may not be 100% correct as still using individual calculated reloads of the weapons as average. should be right if i'm not mistaken though
+        combinedReloadTime = (sum / individualTimes.Count) * 2.2f;
     }
     public void SetSpawnObject(GameObject spawn)
     {

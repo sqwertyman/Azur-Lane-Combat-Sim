@@ -126,23 +126,19 @@ public class GameController : MonoBehaviour
     {
         if (shipLoadout.Ship != null)
         {
-            var tempShip = Instantiate(prefab, spawnPos, Quaternion.identity);
-            tempShip.GetComponent<ShipController>().Init(shipLoadout, targetTag);
+            var ship = Instantiate(prefab, spawnPos, Quaternion.identity);
+            ship.GetComponent<ShipController>().Init(shipLoadout, targetTag);
 
-            fleetList.Add(tempShip);
+            fleetList.Add(ship);
 
             //temporary array to store the weapons loaded
             GameObject[] weapons = new GameObject[3];
-            weapons[0] = LoadWeapon(shipLoadout.Slot1, tempShip, 1, targetTag);
-            weapons[1] = LoadWeapon(shipLoadout.Slot2, tempShip, 2, targetTag);
-            weapons[2] = LoadWeapon(shipLoadout.Slot3, tempShip, 3, targetTag);
+            weapons[0] = LoadWeapon(shipLoadout.Slot1, ship, 1, targetTag);
+            weapons[1] = LoadWeapon(shipLoadout.Slot2, ship, 2, targetTag);
+            weapons[2] = LoadWeapon(shipLoadout.Slot3, ship, 3, targetTag);
 
-            //start firing the weapons together after they are all loaded
-            foreach (GameObject weapon in weapons)
-            {
-                if (weapon)
-                    weapon.GetComponent<WeaponController>().StartFiring();
-            }
+            //gives ship references to its guns
+            ship.GetComponent<ShipController>().SetGuns(weapons);
 
             return 1;
         }

@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class WeaponController : MonoBehaviour
 {
@@ -15,6 +16,8 @@ public class WeaponController : MonoBehaviour
     protected AmmoData ammoData;
     protected string targetTag;
     protected Vector3 targetDirection;
+    protected Image cooldownBar;
+    protected float cooldownTimer;
 
     protected WeaponData weaponData;
 
@@ -52,7 +55,6 @@ public class WeaponController : MonoBehaviour
 
         CalculateDamage();
         CalculateReloadTime();
-
     }
 
     public void StartFiring()
@@ -75,6 +77,18 @@ public class WeaponController : MonoBehaviour
     protected virtual void CalculateDamage()
     {
 
+    }
+
+    //coroutine for weapon cooldowns. fills the weapon's bar over the period of time given by cooldown
+    protected IEnumerator CooldownBarFill(float cooldown)
+    {
+        cooldownTimer = 0;
+        while (cooldownTimer < cooldown)
+        {
+            cooldownBar.fillAmount = cooldownTimer / cooldown;
+            cooldownTimer += Time.deltaTime;
+            yield return new WaitForEndOfFrame();
+        }
     }
 
     //returns the damage (rounded to int) of the gun to the armour type passed in (with random variation too)
@@ -105,5 +119,16 @@ public class WeaponController : MonoBehaviour
     public float GetReload()
     {
         return reloadTime;
+    }
+
+    public int GetNoOfMounts()
+    {
+        return noOfMounts;
+    }
+
+    public void SetCooldownBar(Image bar)
+    {
+        cooldownBar = bar;
+        cooldownBar.color = thisShip.GetCooldownBarColour();
     }
 }

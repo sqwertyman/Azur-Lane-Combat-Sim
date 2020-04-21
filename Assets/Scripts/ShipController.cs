@@ -8,6 +8,8 @@ public class ShipController : MonoBehaviour
 {
     public Image healthBar;
     public Color healthBarColour;
+    public Image[] cooldownBars = new Image[3];
+    public Color cooldownBarColour;
 
     [Range(0.0f, 1.0f)]
     public float hitFlashIntensity;
@@ -20,6 +22,7 @@ public class ShipController : MonoBehaviour
     private GameObject target;
     private ArmourType armour;
     private string targetTag;
+    private GameObject[] slotGuns = new GameObject[3];
 
     //sets ship's stats from loadoutData (includes its gun's stats too)
     public void Init(ShipLoadoutData loadoutData, string targetTag)
@@ -65,6 +68,24 @@ public class ShipController : MonoBehaviour
         }
 
         health = maxHealth;
+    }
+
+    //takes an array of the ship's guns as gameobjects, saving them. should only be [3] at the moment
+    public void SetGuns(GameObject[] guns)
+    {
+        slotGuns = guns;
+
+        //start firing the weapons (together after they are all loaded)
+        for (int i = 0; i < slotGuns.Length; i++)
+        {
+            if (slotGuns[i])
+            {
+                slotGuns[i].GetComponent<WeaponController>().SetCooldownBar(cooldownBars[i]);
+                slotGuns[i].GetComponent<WeaponController>().StartFiring();
+            }
+            else
+                cooldownBars[i].transform.parent.gameObject.SetActive(false);
+        }
     }
 
     private void Update()
@@ -209,5 +230,10 @@ public class ShipController : MonoBehaviour
     {
         //-1 as index start from 0
         return slotEfficiencies[slotNo - 1];
+    }
+
+    public Color GetCooldownBarColour()
+    {
+        return cooldownBarColour;
     }
 }

@@ -14,6 +14,7 @@ public class BracketingGunController : GunController
 
         for (; ; )
         {
+            StartCoroutine(CooldownBarFill(reloadTime));
             yield return new WaitForSeconds(reloadTime);
 
             for (int x = 0; x < noOfMounts; x++)

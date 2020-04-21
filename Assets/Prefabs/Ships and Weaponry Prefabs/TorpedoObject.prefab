@@ -47,7 +47,8 @@ MonoBehaviour:
   projectilePrefab: {fileID: 6461742912502857454, guid: 38f8b63ae9947024089308331246c084,
     type: 3}
   projectileSpacing: 2
-  projForwardOffset: 0
+  cooldownBar: {fileID: 0}
+  cooldownBarColour: {r: 0, g: 0.7317352, b: 1, a: 1}
 --- !u!82 &3601002510401863519
 AudioSource:
   m_ObjectHideFlags: 0

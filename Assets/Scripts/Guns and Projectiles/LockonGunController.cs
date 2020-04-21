@@ -12,6 +12,8 @@ public class LockonGunController : GunController
 
         for (; ; )
         {
+            cooldownBar.fillAmount = 1;
+
             //waits until nearest enemy is within the gun's range
             yield return new WaitUntil(() => DistanceToNearest() <= firingRange);
 
@@ -44,6 +46,7 @@ public class LockonGunController : GunController
                 yield return new WaitForSeconds(postFireTime);
             }
 
+            StartCoroutine(CooldownBarFill(reloadTime));
             yield return new WaitForSeconds(reloadTime);
         }
     }

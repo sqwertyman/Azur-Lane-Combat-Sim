@@ -32,6 +32,7 @@ public class PlaneWeaponController : WeaponController
 
         for (; ; )
         {
+            StartCoroutine(CooldownBarFill(airstrikeReloadTime));
             yield return new WaitForSeconds(airstrikeReloadTime);
 
             for (int x = 0; x < noOfMounts; x++)
