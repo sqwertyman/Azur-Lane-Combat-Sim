@@ -34,7 +34,7 @@ public class WeaponController : MonoBehaviour
         fireRate = weaponData.FireRate;
         damage = weaponData.Damage;
         ammo = weaponData.Ammo.Ammo;
-        sprite = weaponData.Sprite;
+        sprite = weaponData.ProjectileSprite;
         projectileSpeed = weaponData.ProjectileSpeed;
         dmgNumberColour = weaponData.DmgNumberColour;
 

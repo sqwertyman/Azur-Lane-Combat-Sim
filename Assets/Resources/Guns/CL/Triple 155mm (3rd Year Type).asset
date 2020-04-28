@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
-  m_Name: Twin 152mm (BL 6 Mk XXII)
+  m_Name: Triple 155mm (3rd Year Type)
   m_EditorClassIdentifier: 
-  name: Twin 152mm (BL 6" Mk XXII)
-  id: 5
+  name: Triple 155mm (3rd Year Type)
+  id: 3
   type: 1
-  firepower: 25
+  firepower: 45
   torpedo: 0
-  damage: 22
-  preFireTime: 0.16
+  antiAir: 0
+  damage: 18
+  preFireTime: 0.18
   postFireTime: 0.1
-  fireRate: 3.39
-  ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}
+  fireRate: 4.12
+  ammo: {fileID: 11400000, guid: 6bbc24b542f84fd4ba3901cfb3dbf0f5, type: 2}
   sfx: {fileID: 8300000, guid: 2b6e13f649cbc2c468de23cc74c4babb, type: 3}
   firingRange: 65
   projRange: 55
-  projPerShot: 4
-  spread: 21
+  projPerShot: 3
+  spread: 18
   firingType: 0
-  volleyTime: 0
-  noOfShots: 1
+  volleyTime: 0.15
+  noOfShots: 2
   angle: 120

@@ -24,6 +24,7 @@ MonoBehaviour:
   firepower: 101
   torpedo: 302
   aviation: 0
+  antiAir: 176
   accuracy: 205
   evasion: 163
   luck: 18
@@ -35,4 +36,4 @@ MonoBehaviour:
   slot2Efficiency: 125
   slot3: 08000000
   slot3Mounts: 1
-  slot3Efficiency: 100
+  slot3Efficiency: 125

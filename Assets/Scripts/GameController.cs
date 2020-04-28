@@ -9,7 +9,7 @@ using UnityEngine.Events;
 
 public class GameController : MonoBehaviour
 {
-    public GameObject enemyObject, shipObject, lockonGunObject, bracketingGunObject, scattershotGunObject, torpedoObject, planeObject, friendlyPlaneSpawn, enemyPlaneSpawn;
+    public GameObject enemyObject, shipObject, lockonGunObject, bracketingGunObject, scattershotGunObject, torpedoObject, antiAirObject, planeObject, friendlyPlaneSpawn, enemyPlaneSpawn;
     public GameObject[] enemySpawns = new GameObject[2];
     public GameObject[] mainSpawns = new GameObject[3];
     public GameObject[] vanguardSpawns = new GameObject[3];
@@ -160,6 +160,8 @@ public class GameController : MonoBehaviour
                 prefab = torpedoObject;
             else if (toLoad.Type == EquipmentType.TorpedoBomber)
                 prefab = planeObject;
+            else if (toLoad.Type == EquipmentType.AA)
+                prefab = antiAirObject;
             else
             {
                 if ((toLoad as GunData).FiringType == FiringType.Bracketing)
@@ -172,6 +174,10 @@ public class GameController : MonoBehaviour
 
             //instantiate object and set up its data
             var weaponInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
+            if (prefab == antiAirObject)
+            {
+                return null;
+            }
             weaponInst.GetComponent<WeaponController>().SetWeaponData(toLoad, slotNumber);
             weaponInst.GetComponent<WeaponController>().Init();
 

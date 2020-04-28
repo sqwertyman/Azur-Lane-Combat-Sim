@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
-  m_Name: Twin 100mm (Type 98)
+  m_Name: Twin 152mm (BL 6 Mk XXII)
   m_EditorClassIdentifier: 
-  name: Twin 100mm (Type 98)
-  id: 4
-  type: 0
-  firepower: 15
+  name: Twin 152mm (BL 6" Mk XXII)
+  id: 5
+  type: 1
+  firepower: 25
   torpedo: 0
-  damage: 12
+  antiAir: 0
+  damage: 22
   preFireTime: 0.16
   postFireTime: 0.1
-  fireRate: 0.96
-  ammo: {fileID: 11400000, guid: c95152d54b1cf0a45ad3f0e97b854a90, type: 2}
-  sfx: {fileID: 8300000, guid: 3df95e353ee3f964085422da5c582a65, type: 3}
-  firingRange: 50
-  projRange: 50
-  projPerShot: 2
-  spread: 0
+  fireRate: 3.39
+  ammo: {fileID: 11400000, guid: a7eec6b128ad73b4fb57a6a527cf7647, type: 2}
+  sfx: {fileID: 8300000, guid: 2b6e13f649cbc2c468de23cc74c4babb, type: 3}
+  firingRange: 65
+  projRange: 55
+  projPerShot: 4
+  spread: 21
   firingType: 0
-  volleyTime: 0.1
-  noOfShots: 2
-  angle: 360
+  volleyTime: 0
+  noOfShots: 1
+  angle: 120

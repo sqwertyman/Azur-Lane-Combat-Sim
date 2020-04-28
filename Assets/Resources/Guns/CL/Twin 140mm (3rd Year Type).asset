@@ -10,24 +10,25 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: ee3ce5ea0b6167e43bacfb267edbb29f, type: 3}
-  m_Name: Twin 410mm (3rd Year Type)
+  m_Name: Twin 140mm (3rd Year Type)
   m_EditorClassIdentifier: 
-  name: Twin 410mm (3rd Year Type)
-  id: 6
-  type: 3
+  name: Twin 140mm (3rd Year Type)
+  id: 8
+  type: 1
   firepower: 25
   torpedo: 0
-  damage: 154
-  preFireTime: 0.5
+  antiAir: 0
+  damage: 17
+  preFireTime: 0.18
   postFireTime: 0.1
-  fireRate: 20.02
-  ammo: {fileID: 11400000, guid: 7d0f606577cf7ab44b6f1fcc326b24d5, type: 2}
-  sfx: {fileID: 8300000, guid: cfaa05756a21a464583dfd1cb9eaf9f3, type: 3}
-  firingRange: 200
-  projRange: 200
-  projPerShot: 2
-  spread: 16
-  firingType: 2
+  fireRate: 3.07
+  ammo: {fileID: 11400000, guid: 6bbc24b542f84fd4ba3901cfb3dbf0f5, type: 2}
+  sfx: {fileID: 8300000, guid: 2b6e13f649cbc2c468de23cc74c4babb, type: 3}
+  firingRange: 63
+  projRange: 55
+  projPerShot: 4
+  spread: 21
+  firingType: 1
   volleyTime: 0
   noOfShots: 1
-  angle: 50
+  angle: 120

@@ -24,6 +24,7 @@ MonoBehaviour:
   firepower: 407
   torpedo: 0
   aviation: 0
+  antiAir: 219
   accuracy: 70
   evasion: 33
   luck: 66

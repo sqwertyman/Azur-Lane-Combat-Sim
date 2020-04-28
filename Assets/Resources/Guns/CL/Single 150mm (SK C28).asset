@@ -17,6 +17,7 @@ MonoBehaviour:
   type: 1
   firepower: 25
   torpedo: 0
+  antiAir: 0
   damage: 21
   preFireTime: 0.18
   postFireTime: 0.1

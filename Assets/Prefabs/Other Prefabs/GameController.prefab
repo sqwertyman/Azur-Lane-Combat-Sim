@@ -45,7 +45,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 815dd0001f807024194e68c5fd83b56c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  vanguardSpawn: {fileID: 0}
   enemyObject: {fileID: 6642478477606611311, guid: 42e1f45516b96d7489fa89669cfb573c,
     type: 3}
   shipObject: {fileID: 8766707748262291900, guid: f571376df6e57f54889569a1072c7894,
@@ -58,12 +57,20 @@ MonoBehaviour:
     type: 3}
   torpedoObject: {fileID: 7071556487156599320, guid: e5035b5585967f14ca5f830fcafb847a,
     type: 3}
+  antiAirObject: {fileID: 7071556487156599320, guid: bcf40084d724ec64d8934100d4b1d0cb,
+    type: 3}
   planeObject: {fileID: 7071556487156599320, guid: 4213b75af7ba1a5489445ae3d107221c,
     type: 3}
+  friendlyPlaneSpawn: {fileID: 0}
+  enemyPlaneSpawn: {fileID: 0}
   enemySpawns:
   - {fileID: 0}
   - {fileID: 0}
   mainSpawns:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  vanguardSpawns:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
