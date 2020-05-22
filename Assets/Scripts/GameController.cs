@@ -24,6 +24,7 @@ public class GameController : MonoBehaviour
     private List<GameObject> enemyFleet = new List<GameObject>(2);
     private bool paused, victory, defeat;
     private float fleetSpeed;
+    private List<GameObject> fleetAAGuns = new List<GameObject>(6);
 
     void Awake()
     {
@@ -119,6 +120,8 @@ public class GameController : MonoBehaviour
             }
             position += 1;
         }
+
+        vanguardFleet[0].AddComponent<FleetAAController>().Init(fleetAAGuns);
     }
 
     //loads in the particular ship denoted by shipLoadout, storing it at the index shipIndex in friendlyFleet
@@ -174,12 +177,17 @@ public class GameController : MonoBehaviour
 
             //instantiate object and set up its data
             var weaponInst = Instantiate(prefab, ship.transform.position, Quaternion.identity, ship.transform);
-            if (prefab == antiAirObject)
-            {
-                return null;
-            }
             weaponInst.GetComponent<WeaponController>().SetWeaponData(toLoad, slotNumber);
             weaponInst.GetComponent<WeaponController>().Init();
+
+            //add aa gun to fleet's list of them
+            if (prefab == antiAirObject)
+            {
+                //weaponInst.name = toLoad.name;
+                fleetAAGuns.Add(weaponInst);
+                
+
+            }
 
             //only if its a plane weapon, gives the ship an extra component for syncing airstrike timings etc
             if (prefab == planeObject)

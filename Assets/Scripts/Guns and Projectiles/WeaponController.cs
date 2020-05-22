@@ -96,6 +96,11 @@ public class WeaponController : MonoBehaviour
     {
         return 0;
     }
+    //variation ignoring armour
+    public virtual int GetDamage()
+    {
+        return 0;
+    }
 
     public Color GetDmgNumberColour()
     {

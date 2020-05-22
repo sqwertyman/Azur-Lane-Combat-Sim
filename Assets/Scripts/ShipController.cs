@@ -15,7 +15,7 @@ public class ShipController : MonoBehaviour
     public float hitFlashIntensity;
     public float hitFlashTime;
 
-    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion, luck;
+    private int maxHealth, firepower, health, torpedo, aviation, accuracy, evasion, luck, antiAir;
     private int[] slotMounts = new int[3];
     private int[] slotEfficiencies = new int[3];
     private float speed, reload;
@@ -44,6 +44,7 @@ public class ShipController : MonoBehaviour
         accuracy = ship.Accuracy;
         evasion = ship.Evasion;
         luck = ship.Luck;
+        antiAir = ship.AntiAir;
         slotMounts[0] = ship.Slot1Mounts;
         slotMounts[1] = ship.Slot2Mounts;
         slotMounts[2] = ship.Slot3Mounts;
@@ -55,16 +56,19 @@ public class ShipController : MonoBehaviour
         {
             firepower += loadoutData.Slot1.Firepower;
             torpedo += loadoutData.Slot1.Torpedo;
+            antiAir += loadoutData.Slot1.AntiAir;
         }
         if (loadoutData.Slot2)
         {
             firepower += loadoutData.Slot2.Firepower;
             torpedo += loadoutData.Slot2.Torpedo;
+            antiAir += loadoutData.Slot2.AntiAir;
         }
         if (loadoutData.Slot3)
         {
             firepower += loadoutData.Slot3.Firepower;
             torpedo += loadoutData.Slot3.Torpedo;
+            antiAir += loadoutData.Slot3.AntiAir;
         }
 
         health = maxHealth;
@@ -235,5 +239,10 @@ public class ShipController : MonoBehaviour
     public Color GetCooldownBarColour()
     {
         return cooldownBarColour;
+    }
+
+    public int GetAntiAir()
+    {
+        return antiAir;
     }
 }

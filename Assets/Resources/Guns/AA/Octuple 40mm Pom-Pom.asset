@@ -22,6 +22,6 @@ MonoBehaviour:
   preFireTime: 0.4
   postFireTime: 0.1
   fireRate: 1.17
-  ammo: {fileID: 0}
+  ammo: {fileID: 11400000, guid: c7764753ff5e9a74db3c1f07f3660596, type: 2}
   sfx: {fileID: 0}
   range: 25

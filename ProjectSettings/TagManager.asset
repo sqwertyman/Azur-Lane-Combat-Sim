@@ -8,6 +8,7 @@ TagManager:
   - Enemy
   - Friendly
   - Border
+  - EnemyPlane
   layers:
   - Default
   - TransparentFX
