@@ -17,11 +17,15 @@ MonoBehaviour:
   type: 5
   firepower: 0
   torpedo: 0
+  antiAir: 0
   damage: 28
-  startDelay: 1
+  preFireTime: 0
+  postFireTime: 0
   fireRate: 11.97
   ammo: {fileID: 11400000, guid: 6f7d7986a6ec39748bb44df9b34cd896, type: 2}
+  sfx: {fileID: 0}
   planeSprite: {fileID: 8114255583150467457, guid: e6157377aa84a884f962e324390c435e,
     type: 3}
+  health: 87
   noOfProj: 2
   speed: 45

@@ -6,8 +6,7 @@ public class PlaneWeaponController : WeaponController
 {
     public GameObject planePrefab;
 
-    private int speed;
-    private int noOfProj;
+    private int health, speed, noOfProj;
     private Sprite planeSprite;
     private float airstrikeReloadTime;
     private AirstrikeLaunchInfo airstrikeInfo;
@@ -19,6 +18,7 @@ public class PlaneWeaponController : WeaponController
         speed = newTempData.Speed;
         noOfProj = newTempData.NoOfProj;
         planeSprite = newTempData.PlaneSprite;
+        health = newTempData.Health;
 
         base.Init();
     }
@@ -49,7 +49,7 @@ public class PlaneWeaponController : WeaponController
     private void SpawnPlane()
     {
         GameObject inst = Instantiate(planePrefab, RandomPointInBounds(), transform.rotation);
-        inst.GetComponent<PlaneController>().Init(speed, noOfProj, planeSprite, ammoData, gameObject, targetTag);
+        inst.GetComponent<PlaneController>().Init(health, speed, noOfProj, planeSprite, ammoData, gameObject, targetTag);
     }
 
     protected override void CalculateDamage()

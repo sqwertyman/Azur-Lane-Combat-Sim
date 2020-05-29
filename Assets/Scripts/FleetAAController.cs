@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEditor;
 using UnityEngine;
 
 public class FleetAAController : MonoBehaviour
@@ -23,14 +24,17 @@ public class FleetAAController : MonoBehaviour
         }
 
         fleetFirerate /= guns.Count;
-        fleetRange = (fleetRange * 2) / guns.Count;
+        fleetRange = (fleetRange * 2) / guns.Count; //*2 to get roughly right range
+        fleetDamage /= guns.Count;
 
         StartCoroutine(FiringLoop());
     }
 
+    //shows a circle around the ship, indicating the fleet's aa range
     private void OnDrawGizmos()
     {
-        Gizmos.DrawWireSphere(gameObject.GetComponentInParent<ShipController>().transform.position, fleetRange);
+        Handles.color = Color.yellow;
+        Handles.DrawWireDisc(gameObject.GetComponentInParent<ShipController>().transform.position, Vector3.forward, fleetRange);
     }
 
     private IEnumerator FiringLoop()
@@ -39,20 +43,25 @@ public class FleetAAController : MonoBehaviour
         {
             yield return new WaitUntil(() => PlaneInRange() == true);
 
-            print("do dmg");
+            foreach (var plane in GetAllPlanesInRange())
+            {
+                plane.TakeDamage(fleetDamage);
+                print(fleetDamage);
+            }
 
             yield return new WaitForSeconds(fleetFirerate);
         }
     }
 
+    //returns true if an enemy plane is within aa range. probably needs to instead return all planes in range
     public bool PlaneInRange()
     {
-        var targets = GameObject.FindGameObjectsWithTag("EnemyPlane");
+        var planes = GameObject.FindGameObjectsWithTag("EnemyPlane");
 
         Vector3 position = transform.position;
-        foreach (var thisEnemy in targets)
+        foreach (var plane in planes)
         {
-            Vector2 difference = thisEnemy.transform.position - position;
+            Vector2 difference = plane.transform.position - position;
             if (difference.magnitude <= fleetRange)
                 return true;
             else
@@ -60,5 +69,21 @@ public class FleetAAController : MonoBehaviour
         }
 
         return false;
+    }
+
+    public List<PlaneController> GetAllPlanesInRange()
+    {
+        var planes = GameObject.FindGameObjectsWithTag("EnemyPlane");
+        List<PlaneController> targets = new List<PlaneController>();
+
+        Vector3 position = transform.position;
+        foreach (var plane in planes)
+        {
+            Vector2 difference = plane.transform.position - position;
+            if (difference.magnitude <= fleetRange)
+                targets.Add(plane.GetComponent<PlaneController>());
+        }
+
+        return targets;
     }
 }

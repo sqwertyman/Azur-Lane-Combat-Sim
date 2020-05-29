@@ -1,24 +1,31 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlaneController : MonoBehaviour
 {
     public GameObject projectilePrefab;
+    public Image healthBar;
+    public Color healthBarColour;
 
-    private int noOfProj;
+    private int health, maxHealth, noOfProj;
     private Rigidbody2D rb;
     private GameObject source;
     private AmmoData ammoData;
     private string targetTag;
     private Vector3 targetDirection;
 
-    public void Init(int speed, int noOfProj, Sprite planeSprite, AmmoData ammoData, GameObject source, string targetTag)
+    public void Init(int health, int speed, int noOfProj, Sprite planeSprite, AmmoData ammoData, GameObject source, string targetTag)
     {
         this.noOfProj = noOfProj;
         this.source = source;
         this.ammoData = ammoData;
         this.targetTag = targetTag;
+        maxHealth = health;
+
+        this.health = maxHealth;
+        healthBar.color = healthBarColour;
 
         rb = GetComponent<Rigidbody2D>();
         gameObject.GetComponent<SpriteRenderer>().sprite = planeSprite;
@@ -72,5 +79,42 @@ public class PlaneController : MonoBehaviour
         {
             Destroy(gameObject);
         }
+    }
+
+    //called to make the ship take damage, and updates healthbar. updates ref struct holding damage dealt (0 if evaded)
+    public void TakeDamage(int damage)
+    {
+        ShipController attacker = source.GetComponentInParent<ShipController>();
+
+        //evasion chance
+        //float hitChance = 0.1f + (attacker.GetAccuracy() / (attacker.GetAccuracy() + evasion + 2f)) + ((attacker.GetLuck() - luck) / 1000f);
+        //crit chance
+        //float critChance = 0.05f + (attacker.GetAccuracy() / (attacker.GetAccuracy() + evasion + 2000f)) + ((attacker.GetLuck() - luck) / 5000f);
+
+        //check for evade
+        //if (Random.Range(0f, 1f) <= hitChance)
+        //{
+        //    //restart visual effect coroutine
+        //    StopCoroutine("FlashSprite");
+        //    StartCoroutine("FlashSprite");
+
+        //    damageInfo.damage = source.GetComponent<WeaponController>().GetDamage(armour);
+
+        //    //crit multiplies by 1.5
+        //    if (Random.Range(0f, 1f) <= critChance)
+        //    {
+        //        damageInfo.damage = (int)(damageInfo.damage * 1.5f);
+        //        damageInfo.crit = true;
+        //    }
+
+        //    health -= damageInfo.damage;
+        //    healthBar.fillAmount = (float)health / maxHealth;
+        //}
+
+        health -= damage;
+        healthBar.fillAmount = (float)health / maxHealth;
+
+        if (health <= 0)
+            Destroy(gameObject);
     }
 }

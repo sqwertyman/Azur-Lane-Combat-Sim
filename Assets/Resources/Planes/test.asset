@@ -26,5 +26,6 @@ MonoBehaviour:
   sfx: {fileID: 0}
   planeSprite: {fileID: -4551761150027209550, guid: e6157377aa84a884f962e324390c435e,
     type: 3}
+  health: 2000
   noOfProj: 2
   speed: 30
