@@ -33,8 +33,10 @@ public class FleetAAController : MonoBehaviour
     //shows a circle around the ship, indicating the fleet's aa range
     private void OnDrawGizmos()
     {
+#if (UNITY_EDITOR)
         Handles.color = Color.yellow;
         Handles.DrawWireDisc(gameObject.GetComponentInParent<ShipController>().transform.position, Vector3.forward, fleetRange);
+#endif
     }
 
     private IEnumerator FiringLoop()
