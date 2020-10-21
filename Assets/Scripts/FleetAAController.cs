@@ -25,7 +25,10 @@ public class FleetAAController : MonoBehaviour
 
         fleetFirerate /= guns.Count;
         fleetRange = (fleetRange * 2) / guns.Count; //*2 to get roughly right range
-        fleetDamage /= guns.Count;
+        if (guns.Count == 0)
+            fleetDamage = 0;
+        else
+            fleetDamage /= guns.Count;
 
         StartCoroutine(FiringLoop());
     }
